@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Alan Food Delivery SDK</string>
+    <string name="main_menu_header">Alan Food Delivery</string>
+    <string name="main_menu">Delivery Menu</string>
 </resources>
