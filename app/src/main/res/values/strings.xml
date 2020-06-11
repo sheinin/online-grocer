@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Alan Food Delivery SDK</string>
-    <string name="main_menu_header">Alan Food Delivery</string>
+    <string name="main_menu_header">Alan Food Delivery123</string>
     <string name="main_menu">Delivery Menu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Item Menu fragment</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 </resources>

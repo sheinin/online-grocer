@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+
+    <LinearLayout
+        android:id="@+id/mainHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:weightSum="2" >
+
+        <ImageView
+            android:layout_height="24dp"
+            android:layout_width="36dp"
+            android:src="@drawable/ic_alan_logo"
+            android:contentDescription="@string/main_menu_header" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="@string/main_menu_header" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <ImageView
+                android:id="@+id/pizzaBtn"
+                style="@style/MainMenuImage"
+                android:src="@drawable/pizza_pepperoni"
+                android:contentDescription="@string/main_menu" />
+
+            <ImageView
+                android:id="@+id/streetFoodBtn"
+                style="@style/MainMenuImage"
+                android:src="@drawable/street_food_burrito"
+                android:contentDescription="@string/main_menu" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <ImageView
+                android:id="@+id/dessertsBtn"
+                style="@style/MainMenuImage"
+                android:src="@drawable/dessert_apple_pie"
+                android:contentDescription="@string/main_menu" />
+
+            <ImageView
+                android:id="@+id/drinksBtn"
+                style="@style/MainMenuImage"
+                android:src="@drawable/drinks_latte"
+                android:contentDescription="@string/main_menu" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
