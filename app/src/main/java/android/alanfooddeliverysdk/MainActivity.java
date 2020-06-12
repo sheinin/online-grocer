@@ -2,59 +2,68 @@ package android.alanfooddeliverysdk;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
-
 import com.alan.alansdk.AlanCallback;
+import com.alan.alansdk.AlanConfig;
 import com.alan.alansdk.AlanState;
 import com.alan.alansdk.button.AlanButton;
-import com.alan.alansdk.AlanConfig;
-import com.alan.alansdk.events.EventCommand;
 import com.alan.alansdk.events.EventOptions;
 import com.alan.alansdk.events.EventParsed;
 import com.alan.alansdk.events.EventRecognised;
 import com.alan.alansdk.events.EventText;
-import android.alanfooddeliverysdk.alan.Alan;
-
 import android.os.Bundle;
-
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AlanButton alanButton;
-    private AlanCallback alanCallback;
+    AlanButton alanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
+
         alanButton = findViewById(R.id.alan_button);
         AlanConfig config = AlanConfig.builder()
                 .setProjectId("b983d67db70894604d0bf347580da6fd2e956eca572e1d8b807a3e2338fdd0dc/prod")
                 .build();
         alanButton.initWithConfig(config);
-*/
 
-        alanButton = findViewById(R.id.alan_button);
-        Alan.getInstance().setAlanButton(alanButton);
-        alanButton.setButtonAlign(AlanButton.BUTTON_RIGHT);
-        configAlanVoice();
+        alanButton.registerCallback(new AlanCallback() {
+            @Override
+            public void onAlanStateChanged(@NonNull AlanState alanState) {
+                super.onAlanStateChanged(alanState);
+            }
+
+            @Override
+            public void onRecognizedEvent(EventRecognised eventRecognised) {
+                super.onRecognizedEvent(eventRecognised);
+            }
+
+            @Override
+            public void onParsedEvent(EventParsed eventParsed) {
+                super.onParsedEvent(eventParsed);
+            }
+
+            @Override
+            public void onOptionsReceived(EventOptions eventOptions) {
+                super.onOptionsReceived(eventOptions);
+            }
+
+            @Override
+            public void onTextEvent(EventText eventText) {
+                super.onTextEvent(eventText);
+            }
+
+            @Override
+            public void onEvent(String event, String payload) {
+                super.onEvent(event, payload);
+            }
+
+            @Override
+            public void onError(String error) {
+                super.onError(error);
+            }
+        });
+
     }
-
-
-
-    /**
-     * Method configures the alan voice command UI with application, initializes the Alan command
-     * and voice command listener with Alan SDK.
-     */
-    private void configAlanVoice(){
-        if(this.alanButton == null) {
-            alanButton = findViewById(R.id.alan_button);
-            Alan.getInstance().setAlanButton(alanButton);
-            alanButton.setButtonAlign(AlanButton.BUTTON_RIGHT);
-        }
-    }
-
 
 }
