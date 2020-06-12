@@ -22,6 +22,14 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/mainMenu" />
+            app:destination="@id/CartList" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CartList"
+        android:name="android.alanfooddeliverysdk.Cart"
+        tools:layout="@layout/fragment_cart">
+
+
     </fragment>
 </navigation>
