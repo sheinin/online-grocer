@@ -5,11 +5,19 @@ import android.alanfooddeliverysdk.data.CartItem;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 
@@ -21,7 +29,7 @@ import java.util.List;
  * Use the {@link Cart#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Cart extends Fragment {
+public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +41,10 @@ public class Cart extends Fragment {
     private String mParam2;
 
     private View cartView;
+
+    CartAdapter cartAdapter;
+
+    private List<CartItem> cartItems;
 
 
     public Cart() {
@@ -70,25 +82,48 @@ public class Cart extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         cartView = inflater.inflate(R.layout.fragment_cart, container, false);
-        ListView cartList = cartView.findViewById(R.id.cart_list);
-        CartAdapter cartAdapter = new CartAdapter(getContext(), R.layout.cart_item, getCartItems());
+
+        RecyclerView cartList = cartView.findViewById(R.id.cart_list);
+        cartItems = getCartItems();
+        cartAdapter = new CartAdapter(cartItems);
         cartList.setAdapter(cartAdapter);
+        cartAdapter.setOnItemClickListener(this);
+        cartList.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        //Setting item divider
+        RecyclerView.ItemDecoration itemDecoration = new
+                DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
+        cartList.addItemDecoration(itemDecoration);
 
         return cartView;
     }
 
     private List<CartItem> getCartItems() {
         List<CartItem> cartItems = new ArrayList<>();
-        cartItems.add(new CartItem("Pepperoni", "pizza-pepperoni", 14.0f, "prn", "pizza", "pizza", "pizza-pepperoni", 0));
-        cartItems.add(new CartItem("Margarita", "pizza-margarita", 10.0f, "mrg", "pizza", "pizza", "pizza-pepperoni", 0));
-        cartItems.add(new CartItem("Cheese", "pizza-four-cheese", 10f, "4ch", "pizza", "pizza", "pizza-pepperoni", 0));
-        cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 0));
-        cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 0));
-        cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 0));
-
+        cartItems.add(new CartItem("Pepperoni", "pizza-pepperoni", 14.0f, "prn", "pizza", "pizza", "pizza-pepperoni", 10));
+        cartItems.add(new CartItem("Margarita", "pizza-margarita", 10.0f, "mrg", "pizza", "pizza", "pizza-pepperoni", 2));
+        cartItems.add(new CartItem("Cheese", "pizza-four-cheese", 10f, "4ch", "pizza", "pizza", "pizza-pepperoni", 3));
+        cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 4));
+        cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 5));
+        cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 8));
 
         return cartItems;
+    }
 
+    @Override
+    public void addItem(View itemView, int position, int count) {
+        Integer qty = this.cartItems.get(position).getQuantity();
+        qty += count;
+        this.cartItems.get(position).setQuantity(qty);
+        this.cartAdapter.notifyItemChanged(position);
+    }
 
+    @Override
+    public void removeItem(View itemView, int position, int count) {
+        Integer qty = this.cartItems.get(position).getQuantity();
+        if(qty > 0) {
+            qty -= count;
+            this.cartItems.get(position).setQuantity(qty);
+            this.cartAdapter.notifyItemChanged(position);
+        }
     }
 }

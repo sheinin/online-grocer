@@ -56,4 +56,10 @@ public class CartItem {
     public Integer getQuantity() {
         return quantity;
     }
+
+    public void setQuantity(Integer count) {
+         quantity = count;
+    }
+
+
 }

@@ -7,71 +7,158 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.LayoutInflaterCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class CartAdapter extends ArrayAdapter<CartItem> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     private Context mContext;
     private List<CartItem> cartItems;
     private int mResource;
 
-    public CartAdapter(@NonNull Context context, int resource, @NonNull List<CartItem> items) {
-        super(context, resource, items);
-        this.mContext = context;
-        this.cartItems = items;
-        this.mResource = resource;
+
+    // Define listener member variable
+    private OnItemClickListener listener;
+    // Define the listener interface
+    public interface OnItemClickListener {
+        void addItem(View itemView, int position, int count);
+
+        void removeItem(View itemView, int position, int count);
+    }
+    // Define the method that allows the parent activity or fragment to define the listener
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        // Your holder should contain a member variable
+        // for any view that will be set as you render a row
+        public ImageView itemImage;
+        public TextView itemName;
+        public TextView itemCategory;
+        public TextView itemPrice;
+        public TextView itemQuantity;
+        public ImageButton addItem;
+        public ImageButton removeItem;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            itemImage = itemView.findViewById(R.id.item_image);
+            itemName = itemView.findViewById(R.id.item_name);
+            itemCategory = itemView.findViewById(R.id.item_category);
+            itemPrice = itemView.findViewById(R.id.item_price);
+            itemQuantity = itemView.findViewById(R.id.item_quantity);
+            addItem = itemView.findViewById(R.id.add_item);
+            removeItem = itemView.findViewById(R.id.remove_item);
+        }
+    }
+
+    public CartAdapter(@NonNull List<CartItem> items) {
+        super();
+        this.cartItems = items;
+    }
+
+    /**
+     * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
+     * an item.
+     * <p>
+     * This new ViewHolder should be constructed with a new View that can represent the items
+     * of the given type. You can either create a new View manually or inflate it from an XML
+     * layout file.
+     * <p>
+     * The new ViewHolder will be used to display items of the adapter using
+     * {@link #onBindViewHolder(ViewHolder, int, List)}. Since it will be re-used to display
+     * different items in the data set, it is a good idea to cache references to sub views of
+     * the View to avoid unnecessary {@link View#findViewById(int)} calls.
+     *
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to
+     *                 an adapter position.
+     * @param viewType The view type of the new View.
+     * @return A new ViewHolder that holds a View of the given view type.
+     * @see #getItemViewType(int)
+     * @see #onBindViewHolder(ViewHolder, int)
+     */
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        mContext = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View cartItemView = inflater.inflate(R.layout.cart_item, parent, false);
+        ViewHolder viewHolder = new ViewHolder(cartItemView);
+        return viewHolder;
+    }
 
-        LayoutInflater inflater = LayoutInflater.from(this.mContext);
-        View view = inflater.inflate(R.layout.cart_item, null);
-
-        //Set cart item params
+    /**
+     * Called by RecyclerView to display the data at the specified position. This method should
+     * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
+     * position.
+     * <p>
+     * Note that unlike {@link ListView}, RecyclerView will not call this method
+     * again if the position of the item changes in the data set unless the item itself is
+     * invalidated or the new position cannot be determined. For this reason, you should only
+     * use the <code>position</code> parameter while acquiring the related data item inside
+     * this method and should not keep a copy of it. If you need the position of an item later
+     * on (e.g. in a click listener), use {@link ViewHolder#getAdapterPosition()} which will
+     * have the updated adapter position.
+     * <p>
+     * Override {@link #onBindViewHolder(ViewHolder, int, List)} instead if Adapter can
+     * handle efficient partial bind.
+     *
+     * @param holder   The ViewHolder which should be updated to represent the contents of the
+     *                 item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
+    @Override
+    public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, final int position) {
         CartItem cartItem = this.cartItems.get(position);
-
-        ImageView itemImage = view.findViewById(R.id.item_image);
-        itemImage.setImageDrawable(mContext.getDrawable(R.drawable.drinks_latte));
-
-        TextView itemName = view.findViewById(R.id.item_name);
-        itemName.setText(cartItem.getTitle());
-
-        TextView itemCategory = view.findViewById(R.id.item_category);
-        itemCategory.setText(cartItem.getType());
-
-        TextView itemPrice = view.findViewById(R.id.item_price);
-        itemPrice.setText("" + cartItem.getPrice());
-
-        TextView itemQuantity = view.findViewById(R.id.item_quantity);
-        itemQuantity.setText("" + cartItem.getQuantity());
-
-        Button add = view.findViewById(R.id.add_item);
-        add.setOnClickListener(new View.OnClickListener(){
+        holder.itemName.setText(cartItem.getTitle());
+        holder.itemCategory.setText(cartItem.getType());
+        holder.itemPrice.setText("" + cartItem.getPrice());
+        holder.itemImage.setImageDrawable(mContext.getDrawable(R.drawable.pizza_pepperoni));
+        holder.itemQuantity.setText("" + cartItem.getQuantity());
+        holder.addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("CartAdapter", "Add Item");
+                addItem(view, position, 1);
             }
         });
 
-        Button remove = view.findViewById(R.id.remove_item);
-        remove.setOnClickListener(new View.OnClickListener(){
+        holder.removeItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("CartAdapter", "Remove Item");
+                removeItem(view, position, 1);
             }
         });
 
-        return view;
+    }
+
+    public void removeItem(View view,int position, int count){
+        if(this.listener != null){
+            this.listener.removeItem(view, position, count);
+        }
+    }
+
+    private void addItem(View view, int position, int count){
+        if(this.listener != null){
+            this.listener.addItem(view, position, count);
+        }
+    }
+
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
+    @Override
+    public int getItemCount() {
+        return this.cartItems.size();
     }
 }

@@ -11,4 +11,7 @@
     <string name="street_food">Street Food</string>
     <string name="desserts">Desserts</string>
     <string name="drinks">Drinks</string>
+    <string name="delivery_address">Address</string>
+    <string name="delivery_date">Date</string>
+    <string name="delivery_time">Time</string>
 </resources>
