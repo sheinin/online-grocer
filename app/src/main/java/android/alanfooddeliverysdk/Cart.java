@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,11 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
     CartAdapter cartAdapter;
 
     private List<CartItem> cartItems;
+
+    Integer totalItems = 0;
+
+    Float totalAmount = 0f;
+
 
 
     public Cart() {
@@ -93,13 +99,13 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         cartList.addItemDecoration(itemDecoration);
-
+        calcItemsAndTotal();
         return cartView;
     }
 
     private List<CartItem> getCartItems() {
         List<CartItem> cartItems = new ArrayList<>();
-        cartItems.add(new CartItem("Pepperoni", "pizza-pepperoni", 14.0f, "prn", "pizza", "pizza", "pizza-pepperoni", 10));
+        cartItems.add(new CartItem("Pepperoni Pepperoni", "pizza-pepperoni", 14.0f, "prn", "pizza", "pizza", "pizza-pepperoni", 10));
         cartItems.add(new CartItem("Margarita", "pizza-margarita", 10.0f, "mrg", "pizza", "pizza", "pizza-pepperoni", 2));
         cartItems.add(new CartItem("Cheese", "pizza-four-cheese", 10f, "4ch", "pizza", "pizza", "pizza-pepperoni", 3));
         cartItems.add(new CartItem("Hawaiian", "pizza-hawaii", 10f, "haw", "pizza", "pizza", "pizza-pepperoni", 4));
@@ -115,6 +121,7 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
         qty += count;
         this.cartItems.get(position).setQuantity(qty);
         this.cartAdapter.notifyItemChanged(position);
+        calcItemsAndTotal();
     }
 
     @Override
@@ -125,5 +132,25 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
             this.cartItems.get(position).setQuantity(qty);
             this.cartAdapter.notifyItemChanged(position);
         }
+        calcItemsAndTotal();
+    }
+
+    /**
+     * This method calculates the number of items and total amount of the Cart items.
+     */
+    private void calcItemsAndTotal(){
+        totalItems = 0;
+        totalAmount = 0f;
+        for(CartItem item : cartItems){
+            totalItems += item.getQuantity() ;
+            totalAmount += (item.getPrice() * item.getQuantity());
+        }
+        setItemsAndTotal();
+    }
+
+    //This method updates the title with total items and total amount.
+    private void setItemsAndTotal(){
+        TextView title = cartView.findViewById(R.id.cart_title);
+        title.setText("You have added " + totalItems + " items, $" + totalAmount + " total");
     }
 }

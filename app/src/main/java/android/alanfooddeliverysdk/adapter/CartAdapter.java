@@ -26,6 +26,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     // Define listener member variable
     private OnItemClickListener listener;
+
+    String CURRENCY = "$";
+
+
     // Define the listener interface
     public interface OnItemClickListener {
         void addItem(View itemView, int position, int count);
@@ -121,7 +125,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         CartItem cartItem = this.cartItems.get(position);
         holder.itemName.setText(cartItem.getTitle());
         holder.itemCategory.setText(cartItem.getType());
-        holder.itemPrice.setText("" + cartItem.getPrice());
+        holder.itemPrice.setText(CURRENCY + cartItem.getPrice());
         holder.itemImage.setImageDrawable(mContext.getDrawable(R.drawable.pizza_pepperoni));
         holder.itemQuantity.setText("" + cartItem.getQuantity());
         holder.addItem.setOnClickListener(new View.OnClickListener() {

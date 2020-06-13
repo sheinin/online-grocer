@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     tools:context=".Cart">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -27,21 +27,18 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:layout_below="@+id/cart_heading"
                 android:text="You have added 0 items, $0 total"/>
 
             <View
                 android:id="@+id/first_separator"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/cart_title"
                 android:background="@android:color/darker_gray"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cart_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/first_separator"/>
+                android:layout_height="wrap_content" />
 
 
             <TextView
@@ -52,8 +49,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Enter delivery details"
-                android:layout_below="@+id/cart_list"/>
+                android:text="Enter delivery details" />
 
             <View
                 android:id="@+id/second_separator"
@@ -62,46 +58,43 @@
                 android:layout_marginBottom="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/enter_details"
-                android:background="@android:color/darker_gray"/>
+                android:layout_gravity="center"
+                android:gravity="center" />
 
             <EditText
                 android:id="@+id/delivery_address"
                 android:layout_height="wrap_content"
                 android:hint="@string/delivery_address"
                 android:inputType="text"
-                android:layout_width="fill_parent"
-                android:layout_below="@+id/second_separator"/>
+                android:layout_width="fill_parent"/>
 
             <EditText
                 android:id="@+id/delivery_date"
                 android:layout_height="wrap_content"
                 android:hint="@string/delivery_date"
                 android:inputType="text"
-                android:layout_width="fill_parent"
-                android:layout_below="@+id/delivery_address"/>
+                android:layout_width="fill_parent"/>
 
             <EditText
                 android:id="@+id/delivery_time"
                 android:layout_height="wrap_content"
                 android:hint="@string/delivery_time"
                 android:inputType="text"
-                android:layout_width="fill_parent"
-                android:layout_below="@+id/delivery_date"/>
+                android:layout_width="fill_parent"/>
 
             <Button
                 android:id="@+id/finish_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/alan_button_idle"
+                android:background="@color/blue"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="22dp"
                 android:layout_marginTop="20dp"
                 android:text="Finish Order"
                 android:layout_alignParentBottom="true"
-                android:gravity="center"
-                android:layout_below="@+id/delivery_time"/>
+                android:gravity="center"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
 </ScrollView>
