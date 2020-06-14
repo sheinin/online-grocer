@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:tag="itemContainer"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:padding="10dp"
+    style="@style/MainMenuWrapper"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        style="@style/MainMenuWrapper"
+        android:background="@drawable/menu_item_container"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageView
+            android:tag="itemImg"
+            android:id="@+id/itemImg"
+            style="@style/MainMenuImage"
+            android:contentDescription="@string/main_menu" />
+
+        <TextView
+            android:tag="itemPrice"
+            style="@style/itemPrice"
+            android:text="$10"
+            android:layout_alignTop="@+id/itemImg" />
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:tag="itemTitle"
+            style="@style/MainMenuText"
+            android:layout_alignBottom="@+id/itemImg" />
+
+
+        <LinearLayout
+            android:id="@+id/mainMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/itemImg"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/itemAdd"
+                android:layout_below="@+id/itemImg"
+                android:tag="itemRemove"
+                android:background="@drawable/item_remove_view"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/itemAdd"
+                android:tag="itemAdd"
+                style="@style/itemAdd"
+                android:text="+" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

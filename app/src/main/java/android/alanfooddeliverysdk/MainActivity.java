@@ -15,6 +15,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     AlanButton alanButton;
+    String route;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

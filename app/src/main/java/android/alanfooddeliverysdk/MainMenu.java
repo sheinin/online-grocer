@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.fragment.NavHostFragment;
 import com.alan.alansdk.AlanCallback;
 import com.alan.alansdk.button.AlanButton;
@@ -17,17 +15,21 @@ import org.json.JSONObject;
 public class MainMenu extends Fragment {
 
     private AlanButton alanButton;
+    private MainActivity MA;
 
     public MainMenu() {
         // Required empty public constructor
     }
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        alanButton = ((MainActivity) requireActivity()).alanButton;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
+        MA = ((MainActivity) requireActivity());
+        alanButton = MA.alanButton;
 
         alanButton.registerCallback(new AlanCallback() {
 
@@ -42,28 +44,22 @@ public class MainMenu extends Fragment {
                     JSONObject alanCommand = commandObject.getJSONObject("data");
                     String cmd = alanCommand.getString("command");
 
-                    if ("navigation".equals(cmd)) {
+                    if ("navigation".equals(cmd))
 
-                       // String screen = alanCommand.getString("route");
-
-                        NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
-
-                    }
+                        openItemMenu(alanCommand.getString("route"));
 
                 } catch (Exception e) {
+
                     alanButton.playText("Invalid response, Some thing went wrong.");
                     e.printStackTrace();
+
                 }
 
 
             }
 
         });
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
 
@@ -82,7 +78,8 @@ public class MainMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+                openItemMenu("pizza");
+
 
             }
 
@@ -90,6 +87,13 @@ public class MainMenu extends Fragment {
 
     }
 
+
+    private void openItemMenu(String route){
+
+        MA.route = route;
+        NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+
+    }
 
 
 }

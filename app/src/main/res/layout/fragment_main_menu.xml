@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainHeader"
@@ -42,16 +43,15 @@
             android:weightSum="2" >
 
             <RelativeLayout
+                android:paddingRight="5dp"
                 android:layout_margin="0dp"
-                style="@style/MainMenuImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                style="@style/MainMenuWrapper">
 
-            <ImageView
-                android:id="@+id/pizzaBtn"
-                style="@style/MainMenuImage"
-                android:src="@drawable/pizza_pepperoni"
-                android:contentDescription="@string/main_menu" />
+                <ImageView
+                    android:id="@+id/pizzaBtn"
+                    style="@style/MainMenuImage"
+                    android:src="@drawable/pizza_pepperoni"
+                    android:contentDescription="@string/main_menu" />
 
                 <TextView
                     style="@style/MainMenuText"
@@ -61,10 +61,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:paddingLeft="5dp"
                 android:layout_margin="0dp"
-                style="@style/MainMenuImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                style="@style/MainMenuWrapper">
 
                 <ImageView
                     android:id="@+id/streetFoodBtn"
@@ -87,14 +86,13 @@
             android:layout_weight="1"
             android:baselineAligned="false"
             android:orientation="horizontal"
+            android:paddingTop="10dp"
             android:weightSum="2" >
 
-
             <RelativeLayout
+                android:paddingRight="5dp"
                 android:layout_margin="0dp"
-                style="@style/MainMenuImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                style="@style/MainMenuWrapper">
 
                 <ImageView
                     android:id="@+id/dessertsBtn"
@@ -110,10 +108,9 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:paddingLeft="5dp"
                 android:layout_margin="0dp"
-                style="@style/MainMenuImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                style="@style/MainMenuWrapper">
 
                 <ImageView
                     android:id="@+id/drinksBtn"

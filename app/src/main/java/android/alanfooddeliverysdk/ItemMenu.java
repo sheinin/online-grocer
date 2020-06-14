@@ -1,66 +1,96 @@
 package android.alanfooddeliverysdk;
 
+import android.alanfooddeliverysdk.data.CartItem;
+import android.alanfooddeliverysdk.data.CartItems;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ItemMenu#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ItemMenu extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private MainActivity MA;
 
     public ItemMenu() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ItemMenu.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ItemMenu newInstance(String param1, String param2) {
-        ItemMenu fragment = new ItemMenu();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_item_menu, container, false);
+
+        MA = ((MainActivity) requireActivity());
+
+        View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
+        List<CartItem> cartItems = CartItems.getCartItems();
+        LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
+        LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View wrapperView = null;
+        int count = 0;
+
+        assert li != null;
+
+        for (int i = 0, ix = cartItems.size(); i < ix;  i++) {
+
+            if (MA.route.equals(cartItems.get(i).getType())) {
+
+                if (count % 2 == 0) {
+
+                    wrapperView = li.inflate(R.layout.menu_item_view_wrapper, null);
+                    mainLayout.addView(wrapperView);
+
+                }
+
+                LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
+                View itemView = li.inflate(R.layout.menu_item_view, null);
+                ImageView itemImg = itemView.findViewWithTag("itemImg");
+                TextView itemTitle = itemView.findViewWithTag("itemTitle");
+                TextView itemPrice = itemView.findViewWithTag("itemPrice");
+                LinearLayout itemContainer = itemView.findViewWithTag("itemContainer");
+
+                if (count % 2 == 0)
+                    itemContainer.setPadding(10,10,5,10);
+                else
+                    itemContainer.setPadding(5,10,10,10);
+
+                int res = getResources().getIdentifier(
+                        cartItems.get(i).getImg(),
+                        "drawable",
+                        this.getContext().getPackageName());
+
+                if (res != 0)
+
+                    itemImg.setImageResource(res);
+
+                itemTitle.setText(cartItems.get(i).getTitle());
+                itemPrice.setText("$" + Math.round(cartItems.get(i).getPrice()));
+                itemView.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        1.0f));
+                wrapperLayout.addView(itemView);
+
+                count++;
+
+            }
+
+        }
 
         view.setOnClickListener(new View.OnClickListener() {
 
@@ -74,4 +104,5 @@ public class ItemMenu extends Fragment {
         } );
         return view;
     }
+
 }
