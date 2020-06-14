@@ -51,19 +51,16 @@
             android:layout_below="@+id/itemImg"
             android:orientation="horizontal">
 
-            <TextView
-                style="@style/itemAdd"
+            <ImageView
                 android:tag="itemRemove"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/item_remove_view"
+                style="@style/itemAdd"
                 android:visibility="invisible"
-                android:text="@string/remove" />
+                android:src="@drawable/ic_remove_circle_black_24dp"/>
 
-            <TextView
-                android:id="@+id/itemAdd"
+            <ImageView
                 android:tag="itemAdd"
                 style="@style/itemAdd"
-                android:text="@string/add" />
+                android:src="@drawable/ic_add_circle_black_24dp"/>
 
         </LinearLayout>
 

@@ -63,8 +63,8 @@ public class ItemMenu extends Fragment {
                 ImageView itemImg = itemView.findViewWithTag("itemImg");
                 TextView itemTitle = itemView.findViewWithTag("itemTitle");
                 TextView itemPrice = itemView.findViewWithTag("itemPrice");
-                TextView itemAdd = itemView.findViewWithTag("itemAdd");
-                final TextView itemRemove = itemView.findViewWithTag("itemRemove");
+                ImageView itemAdd = itemView.findViewWithTag("itemAdd");
+                final ImageView itemRemove = itemView.findViewWithTag("itemRemove");
                 final TextView itemQuantity = itemView.findViewWithTag("itemQuantity");
                 final int finalI = i;
                 int quantity = cartItems.get(i).getQuantity();
