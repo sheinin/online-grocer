@@ -43,8 +43,8 @@
             android:weightSum="2" >
 
             <RelativeLayout
-                android:paddingRight="5dp"
-                android:layout_margin="0dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="0dp"
                 style="@style/MainMenuWrapper">
 
                 <ImageView
@@ -61,8 +61,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:paddingLeft="5dp"
-                android:layout_margin="0dp"
+                android:paddingEnd="0dp"
+                android:paddingStart="5dp"
                 style="@style/MainMenuWrapper">
 
                 <ImageView
@@ -90,8 +90,8 @@
             android:weightSum="2" >
 
             <RelativeLayout
-                android:paddingRight="5dp"
-                android:layout_margin="0dp"
+                android:paddingEnd="5dp"
+                android:paddingStart="0dp"
                 style="@style/MainMenuWrapper">
 
                 <ImageView
@@ -108,8 +108,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:paddingLeft="5dp"
-                android:layout_margin="0dp"
+                android:paddingEnd="0dp"
+                android:paddingStart="5dp"
                 style="@style/MainMenuWrapper">
 
                 <ImageView

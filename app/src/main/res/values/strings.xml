@@ -14,4 +14,6 @@
     <string name="delivery_address">Address</string>
     <string name="delivery_date">Date</string>
     <string name="delivery_time">Time</string>
+    <string name="remove">-</string>
+    <string name="add">+</string>
 </resources>

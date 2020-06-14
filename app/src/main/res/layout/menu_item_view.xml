@@ -6,15 +6,15 @@
     android:layout_width="wrap_content"
     android:padding="10dp"
     style="@style/MainMenuWrapper"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false">
 
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
         style="@style/MainMenuWrapper"
-        android:background="@drawable/menu_item_container"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:background="@drawable/menu_item_container">
 
         <ImageView
             android:tag="itemImg"
@@ -23,38 +23,47 @@
             android:contentDescription="@string/main_menu" />
 
         <TextView
+            android:tag="itemQuantity"
+            style="@style/itemQuantity"
+            android:background="@drawable/item_quantity"
+            android:visibility="invisible"
+            android:layout_alignEnd="@+id/itemImg"
+            android:layout_alignTop="@+id/itemImg"/>
+
+        <TextView
+            android:id="@+id/itemPrice"
             android:tag="itemPrice"
             style="@style/itemPrice"
-            android:text="$10"
-            android:layout_alignTop="@+id/itemImg" />
+            android:layout_below="@+id/itemImg" />
 
         <TextView
             android:id="@+id/itemTitle"
             android:tag="itemTitle"
-            style="@style/MainMenuText"
-            android:layout_alignBottom="@+id/itemImg" />
+            style="@style/itemTitle"
+            android:layout_below="@+id/itemPrice"/>
 
 
         <LinearLayout
-            android:id="@+id/mainMenu"
+            android:paddingTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_below="@+id/itemImg"
             android:orientation="horizontal">
 
             <TextView
                 style="@style/itemAdd"
-                android:layout_below="@+id/itemImg"
                 android:tag="itemRemove"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/item_remove_view"
-                android:text="-" />
+                android:visibility="invisible"
+                android:text="@string/remove" />
 
             <TextView
                 android:id="@+id/itemAdd"
                 android:tag="itemAdd"
                 style="@style/itemAdd"
-                android:text="+" />
+                android:text="@string/add" />
 
         </LinearLayout>
 

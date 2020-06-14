@@ -3,8 +3,5 @@
 
     <solid android:color="#0fdc60" />
 
-    <size
-        android:height="25dp"
-        android:width="25dp" />
 
 </shape>

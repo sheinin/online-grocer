@@ -10,12 +10,18 @@ import com.alan.alansdk.events.EventOptions;
 import com.alan.alansdk.events.EventParsed;
 import com.alan.alansdk.events.EventRecognised;
 import com.alan.alansdk.events.EventText;
+
+import android.alanfooddeliverysdk.data.CartItem;
+import android.alanfooddeliverysdk.data.CartItems;
 import android.os.Bundle;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     AlanButton alanButton;
     String route;
+    List<CartItem> cartItems = CartItems.getCartItems();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
