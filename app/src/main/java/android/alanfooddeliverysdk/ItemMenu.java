@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -142,16 +143,24 @@ public class ItemMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+                NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_ThirdFragment);
 
             }
 
         } );
-
+        toolbar.findViewById(R.id.button_action).setVisibility(View.VISIBLE);
         toolbar.findViewById(R.id.button_action).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_ThirdFragment);
+            }
+        });
+
+        toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
                 NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+
             }
         });
         return view;

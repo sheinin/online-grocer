@@ -5,7 +5,9 @@ import android.alanfooddeliverysdk.data.CartItem;
 import android.alanfooddeliverysdk.data.Utils;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -93,6 +95,9 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
         cartView = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
+
+
         RecyclerView cartList = cartView.findViewById(R.id.cart_list);
         cartAdapter = new CartAdapter(this.MA.cartItems, R.layout.cart_item);
         cartList.setAdapter(cartAdapter);
@@ -103,6 +108,14 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
                 DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         cartList.addItemDecoration(itemDecoration);
         calcItemsAndTotal();
+        toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
+        toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(Cart.this).navigate(R.id.action_ThirdFragment_to_SecondFragment);
+            }
+        });
+        toolbar.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
         return cartView;
     }
 
