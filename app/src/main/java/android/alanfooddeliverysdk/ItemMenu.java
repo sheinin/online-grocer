@@ -1,31 +1,22 @@
 package android.alanfooddeliverysdk;
 
 import android.alanfooddeliverysdk.data.CartItem;
-import android.alanfooddeliverysdk.data.CartItems;
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ItemMenu extends Fragment {
-
-    private MainActivity MA;
 
     public ItemMenu() {
         // Required empty public constructor
@@ -36,12 +27,12 @@ public class ItemMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MA = ((MainActivity) requireActivity());
+        MainActivity MA = ((MainActivity) requireActivity());
 
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
-//        final List<CartItem> cartItems = CartItems.getCartItems();
         Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
         final List<CartItem> cartItems = MA.cartItems;
+        final OrderItems orderItems =  new OrderItems(view, MA.cartItems);
         LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View wrapperView = null;
@@ -55,13 +46,13 @@ public class ItemMenu extends Fragment {
 
                 if (count % 2 == 0) {
 
-                    wrapperView = li.inflate(R.layout.menu_item_view_wrapper, null);
+                    wrapperView = li.inflate(R.layout.menu_item_view_wrapper, container, false);
                     mainLayout.addView(wrapperView);
 
                 }
 
                 LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
-                View itemView = li.inflate(R.layout.menu_item_view, null);
+                View itemView = li.inflate(R.layout.menu_item_view, container, false);
                 ImageView itemImg = itemView.findViewWithTag("itemImg");
                 TextView itemTitle = itemView.findViewWithTag("itemTitle");
                 TextView itemPrice = itemView.findViewWithTag("itemPrice");
@@ -80,15 +71,15 @@ public class ItemMenu extends Fragment {
                 int res = getResources().getIdentifier(
                         cartItems.get(i).getImg(),
                         "drawable",
-                        this.getContext().getPackageName());
+                        this.requireContext().getPackageName());
 
                 if (res != 0)
 
                     itemImg.setImageResource(res);
 
                 itemTitle.setText(cartItems.get(i).getTitle());
-                itemPrice.setText("$" + Math.round(cartItems.get(i).getPrice()));
-
+                String text = "$" + Math.round(cartItems.get(i).getPrice());
+                itemPrice.setText(text);
 
                 if (quantity > 0) {
                     itemQuantity.setText(String.valueOf(quantity));
@@ -106,10 +97,11 @@ public class ItemMenu extends Fragment {
                     @Override
                     public void onClick(View view) {
 
+                        orderItems.addItem();
                         itemRemove.setVisibility(View.VISIBLE);
                         itemQuantity.setVisibility(View.VISIBLE);
                         cartItems.get(finalI).setQuantity(cartItems.get(finalI).getQuantity() + 1);
-                        itemQuantity.setText(cartItems.get(finalI).getQuantity().toString());
+                        itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
 
                     }
 
@@ -130,7 +122,8 @@ public class ItemMenu extends Fragment {
                         }
 
                         cartItems.get(finalI).setQuantity(quantity);
-                        itemQuantity.setText(cartItems.get(finalI).getQuantity().toString());
+                        itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
+
 
                     }
 

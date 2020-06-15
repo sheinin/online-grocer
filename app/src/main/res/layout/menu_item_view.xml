@@ -4,8 +4,6 @@
     android:tag="itemContainer"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
-    android:padding="10dp"
-    style="@style/MainMenuWrapper"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:baselineAligned="false">
 
@@ -13,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
-        style="@style/MainMenuWrapper"
-        android:background="@drawable/menu_item_container">
+        android:background="@drawable/menu_item_container"
+        style="@style/MainMenuWrapper">
 
         <ImageView
             android:tag="itemImg"

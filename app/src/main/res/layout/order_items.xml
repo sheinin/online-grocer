@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:tag="itemContainer"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/order_items_background"
+    android:baselineAligned="false">
+
+    <ImageView
+        android:id="@+id/orderPizzaImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/color_pizza" />
+
+    <TextView
+        android:id="@+id/orderPizzaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="1"
+        android:background="@drawable/item_quantity" />
+
+    <ImageView
+        android:id="@+id/orderStreetImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/color_street_food" />
+
+    <TextView
+        android:id="@+id/orderStreetTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="1"
+        android:background="@drawable/item_quantity" />
+
+    <ImageView
+        android:id="@+id/orderDessertImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/color_dessert" />
+
+
+    <TextView
+        android:id="@+id/orderDessertTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="1"
+        android:background="@drawable/item_quantity" />
+
+    <ImageView
+        android:id="@+id/orderDrinksImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/color_drinks" />
+
+
+    <TextView
+        android:id="@+id/orderDrinksTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/item_quantity"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="1" />
+
+
+</LinearLayout>
