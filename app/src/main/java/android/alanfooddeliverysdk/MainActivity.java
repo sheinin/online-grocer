@@ -2,6 +2,8 @@ package android.alanfooddeliverysdk;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.alan.alansdk.AlanCallback;
 import com.alan.alansdk.AlanConfig;
 import com.alan.alansdk.AlanState;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.id_app_toolbar);
+        setSupportActionBar(toolbar);
 
         alanButton = findViewById(R.id.alan_button);
         AlanConfig config = AlanConfig.builder()

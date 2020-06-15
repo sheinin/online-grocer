@@ -2,6 +2,7 @@ package android.alanfooddeliverysdk;
 
 import android.alanfooddeliverysdk.adapter.CartAdapter;
 import android.alanfooddeliverysdk.data.CartItem;
+import android.alanfooddeliverysdk.data.Utils;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -51,6 +52,7 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
     Float totalAmount = 0f;
 
+    String categoryType = "drinks";
 
 
     public Cart() {
@@ -90,8 +92,8 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
         cartView = inflater.inflate(R.layout.fragment_cart, container, false);
 
         RecyclerView cartList = cartView.findViewById(R.id.cart_list);
-        cartItems = getCartItems();
-        cartAdapter = new CartAdapter(cartItems);
+        cartItems = Utils.getInstance().getMenuItems().get(categoryType);
+        cartAdapter = new CartAdapter(cartItems, R.layout.cart_item);
         cartList.setAdapter(cartAdapter);
         cartAdapter.setOnItemClickListener(this);
         cartList.setLayoutManager(new LinearLayoutManager(inflater.getContext()));

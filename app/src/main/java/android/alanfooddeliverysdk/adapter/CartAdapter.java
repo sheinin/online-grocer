@@ -2,6 +2,7 @@ package android.alanfooddeliverysdk.adapter;
 
 import android.alanfooddeliverysdk.R;
 import android.alanfooddeliverysdk.data.CartItem;
+import android.alanfooddeliverysdk.data.Utils;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private OnItemClickListener listener;
 
     String CURRENCY = "$";
+
+    private int resourceItem = -1;
 
 
     // Define the listener interface
@@ -65,9 +68,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         }
     }
 
-    public CartAdapter(@NonNull List<CartItem> items) {
+    public CartAdapter(@NonNull List<CartItem> items, int layoutItem) {
         super();
         this.cartItems = items;
+        this.resourceItem = layoutItem;
     }
 
     /**
@@ -95,7 +99,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View cartItemView = inflater.inflate(R.layout.cart_item, parent, false);
+        View cartItemView = inflater.inflate(this.resourceItem, parent, false);
         ViewHolder viewHolder = new ViewHolder(cartItemView);
         return viewHolder;
     }
@@ -124,9 +128,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, final int position) {
         CartItem cartItem = this.cartItems.get(position);
         holder.itemName.setText(cartItem.getTitle());
-        holder.itemCategory.setText(cartItem.getType());
+        if(holder.itemCategory != null)
+            holder.itemCategory.setText(cartItem.getType());
         holder.itemPrice.setText(CURRENCY + cartItem.getPrice());
-        holder.itemImage.setImageDrawable(mContext.getDrawable(R.drawable.pizza_pepperoni));
+        holder.itemImage.setImageDrawable(mContext.getDrawable(Utils.getInstance().getCartResourceId(cartItem.getImg())));
         holder.itemQuantity.setText("" + cartItem.getQuantity());
         holder.addItem.setOnClickListener(new View.OnClickListener() {
             @Override
