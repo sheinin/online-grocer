@@ -40,6 +40,8 @@ public class ItemMenu extends Fragment {
 
         assert li != null;
 
+        orderItems.updateOrderItems();
+
         for (int i = 0, ix = cartItems.size(); i < ix;  i++) {
 
             if (MA.route.equals(cartItems.get(i).getType())) {
@@ -97,11 +99,11 @@ public class ItemMenu extends Fragment {
                     @Override
                     public void onClick(View view) {
 
-                        orderItems.addItem();
                         itemRemove.setVisibility(View.VISIBLE);
                         itemQuantity.setVisibility(View.VISIBLE);
                         cartItems.get(finalI).setQuantity(cartItems.get(finalI).getQuantity() + 1);
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
+                        orderItems.updateOrderItems();
 
                     }
 
@@ -123,7 +125,7 @@ public class ItemMenu extends Fragment {
 
                         cartItems.get(finalI).setQuantity(quantity);
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
-
+                        orderItems.updateOrderItems();
 
                     }
 

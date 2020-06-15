@@ -80,6 +80,16 @@ public class MainMenu extends Fragment {
 
                 openItemMenu("pizza");
 
+            }
+
+        } );
+
+        view.findViewById(R.id.dessertsBtn).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                openItemMenu("desserts");
 
             }
 
