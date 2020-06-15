@@ -131,7 +131,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         if(holder.itemCategory != null)
             holder.itemCategory.setText(cartItem.getType());
         holder.itemPrice.setText(CURRENCY + cartItem.getPrice());
-        holder.itemImage.setImageDrawable(mContext.getDrawable(Utils.getInstance().getCartResourceId(cartItem.getImg())));
+        int res = mContext.getResources().getIdentifier(
+                cartItems.get(position).getImg(),
+                "drawable",
+                this.mContext.getPackageName());
+
+        holder.itemImage.setImageDrawable(mContext.getDrawable(res));
         holder.itemQuantity.setText("" + cartItem.getQuantity());
         holder.addItem.setOnClickListener(new View.OnClickListener() {
             @Override
