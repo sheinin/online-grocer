@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:id="@+id/app_tool_bar"
+    android:background="@color/white"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="visible"
+        android:src="@drawable/ic_back"/>
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/toolbar_image"
+        android:src="@drawable/app_icon">
+    </ImageView>
+    <TextView
+        android:id="@+id/mainHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:text="@string/main_menu_header" />
+    <ImageButton
+        android:id="@+id/button_action"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_cart"/>
+
+</androidx.appcompat.widget.Toolbar>
