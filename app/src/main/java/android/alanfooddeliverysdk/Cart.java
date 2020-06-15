@@ -50,7 +50,7 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
     CartAdapter cartAdapter;
 
-    private List<CartItem> cartItems;
+    private List<CartItem> orderItems;
 
     Integer totalItems = 0;
 
@@ -97,9 +97,9 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
         Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
 
-
+        this.orderItems = this.MA.getOrderedItems();
         RecyclerView cartList = cartView.findViewById(R.id.cart_list);
-        cartAdapter = new CartAdapter(this.MA.cartItems, R.layout.cart_item);
+        cartAdapter = new CartAdapter(this.orderItems, R.layout.cart_item);
         cartList.setAdapter(cartAdapter);
         cartAdapter.setOnItemClickListener(this);
         cartList.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
@@ -133,22 +133,35 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
     @Override
     public void addItem(View itemView, int position, int count) {
-        Integer qty = this.MA.cartItems.get(position).getQuantity();
-        qty += count;
-        this.MA.cartItems.get(position).setQuantity(qty);
-        this.cartAdapter.notifyItemChanged(position);
-        calcItemsAndTotal();
+        if(this.orderItems.size() > 0) {
+            Integer qty = this.orderItems.get(position).getQuantity();
+            String id = this.orderItems.get(position).getId();
+            qty += count;
+            this.orderItems.get(position).setQuantity(qty);
+            this.MA.orderedItemsList.put(id, this.orderItems.get(position));
+            this.cartAdapter.notifyItemChanged(position);
+            calcItemsAndTotal();
+        }
     }
 
     @Override
     public void removeItem(View itemView, int position, int count) {
-        Integer qty = this.MA.cartItems.get(position).getQuantity();
-        if(qty > 0) {
-            qty -= count;
-            this.MA.cartItems.get(position).setQuantity(qty);
-            this.cartAdapter.notifyItemChanged(position);
+        if(this.orderItems.size() > 0) {
+            Integer qty = this.orderItems.get(position).getQuantity();
+            String id = this.orderItems.get(position).getId();
+            if (qty > 0) {
+                qty -= count;
+                this.orderItems.get(position).setQuantity(qty);
+                this.cartAdapter.notifyItemChanged(position);
+                this.MA.orderedItemsList.put(id, this.orderItems.get(position));
+                calcItemsAndTotal();
+                if (qty == 0) {
+                    this.orderItems.remove(position);
+                    this.cartAdapter.deleteItem(position);
+                    this.MA.orderedItemsList.remove(id);
+                }
+            }
         }
-        calcItemsAndTotal();
     }
 
     /**
@@ -157,7 +170,7 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
     private void calcItemsAndTotal(){
         totalItems = 0;
         totalAmount = 0f;
-        for(CartItem item : MA.cartItems){
+        for(CartItem item : MA.orderedItemsList.values()){
             totalItems += item.getQuantity() ;
             totalAmount += (item.getPrice() * item.getQuantity());
         }

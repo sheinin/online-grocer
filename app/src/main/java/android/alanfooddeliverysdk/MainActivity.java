@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     String route;
     List<CartItem> cartItems = new ArrayList<>();
 
-    Map<String, CartItem> orderedItems = new HashMap<String, CartItem>();
+    Map<String, CartItem> orderedItemsList = new HashMap<String, CartItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,4 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * This method gets the ordered items
+     * @return
+     */
+    public List<CartItem> getOrderedItems(){
+        List<CartItem> orderedItems = new ArrayList<CartItem>();
+        if(orderedItemsList.size() > 0) {
+                orderedItems.addAll(orderedItemsList.values());
+        }
+        return orderedItems;
+    }
 }

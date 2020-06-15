@@ -175,4 +175,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public int getItemCount() {
         return this.cartItems.size();
     }
+
+    public void deleteItem(int position){
+        //this.cartItems.remove(position);
+
+        this.notifyItemRemoved(position);
+        this.notifyItemRangeRemoved(position, this.cartItems.size());
+    }
 }

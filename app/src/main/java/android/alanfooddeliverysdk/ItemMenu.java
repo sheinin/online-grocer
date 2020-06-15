@@ -9,7 +9,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,7 +52,11 @@ public class ItemMenu extends Fragment {
                     mainLayout.addView(wrapperView);
 
                 }
-
+                String id = cartItems.get(i).getId();
+                CartItem orderItem = MA.orderedItemsList.get(id);
+                if(orderItem != null){
+                    cartItems.get(i).setQuantity(orderItem.getQuantity());
+                }
                 LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
                 View itemView = li.inflate(R.layout.menu_item_view, container, false);
                 ImageView itemImg = itemView.findViewWithTag("itemImg");
@@ -106,7 +109,7 @@ public class ItemMenu extends Fragment {
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
                         orderItems.updateOrderItems();
                         CartItem item = cartItems.get(finalI);
-                        MA.orderedItems.put(item.getId(), item);
+                        MA.orderedItemsList.put(item.getId(), item);
 
                     }
 
@@ -130,9 +133,11 @@ public class ItemMenu extends Fragment {
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
                         orderItems.updateOrderItems();
                         CartItem item = cartItems.get(finalI);
-                        MA.orderedItems.put(item.getId(), item);
+                        MA.orderedItemsList.put(item.getId(), item);
+                        if (quantity == 0)
+                            MA.orderedItemsList.remove(item.getId());
 
-                    }
+                        }
 
                 } );
 
