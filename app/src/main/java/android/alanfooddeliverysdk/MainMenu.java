@@ -1,5 +1,6 @@
 package android.alanfooddeliverysdk;
 
+import android.alanfooddeliverysdk.data.Utils;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -91,7 +92,29 @@ public class MainMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                openItemMenu("desserts");
+                openItemMenu("dessert");
+
+            }
+
+        } );
+
+        view.findViewById(R.id.drinksBtn).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                openItemMenu("drink");
+
+            }
+
+        } );
+
+        view.findViewById(R.id.streetFoodBtn).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                openItemMenu("street food");
 
             }
 
@@ -103,6 +126,7 @@ public class MainMenu extends Fragment {
     private void openItemMenu(String route){
 
         MA.route = route;
+        MA.cartItems = Utils.getInstance().getMenuItems().get(route);
         NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
 
     }

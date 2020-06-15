@@ -44,33 +44,33 @@ public class Utils {
     public Map<String, List<CartItem>> getMenuItems(){
         Map<String, List<CartItem>> menuItems = new HashMap<>();
         List<CartItem> pizzas = new ArrayList<CartItem>();
-        pizzas.add(new CartItem("Pepperoni","pizza-pepperoni", 14f,"prn",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
-        pizzas.add(new CartItem("Margarita","pizza-margarita", 10f,"mrg",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
-        pizzas.add(new CartItem("Cheese","pizza-four-cheese", 10f,"4ch",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
-        pizzas.add(new CartItem("Hawaiian","pizza-hawaii", 10f,"haw",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
-        menuItems.put("pizza", pizzas);
+        pizzas.add(new CartItem("Pepperoni","pizza_pepperoni", 14f,"prn",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
+        pizzas.add(new CartItem("Margarita","pizza_margarita", 10f,"mrg",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
+        pizzas.add(new CartItem("Cheese","pizza_four_cheese", 10f,"4ch",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
+        pizzas.add(new CartItem("Hawaiian","pizza_hawaii", 10f,"haw",getCategories().get("pizza"), "pizza","pizza-pepperoni", 0));
+        menuItems.put(getCategories().get("pizza"), pizzas);
 
         List<CartItem> streetFoods = new ArrayList<CartItem>();
-        streetFoods.add(new CartItem("Burrito","street-food-burrito", 12f,"brt", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
-        streetFoods.add(new CartItem("Burger","street-food-burger", 23f,"brg", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
-        streetFoods.add(new CartItem("Taco","street-food-taco", 10f,"tco", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
-        streetFoods.add(new CartItem("Hawaiian","street-food-sandwich", 10f,"snd", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
-        menuItems.put("streetFood", streetFoods);
+        streetFoods.add(new CartItem("Burrito","street_food_burrito", 12f,"brt", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
+        streetFoods.add(new CartItem("Burger","street_food_burger", 23f,"brg", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
+        streetFoods.add(new CartItem("Taco","street_food_taco", 10f,"tco", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
+        streetFoods.add(new CartItem("Hawaiian","street_food_sandwich", 10f,"snd", getCategories().get("streetFood"), "restaurant","street-food-burrito", 0));
+        menuItems.put(getCategories().get("streetFood"), streetFoods);
 
 
         List<CartItem> desserts = new ArrayList<CartItem>();
-        desserts.add(new CartItem("Apple Pie","dessert-apple-pie", 5f,"apl", getCategories().get("desserts"), "ice-cream","dessert-apple-pie", 0));
-        desserts.add(new CartItem("Cheesecake","dessert-cheesecake", 15f,"chc", getCategories().get("desserts"), "ice-cream","dessert-apple-pie", 0));
-        menuItems.put("desserts", desserts);
+        desserts.add(new CartItem("Apple Pie","dessert_apple_pie", 5f,"apl", getCategories().get("desserts"), "ice-cream","dessert-apple-pie", 0));
+        desserts.add(new CartItem("Cheesecake","dessert_cheesecake", 15f,"chc", getCategories().get("desserts"), "ice-cream","dessert-apple-pie", 0));
+        menuItems.put(getCategories().get("desserts"), desserts);
 
         List<CartItem> drinks = new ArrayList<CartItem>();
-        drinks.add(new CartItem("Coca-Cola","drinks-cola", 2f,"sod", getCategories().get("drinks"), "cafe","drinks-latte", 0));
-        drinks.add(new CartItem("Americano","drinks-americano", 1f,"amr", getCategories().get("drinks"), "cafe","drinks-latte", 0));
-        drinks.add(new CartItem("Latte","drinks-latte", 3f,"lat", getCategories().get("drinks"), "cafe","drinks-latte", 0));
-        drinks.add(new CartItem("Cappuccino","drinks-cappuccino", 3f,"cap", getCategories().get("drinks"), "cafe","drinks-latte", 0));
-        drinks.add(new CartItem("Orange Juice","drinks-orange-juice", 3f,"orj", getCategories().get("drinks"), "cafe","drinks-latte", 0));
-        drinks.add(new CartItem("Tea","drinks-tea", 3f,"tea", getCategories().get("drinks"), "cafe","drinks-latte", 0));
-        menuItems.put("drinks", drinks);
+        drinks.add(new CartItem("Coca-Cola","drinks_cola", 2f,"sod", getCategories().get("drinks"), "cafe","drinks-latte", 0));
+        drinks.add(new CartItem("Americano","drinks_americano", 1f,"amr", getCategories().get("drinks"), "cafe","drinks-latte", 0));
+        drinks.add(new CartItem("Latte","drinks_latte", 3f,"lat", getCategories().get("drinks"), "cafe","drinks-latte", 0));
+        drinks.add(new CartItem("Cappuccino","drinks_cappuccino", 3f,"cap", getCategories().get("drinks"), "cafe","drinks-latte", 0));
+        drinks.add(new CartItem("Orange Juice","drinks_orange_juice", 3f,"orj", getCategories().get("drinks"), "cafe","drinks-latte", 0));
+        drinks.add(new CartItem("Tea","drinks_tea", 3f,"tea", getCategories().get("drinks"), "cafe","drinks-latte", 0));
+        menuItems.put(getCategories().get("drinks"), drinks);
 
         return menuItems;
     }

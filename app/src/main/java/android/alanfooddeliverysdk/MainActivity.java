@@ -17,13 +17,18 @@ import android.alanfooddeliverysdk.data.CartItem;
 import android.alanfooddeliverysdk.data.CartItems;
 import android.os.Bundle;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     AlanButton alanButton;
     String route;
-    List<CartItem> cartItems = CartItems.getCartItems();
+    List<CartItem> cartItems = new ArrayList<>();
+
+    Map<String, CartItem> orderedItems = new HashMap<String, CartItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

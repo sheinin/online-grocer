@@ -28,7 +28,7 @@ public class ItemMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MainActivity MA = ((MainActivity) requireActivity());
+        final MainActivity MA = ((MainActivity) requireActivity());
 
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
         Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
@@ -105,6 +105,8 @@ public class ItemMenu extends Fragment {
                         cartItems.get(finalI).setQuantity(cartItems.get(finalI).getQuantity() + 1);
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
                         orderItems.updateOrderItems();
+                        CartItem item = cartItems.get(finalI);
+                        MA.orderedItems.put(item.getId(), item);
 
                     }
 
@@ -127,6 +129,8 @@ public class ItemMenu extends Fragment {
                         cartItems.get(finalI).setQuantity(quantity);
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
                         orderItems.updateOrderItems();
+                        CartItem item = cartItems.get(finalI);
+                        MA.orderedItems.put(item.getId(), item);
 
                     }
 
@@ -157,7 +161,7 @@ public class ItemMenu extends Fragment {
                 NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_ThirdFragment);
             }
         });
-
+        toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
         toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

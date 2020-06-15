@@ -16,5 +16,6 @@
     <string name="delivery_time">Time</string>
     <string name="remove">-</string>
     <string name="add">+</string>
+    <string name="cart_label">Cart</string>
 
 </resources>
