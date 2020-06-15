@@ -5,7 +5,9 @@ import android.alanfooddeliverysdk.data.CartItem;
 import android.alanfooddeliverysdk.data.Utils;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +44,8 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
     private String mParam1;
     private String mParam2;
 
+    private MainActivity MA;
+
     private View cartView;
 
     CartAdapter cartAdapter;
@@ -51,8 +55,6 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
     Integer totalItems = 0;
 
     Float totalAmount = 0f;
-
-    String categoryType = "drinks";
 
 
     public Cart() {
@@ -89,11 +91,15 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        MA = ((MainActivity) requireActivity());
+
         cartView = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
+
+
         RecyclerView cartList = cartView.findViewById(R.id.cart_list);
-        cartItems = Utils.getInstance().getMenuItems().get(categoryType);
-        cartAdapter = new CartAdapter(cartItems, R.layout.cart_item);
+        cartAdapter = new CartAdapter(this.MA.cartItems, R.layout.cart_item);
         cartList.setAdapter(cartAdapter);
         cartAdapter.setOnItemClickListener(this);
         cartList.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
@@ -102,6 +108,14 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
                 DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         cartList.addItemDecoration(itemDecoration);
         calcItemsAndTotal();
+        toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
+        toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(Cart.this).navigate(R.id.action_ThirdFragment_to_SecondFragment);
+            }
+        });
+        toolbar.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
         return cartView;
     }
 
@@ -119,19 +133,19 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
     @Override
     public void addItem(View itemView, int position, int count) {
-        Integer qty = this.cartItems.get(position).getQuantity();
+        Integer qty = this.MA.cartItems.get(position).getQuantity();
         qty += count;
-        this.cartItems.get(position).setQuantity(qty);
+        this.MA.cartItems.get(position).setQuantity(qty);
         this.cartAdapter.notifyItemChanged(position);
         calcItemsAndTotal();
     }
 
     @Override
     public void removeItem(View itemView, int position, int count) {
-        Integer qty = this.cartItems.get(position).getQuantity();
+        Integer qty = this.MA.cartItems.get(position).getQuantity();
         if(qty > 0) {
             qty -= count;
-            this.cartItems.get(position).setQuantity(qty);
+            this.MA.cartItems.get(position).setQuantity(qty);
             this.cartAdapter.notifyItemChanged(position);
         }
         calcItemsAndTotal();
@@ -143,7 +157,7 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
     private void calcItemsAndTotal(){
         totalItems = 0;
         totalAmount = 0f;
-        for(CartItem item : cartItems){
+        for(CartItem item : MA.cartItems){
             totalItems += item.getQuantity() ;
             totalAmount += (item.getPrice() * item.getQuantity());
         }

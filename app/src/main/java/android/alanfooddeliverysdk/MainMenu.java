@@ -60,6 +60,8 @@ public class MainMenu extends Fragment {
 
         });
 
+        MA.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
+        MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
 
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
 
