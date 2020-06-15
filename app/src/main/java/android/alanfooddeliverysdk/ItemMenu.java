@@ -5,6 +5,7 @@ import android.alanfooddeliverysdk.data.CartItems;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -39,6 +40,7 @@ public class ItemMenu extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
 //        final List<CartItem> cartItems = CartItems.getCartItems();
+        Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
         final List<CartItem> cartItems = MA.cartItems;
         LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -152,6 +154,13 @@ public class ItemMenu extends Fragment {
             }
 
         } );
+
+        toolbar.findViewById(R.id.button_action).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+            }
+        });
         return view;
     }
 
