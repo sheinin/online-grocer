@@ -2,11 +2,8 @@
 <LinearLayout
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:padding="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:baselineAligned="false"
-    >
+    android:baselineAligned="false">
 
     <LinearLayout
         android:id="@+id/orderItemContainer"
@@ -14,88 +11,63 @@
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:padding="5dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@drawable/order_items_background"
         android:baselineAligned="false"
         android:visibility="invisible">
 
 
-    <ImageView
-        android:id="@+id/orderPizzaImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/color_pizza"
-        android:contentDescription="@string/pizza"
-        />
+        <ImageView
+            android:id="@+id/orderPizzaImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/color_pizza"
+            android:contentDescription="@string/pizza" />
 
-    <TextView
-        android:id="@+id/orderPizzaTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:background="@drawable/item_quantity"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/orderPizzaTxt"
+            android:background="@drawable/item_quantity"
+            style="@style/orderItemQty" />
 
-    <ImageView
-        android:id="@+id/orderStreetImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/color_street_food"
-        android:contentDescription="@string/street_food"
-        android:visibility="gone" />
+        <ImageView
+            android:id="@+id/orderStreetImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/color_street_food"
+            android:contentDescription="@string/street_food"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/orderStreetTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:background="@drawable/item_quantity"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/orderStreetTxt"
+            android:background="@drawable/item_quantity"
+            style="@style/orderItemQty" />
 
-    <ImageView
-        android:id="@+id/orderDessertImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/color_dessert"
-        android:contentDescription="@string/desserts"
-        android:visibility="gone" />
+        <ImageView
+            android:id="@+id/orderDessertImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/color_dessert"
+            android:contentDescription="@string/desserts"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/orderDessertTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:text="1"
-        android:background="@drawable/item_quantity"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/orderDessertTxt"
+            android:background="@drawable/item_quantity"
+            style="@style/orderItemQty" />
 
-    <ImageView
-        android:id="@+id/orderDrinksImg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/color_drinks"
-        android:contentDescription="@string/drinks"
-        android:visibility="gone" />
+        <ImageView
+            android:id="@+id/orderDrinksImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/color_drinks"
+            android:contentDescription="@string/drinks"
+            android:visibility="gone" />
 
 
-    <TextView
-        android:id="@+id/orderDrinksTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/item_quantity"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/orderDrinksTxt"
+            android:background="@drawable/item_quantity"
+            style="@style/orderItemQty" />
 
     </LinearLayout>
+
 </LinearLayout>
