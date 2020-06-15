@@ -17,5 +17,6 @@
     <string name="remove">-</string>
     <string name="add">+</string>
     <string name="cart_label">Cart</string>
+    <string name="finish_order_msg">Thank you! We have already started preparing your order.</string>
 
 </resources>

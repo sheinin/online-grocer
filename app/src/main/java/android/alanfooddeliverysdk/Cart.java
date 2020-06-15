@@ -116,6 +116,16 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
             }
         });
         toolbar.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
+
+        cartView.findViewById(R.id.finish_order).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                MA.cartItems.clear();
+                MA.orderedItemsList.clear();
+                NavHostFragment.findNavController(Cart.this).navigate(R.id.action_ThirdFragment_to_FourthFragment);
+            }
+        });
+
         return cartView;
     }
 

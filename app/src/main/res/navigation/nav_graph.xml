@@ -35,6 +35,24 @@
         <action
             android:id="@+id/action_ThirdFragment_to_SecondFragment"
             app:destination="@id/ItemMenu" />
+        <action
+            android:id="@+id/action_ThirdFragment_to_FourthFragment"
+            app:destination="@id/FinishOrder" />
+        <action
+            android:id="@+id/action_ThirdFragment_to_FirstFragment"
+            app:destination="@id/mainMenu" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/FinishOrder"
+        android:name="android.alanfooddeliverysdk.FinishFragment"
+        tools:layout="@layout/fragment_finish">
+        <action
+            android:id="@+id/action_FourthFragment_to_FirstFragment"
+            app:destination="@id/mainMenu" />
+
 
     </fragment>
 </navigation>
