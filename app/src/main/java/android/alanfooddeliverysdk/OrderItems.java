@@ -17,13 +17,10 @@ import java.util.Map;
 class OrderItems {
 
     private View view;
-
-    private List<CartItem> cartItems;
     private Map<String, CartItem> orderedItemList;
 
-    OrderItems(View view, List<CartItem> cartItems, Map<String, CartItem> orderedItemList) {
+    OrderItems(View view, Map<String, CartItem> orderedItemList) {
         this.orderedItemList = orderedItemList;
-        this.cartItems = cartItems;
         this.view = view;
         updateOrderItems();
     }

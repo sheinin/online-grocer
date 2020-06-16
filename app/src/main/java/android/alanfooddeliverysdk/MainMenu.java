@@ -65,7 +65,7 @@ public class MainMenu extends Fragment {
         MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
 
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        new OrderItems(view, MA.cartItems, MA.orderedItemsList);
+        new OrderItems(view, MA.orderedItemsList);
 
         view.findViewById(R.id.orderItemContainer).setOnClickListener(new View.OnClickListener() {
 

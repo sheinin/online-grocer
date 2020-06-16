@@ -32,7 +32,7 @@ public class ItemMenu extends Fragment {
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
         Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
         final List<CartItem> cartItems = MA.cartItems;
-        final OrderItems orderItems =  new OrderItems(view, MA.cartItems, MA.orderedItemsList);
+        final OrderItems orderItems =  new OrderItems(view, MA.orderedItemsList);
         LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View wrapperView = null;
