@@ -1,9 +1,12 @@
 package android.alanfooddeliverysdk;
 
 import android.alanfooddeliverysdk.data.CartItem;
+import android.alanfooddeliverysdk.data.Utils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -16,15 +19,18 @@ class OrderItems {
     private View view;
 
     private List<CartItem> cartItems;
+    private Map<String, CartItem> orderedItemList;
 
-    OrderItems(View view, List<CartItem> cartItems) {
+    OrderItems(View view, List<CartItem> cartItems, Map<String, CartItem> orderedItemList) {
+        this.orderedItemList = orderedItemList;
         this.cartItems = cartItems;
         this.view = view;
+        updateOrderItems();
     }
 
     void updateOrderItems() {
 
-        LinearLayout container = view.findViewById(R.id.orderItemContainer);
+        RelativeLayout container = view.findViewById(R.id.orderItemContainer);
         ImageView pizzaImg = view.findViewById(R.id.orderPizzaImg);
         TextView pizzaTxt = view.findViewById(R.id.orderPizzaTxt);
         ImageView streetImg = view.findViewById(R.id.orderStreetImg);
@@ -38,17 +44,19 @@ class OrderItems {
         Integer val;
         boolean show;
         map.put("pizza", 0);
-        map.put("street", 0);
-        map.put("desserts", 0);
+        map.put("street food", 0);
+        map.put("dessert", 0);
         map.put("drink", 0);
 
-        for (int i = 0, ix = cartItems.size(); i < ix; i++) {
+        for (Map.Entry<String, CartItem> entry : orderedItemList.entrySet()) {
 
-            int qty = cartItems.get(i).getQuantity();
+            CartItem item = entry.getValue();
+
+            int qty = item.getQuantity();
 
             if (qty > 0) {
 
-                String key = cartItems.get(i).getType();
+                String key = item.getType();
                 val = map.get(key);
                 val = val != null ? val : 0;
                 map.put(key, val + qty);
@@ -65,7 +73,7 @@ class OrderItems {
         pizzaImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
         pizzaTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
 
-        val = map.get("street");
+        val = map.get("street food");
         val = val != null ? val : 0;
         str = String.format(Locale.getDefault(), "%d", val);
         streetTxt.setText(str);
@@ -73,8 +81,7 @@ class OrderItems {
         streetImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
         streetTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
 
-
-        val = map.get("desserts");
+        val = map.get("dessert");
         val = val != null ? val : 0;
         str = String.format(Locale.getDefault(), "%d", val);
         dessertTxt.setText(str);
@@ -82,6 +89,13 @@ class OrderItems {
         dessertImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
         dessertTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
 
+        val = map.get("drink");
+        val = val != null ? val : 0;
+        str = String.format(Locale.getDefault(), "%d", val);
+        drinkTxt.setText(str);
+        show = show || val > 0;
+        drinkImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
+        drinkTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
 
         container.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
 

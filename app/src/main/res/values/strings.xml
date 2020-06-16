@@ -18,5 +18,6 @@
     <string name="add">+</string>
     <string name="cart_label">Cart</string>
     <string name="finish_order_msg">Thank you! We have already started preparing your order.</string>
+    <string name="menu_item">Menu Item</string>
 
 </resources>

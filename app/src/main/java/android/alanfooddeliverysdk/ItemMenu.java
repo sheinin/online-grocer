@@ -32,7 +32,7 @@ public class ItemMenu extends Fragment {
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
         Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
         final List<CartItem> cartItems = MA.cartItems;
-        final OrderItems orderItems =  new OrderItems(view, MA.cartItems);
+        final OrderItems orderItems =  new OrderItems(view, MA.cartItems, MA.orderedItemsList);
         LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View wrapperView = null;
@@ -107,9 +107,9 @@ public class ItemMenu extends Fragment {
                         itemQuantity.setVisibility(View.VISIBLE);
                         cartItems.get(finalI).setQuantity(cartItems.get(finalI).getQuantity() + 1);
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
-                        orderItems.updateOrderItems();
                         CartItem item = cartItems.get(finalI);
                         MA.orderedItemsList.put(item.getId(), item);
+                        orderItems.updateOrderItems();
 
                     }
 
@@ -131,11 +131,11 @@ public class ItemMenu extends Fragment {
 
                         cartItems.get(finalI).setQuantity(quantity);
                         itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
-                        orderItems.updateOrderItems();
                         CartItem item = cartItems.get(finalI);
                         MA.orderedItemsList.put(item.getId(), item);
                         if (quantity == 0)
                             MA.orderedItemsList.remove(item.getId());
+                        orderItems.updateOrderItems();
 
                         }
 
@@ -149,7 +149,7 @@ public class ItemMenu extends Fragment {
 
         }
 
-        view.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.orderItemContainer).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

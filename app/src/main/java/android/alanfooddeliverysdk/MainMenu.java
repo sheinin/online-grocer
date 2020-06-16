@@ -64,7 +64,21 @@ public class MainMenu extends Fragment {
         MA.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
         MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
 
-        return inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        new OrderItems(view, MA.cartItems, MA.orderedItemsList);
+
+        view.findViewById(R.id.orderItemContainer).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_ThirdFragment);
+
+            }
+
+        } );
+
+        return view;
 
     }
 
