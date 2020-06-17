@@ -1,37 +1,19 @@
 package android.alanfooddeliverysdk;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.alan.alansdk.AlanCallback;
-import com.alan.alansdk.AlanConfig;
-import com.alan.alansdk.AlanState;
-import com.alan.alansdk.button.AlanButton;
-import com.alan.alansdk.events.EventOptions;
-import com.alan.alansdk.events.EventParsed;
-import com.alan.alansdk.events.EventRecognised;
-import com.alan.alansdk.events.EventText;
-
 import android.alanfooddeliverysdk.data.CartItem;
-import android.alanfooddeliverysdk.data.CartItems;
-import android.alanfooddeliverysdk.data.DataProvider;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     Map<String, CartItem> orderedItemsList = new HashMap<>();
     LinkedHashMap<String, List<CartItem>> items = new LinkedHashMap<>();
-    //Map<String, CartItem> orderItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             InputStream is = getAssets().open("menu.json");
-            int size;
-            size = is.available();
+            int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
@@ -72,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
                     items.put(type, new ArrayList<CartItem>());
 
-                items.get(type).add(new CartItem(name, img, price, id, type, icon, typeIcon, 0));
+                Objects.requireNonNull(items.get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, 0));
 
 
             }
@@ -85,17 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        //Toolbar toolbar = findViewById(R.id.id_app_toolbar);
-        //setSupportActionBar(toolbar);
-
-
     }
 
 
-    /**
-     * This method gets the ordered items
-     * @return
-     */
+
     public List<CartItem> getOrderedItems(){
         List<CartItem> orderedItems = new ArrayList<CartItem>();
         if(orderedItemsList.size() > 0) {

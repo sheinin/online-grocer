@@ -29,10 +29,10 @@ public class MainMenu extends Fragment {
                              Bundle savedInstanceState) {
 
         MA = ((MainActivity) requireActivity());
-     //   MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
-        View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
+        View view = inflater.inflate(R.layout.fragment_menu_main, container, false);
         OrderItems orderItems = new OrderItems(view, MA.orderedItemsList);
-        LinearLayout mainLayout = view.findViewById(R.id.mainMenu);
+        LinearLayout mainLayout = view.findViewById(R.id.menu_entry);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View wrapperView = null;
         assert li != null;
@@ -43,7 +43,7 @@ public class MainMenu extends Fragment {
 
             final String key = entry.getKey().toString();
             CartItem val = ((List<CartItem>) entry.getValue()).get(0);
-            wrapperView = li.inflate(R.layout.menu_item_view_wrapper, container, false);
+            wrapperView = li.inflate(R.layout.menu_entry_wrapper, container, false);
             mainLayout.addView(wrapperView);
             LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
             View itemView = li.inflate(R.layout.main_menu_entry, container, false);
