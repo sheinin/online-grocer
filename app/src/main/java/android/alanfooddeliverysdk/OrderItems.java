@@ -27,7 +27,6 @@ class OrderItems {
 
     void updateOrderItems() {
 
-        RelativeLayout container = view.findViewById(R.id.orderItemContainer);
         ImageView pizzaImg = view.findViewById(R.id.orderPizzaImg);
         TextView pizzaTxt = view.findViewById(R.id.orderPizzaTxt);
         ImageView streetImg = view.findViewById(R.id.orderStreetImg);
@@ -94,7 +93,7 @@ class OrderItems {
         drinkImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
         drinkTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
 
-        container.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        //container.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
 
     }
 

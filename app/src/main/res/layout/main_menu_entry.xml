@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:tag="itemContainer"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="25dp"
+        style="@style/MainMenuWrapper">
+
+        <ImageView
+            android:id="@+id/img"
+            android:tag="itemImg"
+            style="@style/MainMenuImage"
+            android:background="@drawable/item_container"
+            android:contentDescription="@string/main_menu" />
+
+        <TextView
+            android:tag="itemTxt"
+            style="@style/MainMenuText"
+
+            android:layout_alignBottom="@+id/img" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -6,7 +6,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Item Menu fragment</string>
 
-    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="pizza">Pizza</string>
     <string name="street_food">Street Food</string>
     <string name="desserts">Desserts</string>

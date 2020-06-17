@@ -30,13 +30,12 @@ public class ItemMenu extends Fragment {
         final MainActivity MA = ((MainActivity) requireActivity());
 
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
-        Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
+        //Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
         final List<CartItem> cartItems = MA.items.get(MA.route);
         final OrderItems orderItems =  new OrderItems(view, MA.orderedItemsList);
         LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View wrapperView = null;
-        int count = 0;
 
         assert li != null;
 
@@ -44,107 +43,107 @@ public class ItemMenu extends Fragment {
 
         for (int i = 0, ix = cartItems.size(); i < ix;  i++) {
 
-            //if (MA.route.equals(cartItems.get(i).getType())) {
+            if (i % 2 == 0) {
 
-                if (count % 2 == 0) {
+                wrapperView = li.inflate(R.layout.menu_item_view_wrapper, container, false);
+                mainLayout.addView(wrapperView);
 
-                    wrapperView = li.inflate(R.layout.menu_item_view_wrapper, container, false);
-                    mainLayout.addView(wrapperView);
+            }
 
-                }
-                String id = cartItems.get(i).getId();
-                CartItem orderItem = MA.orderedItemsList.get(id);
-                if(orderItem != null){
-                    cartItems.get(i).setQuantity(orderItem.getQuantity());
-                }
-                LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
-                View itemView = li.inflate(R.layout.menu_item_view, container, false);
-                ImageView itemImg = itemView.findViewWithTag("itemImg");
-                TextView itemTitle = itemView.findViewWithTag("itemTitle");
-                TextView itemPrice = itemView.findViewWithTag("itemPrice");
-                ImageView itemAdd = itemView.findViewWithTag("itemAdd");
-                final ImageView itemRemove = itemView.findViewWithTag("itemRemove");
-                final TextView itemQuantity = itemView.findViewWithTag("itemQuantity");
-                final int finalI = i;
-                int quantity = cartItems.get(i).getQuantity();
-                LinearLayout itemContainer = itemView.findViewWithTag("itemContainer");
+            String id = cartItems.get(i).getId();
+            CartItem orderItem = MA.orderedItemsList.get(id);
 
-                if (count % 2 == 0)
-                    itemContainer.setPadding(10,10,5,10);
-                else
-                    itemContainer.setPadding(5,10,10,10);
+            if(orderItem != null)
 
-                int res = getResources().getIdentifier(
-                    cartItems.get(i).getImg(),
-                    "drawable",
-                    this.requireContext().getPackageName());
+                cartItems.get(i).setQuantity(orderItem.getQuantity());
 
-                if (res != 0)
+            LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
+            View itemView = li.inflate(R.layout.menu_item_view, container, false);
+            ImageView itemImg = itemView.findViewWithTag("itemImg");
+            TextView itemTitle = itemView.findViewWithTag("itemTitle");
+            TextView itemPrice = itemView.findViewWithTag("itemPrice");
+            ImageView itemAdd = itemView.findViewWithTag("itemAdd");
+            final ImageView itemRemove = itemView.findViewWithTag("itemRemove");
+            final TextView itemQuantity = itemView.findViewWithTag("itemQuantity");
+            final int finalI = i;
+            int quantity = cartItems.get(i).getQuantity();
+            LinearLayout itemContainer = itemView.findViewWithTag("itemContainer");
 
-                    itemImg.setImageResource(res);
+            if (i % 2 == 0)
+                itemContainer.setPadding(10,10,5,10);
+            else
+                itemContainer.setPadding(5,10,10,10);
 
-                itemImg.setClipToOutline(true);
+            int res = getResources().getIdentifier(
+                cartItems.get(i).getImg(),
+                "drawable",
+                this.requireContext().getPackageName());
 
-                itemTitle.setText(cartItems.get(i).getTitle());
-                String text = "$" + Math.round(cartItems.get(i).getPrice());
-                itemPrice.setText(text);
+            if (res != 0)
 
-                if (quantity > 0) {
-                    itemQuantity.setText(String.valueOf(quantity));
+                itemImg.setImageResource(res);
+
+            itemImg.setClipToOutline(true);
+
+            itemTitle.setText(cartItems.get(i).getTitle());
+            String text = "$" + Math.round(cartItems.get(i).getPrice());
+            itemPrice.setText(text);
+
+            if (quantity > 0) {
+                itemQuantity.setText(String.valueOf(quantity));
+                itemRemove.setVisibility(View.VISIBLE);
+                itemQuantity.setVisibility(View.VISIBLE);
+            }
+            itemView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1.0f));
+
+            itemAdd.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
                     itemRemove.setVisibility(View.VISIBLE);
                     itemQuantity.setVisibility(View.VISIBLE);
+                    cartItems.get(finalI).setQuantity(cartItems.get(finalI).getQuantity() + 1);
+                    itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
+                    CartItem item = cartItems.get(finalI);
+                    MA.orderedItemsList.put(item.getId(), item);
+                    orderItems.updateOrderItems();
+
                 }
-                itemView.setLayoutParams(new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        1.0f));
 
-                itemAdd.setOnClickListener(new View.OnClickListener() {
+            } );
 
-                    @Override
-                    public void onClick(View view) {
+            itemRemove.setOnClickListener(new View.OnClickListener() {
 
-                        itemRemove.setVisibility(View.VISIBLE);
-                        itemQuantity.setVisibility(View.VISIBLE);
-                        cartItems.get(finalI).setQuantity(cartItems.get(finalI).getQuantity() + 1);
-                        itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
-                        CartItem item = cartItems.get(finalI);
-                        MA.orderedItemsList.put(item.getId(), item);
-                        orderItems.updateOrderItems();
+                @Override
+                public void onClick(View view) {
+
+                    int quantity = cartItems.get(finalI).getQuantity() - 1;
+
+                    if (quantity == 0) {
+
+                        itemRemove.setVisibility(View.INVISIBLE);
+                        itemQuantity.setVisibility(View.INVISIBLE);
 
                     }
 
-                } );
+                    cartItems.get(finalI).setQuantity(quantity);
+                    itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
+                    CartItem item = cartItems.get(finalI);
+                    MA.orderedItemsList.put(item.getId(), item);
+                    if (quantity == 0)
+                        MA.orderedItemsList.remove(item.getId());
+                    orderItems.updateOrderItems();
 
-                itemRemove.setOnClickListener(new View.OnClickListener() {
+                    }
 
-                    @Override
-                    public void onClick(View view) {
+            } );
 
-                        int quantity = cartItems.get(finalI).getQuantity() - 1;
+            wrapperLayout.addView(itemView);
 
-                        if (quantity == 0) {
-
-                            itemRemove.setVisibility(View.INVISIBLE);
-                            itemQuantity.setVisibility(View.INVISIBLE);
-
-                        }
-
-                        cartItems.get(finalI).setQuantity(quantity);
-                        itemQuantity.setText(String.format(Locale.getDefault(), "%d",cartItems.get(finalI).getQuantity()));
-                        CartItem item = cartItems.get(finalI);
-                        MA.orderedItemsList.put(item.getId(), item);
-                        if (quantity == 0)
-                            MA.orderedItemsList.remove(item.getId());
-                        orderItems.updateOrderItems();
-
-                        }
-
-                } );
-
-                wrapperLayout.addView(itemView);
-
-                count++;
 
             //}
 
@@ -160,21 +159,15 @@ public class ItemMenu extends Fragment {
             }
 
         } );
-        toolbar.findViewById(R.id.button_action).setVisibility(View.VISIBLE);
-        toolbar.findViewById(R.id.button_action).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_ThirdFragment);
-            }
-        });
-        toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
-        toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
 
-            }
-        });
+ //       toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
+   //     toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+      //      @Override
+        //    public void onClick(View view) {
+     //           NavHostFragment.findNavController(ItemMenu.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+//
+  //          }
+    //    });
         return view;
     }
 

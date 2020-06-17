@@ -5,16 +5,12 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include
-        android:id="@+id/id_app_toolbar"
-        layout="@layout/app_toolbar"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="?attr/actionBarSize"
         android:configChanges="keyboardHidden|orientation|screenSize|layoutDirection|uiMode|layoutDirection"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"

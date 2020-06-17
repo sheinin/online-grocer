@@ -4,128 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?attr/actionBarSize"
     tools:context=".MainMenu">
 
     <include
-        android:id="@+id/orderItems"
-        app:layout_constraintTop_toTopOf="parent"
-        layout="@layout/order_items" />
-
-    <ScrollView
+        android:id="@+id/orderItemBar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/orderItems"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-    <LinearLayout
-        android:id="@+id/mainMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        layout="@layout/order_item_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ScrollView
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/orderItemBar"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="50dp"
-        android:weightSum="2" >
+        app:layout_constraintRight_toRightOf="parent">
 
         <LinearLayout
-            android:id="@+id/row1"
+            android:id="@+id/mainMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="2" >
-
-            <RelativeLayout
-                android:paddingEnd="5dp"
-                android:paddingStart="0dp"
-                style="@style/MainMenuWrapper">
-
-                <ImageView
-                    android:id="@+id/pizzaBtn"
-                    style="@style/MainMenuImage"
-                    android:src="@drawable/pizza_pepperoni"
-                    android:contentDescription="@string/main_menu" />
-
-                <TextView
-                    style="@style/MainMenuText"
-                    android:text="@string/pizza"
-                    android:layout_alignBottom="@+id/pizzaBtn" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:paddingEnd="0dp"
-                android:paddingStart="5dp"
-                style="@style/MainMenuWrapper">
-
-                <ImageView
-                    android:id="@+id/streetFoodBtn"
-                    style="@style/MainMenuImage"
-                    android:src="@drawable/street_food_burrito"
-                    android:contentDescription="@string/main_menu" />
-
-                <TextView
-                    style="@style/MainMenuText"
-                    android:text="@string/street_food"
-                    android:layout_alignBottom="@+id/streetFoodBtn" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
             android:paddingTop="10dp"
-            android:weightSum="2" >
-
-            <RelativeLayout
-                android:paddingEnd="5dp"
-                android:paddingStart="0dp"
-                style="@style/MainMenuWrapper">
-
-                <ImageView
-                    android:id="@+id/dessertsBtn"
-                    style="@style/MainMenuImage"
-                    android:src="@drawable/dessert_apple_pie"
-                    android:contentDescription="@string/main_menu" />
-
-                <TextView
-                    style="@style/MainMenuText"
-                    android:text="@string/desserts"
-                    android:layout_alignBottom="@+id/dessertsBtn" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:paddingEnd="0dp"
-                android:paddingStart="5dp"
-                style="@style/MainMenuWrapper">
-
-                <ImageView
-                    android:id="@+id/drinksBtn"
-                    style="@style/MainMenuImage"
-                    android:src="@drawable/drinks_latte"
-                    android:contentDescription="@string/main_menu" />
-
-                <TextView
-                    style="@style/MainMenuText"
-                    android:text="@string/drinks"
-                    android:layout_alignBottom="@+id/drinksBtn" />
-
-            </RelativeLayout>
+            android:background="@color/scrollBg"
+            android:orientation="vertical">
 
         </LinearLayout>
 
-    </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

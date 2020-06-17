@@ -58,7 +58,7 @@
 
             <ImageView
                 android:tag="itemAdd"
-                style="@style/itemAdd"
+                style="itemImg.setClipToOutline(true);@style/itemAdd"
                 android:src="@drawable/ic_add_circle_black_24dp"/>
 
         </LinearLayout>

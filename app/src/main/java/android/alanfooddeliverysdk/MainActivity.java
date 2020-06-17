@@ -28,7 +28,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     List<CartItem> cartItems = new ArrayList<>();
 
     Map<String, CartItem> orderedItemsList = new HashMap<>();
-    Map<String, List<CartItem>> items = new HashMap<>();
+    LinkedHashMap<String, List<CartItem>> items = new LinkedHashMap<>();
     //Map<String, CartItem> orderItems;
 
     @Override
@@ -83,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.id_app_toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.id_app_toolbar);
+        //setSupportActionBar(toolbar);
 
 
     }

@@ -95,7 +95,7 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
 
         cartView = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
+        //Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
 
         this.orderItems = this.MA.getOrderedItems();
         RecyclerView cartList = cartView.findViewById(R.id.cart_list);
@@ -108,14 +108,14 @@ public class Cart extends Fragment implements CartAdapter.OnItemClickListener{
                 DividerItemDecoration(this.getContext(), DividerItemDecoration.VERTICAL);
         cartList.addItemDecoration(itemDecoration);
         calcItemsAndTotal();
-        toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
-        toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(Cart.this).navigate(R.id.action_ThirdFragment_to_SecondFragment);
-            }
-        });
-        toolbar.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
+       // toolbar.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
+       // toolbar.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+        //    @Override
+      //      public void onClick(View view) {
+       //         NavHostFragment.findNavController(Cart.this).navigate(R.id.action_ThirdFragment_to_SecondFragment);
+      //      }
+      ///  });
+
 
         cartView.findViewById(R.id.finish_order).setOnClickListener(new View.OnClickListener(){
             @Override
