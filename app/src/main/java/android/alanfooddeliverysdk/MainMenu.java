@@ -30,36 +30,6 @@ public class MainMenu extends Fragment {
 
 
         MA = ((MainActivity) requireActivity());
-        alanButton = MA.alanButton;
-
-        alanButton.registerCallback(new AlanCallback() {
-
-            @Override
-            public void onCommandReceived(EventCommand eventCommand) {
-                super.onCommandReceived(eventCommand);
-
-                try {
-
-                    JSONObject commandObject = eventCommand.getData();
-                    commandObject.getJSONObject("data");
-                    JSONObject alanCommand = commandObject.getJSONObject("data");
-                    String cmd = alanCommand.getString("command");
-
-                    if ("navigation".equals(cmd))
-
-                        openItemMenu(alanCommand.getString("route"));
-
-                } catch (Exception e) {
-
-                    alanButton.playText("Invalid response, Some thing went wrong.");
-                    e.printStackTrace();
-
-                }
-
-
-            }
-
-        });
 
         MA.findViewById(R.id.button_action).setVisibility(View.INVISIBLE);
         MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);

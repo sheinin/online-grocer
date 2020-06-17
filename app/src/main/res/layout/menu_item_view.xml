@@ -18,6 +18,7 @@
             android:tag="itemImg"
             android:id="@+id/itemImg"
             style="@style/MainMenuImage"
+            android:background="@drawable/item_container"
             android:contentDescription="@string/main_menu" />
 
         <TextView

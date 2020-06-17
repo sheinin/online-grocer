@@ -1,0 +1,21 @@
+[
+    {"name": "Pepperoni", "img": "pizza_pepperoni", "price": 114, "id": "prn", "type": "pizza", "icon": "pizza","typeIcon":"pizza_pepperoni"},
+    {"name": "Margarita", "img": "pizza_margarita", "price": 10, "id": "mrg", "type": "pizza", "icon": "pizza","typeIcon":"pizza_pepperoni"},
+    {"name": "Cheese", "img": "pizza_four_cheese", "price": 10, "id": "4ch", "type": "pizza", "icon": "pizza","typeIcon":"pizza_pepperoni"},
+    {"name": "Hawaiian", "img": "pizza_hawaii", "price": 10, "id": "haw", "type": "pizza", "icon": "pizza","typeIcon":"pizza_pepperoni"},
+
+    {"name": "Burrito", "img": "street_food_burrito", "price": 12, "id": "brt", "type": "sf", "icon": "restaurant","typeIcon":"street_food_burrito"},
+    {"name": "Burger", "img": "street_food_burger", "price": 23, "id": "brg", "type": "sf", "icon": "restaurant","typeIcon":"street_food_burrito"},
+    {"name": "Taco", "img": "street_food_taco", "price": 10, "id": "tco", "type": "sf", "icon": "restaurant","typeIcon":"street_food_burrito"},
+    {"name": "Sandwich", "img": "street_food_sandwich", "price": 10, "id": "snd", "type": "sf", "icon": "restaurant","typeIcon":"street_food_burrito"},
+
+    {"name": "Apple Pie", "img": "dessert_apple_pie", "price": 5, "id": "apl", "type": "dsrt", "icon": "ice_cream","typeIcon":"dessert_apple_pie"},
+    {"name": "Cheesecake", "img": "dessert_cheesecake", "price": 15, "id": "chc", "type": "dsrt", "icon": "ice_cream","typeIcon":"dessert_apple_pie"},
+
+    {"name": "Coca_Cola", "img": "drinks_cola", "price": 2, "id": "sod", "type": "drink", "icon": "cafe","typeIcon":"drinks_latte"},
+    {"name": "Americano", "img": "drinks_americano", "price": 1, "id": "amr", "type": "drinks", "icon": "cafe","typeIcon":"drinks_latte"},
+    {"name": "Latte", "img": "drinks_latte", "price": 3, "id": "lat", "type": "drinks", "icon": "cafe","typeIcon":"drinks_latte"},
+    {"name": "Cappuccino", "img": "drinks_cappuccino", "price": 3, "id": "cap", "type": "drinks", "icon": "cafe","typeIcon":"drinks_latte"},
+    {"name": "Orange Juice", "img": "drinks_orange_juice", "price": 3, "id": "orj", "type": "drinks", "icon": "cafe","typeIcon":"drinks_latte"},
+    {"name": "Tea", "img": "drinks_tea", "price": 3, "id": "tea", "type": "drinks", "icon": "cafe","typeIcon":"drinks_latte"}
+]

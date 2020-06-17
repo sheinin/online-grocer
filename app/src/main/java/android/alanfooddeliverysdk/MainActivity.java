@@ -15,8 +15,17 @@ import com.alan.alansdk.events.EventText;
 
 import android.alanfooddeliverysdk.data.CartItem;
 import android.alanfooddeliverysdk.data.CartItems;
+import android.alanfooddeliverysdk.data.DataProvider;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,62 +33,59 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    AlanButton alanButton;
     String route;
     List<CartItem> cartItems = new ArrayList<>();
 
-    Map<String, CartItem> orderedItemsList = new HashMap<String, CartItem>();
+    Map<String, CartItem> orderedItemsList = new HashMap<>();
+    Map<String, List<CartItem>> items = new HashMap<>();
+    //Map<String, CartItem> orderItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+
+            InputStream is = getAssets().open("menu.json");
+            int size;
+            size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String text = new String(buffer);
+            JSONArray jsonArray  = new JSONArray(text);
+
+            for (int i = 0, ix = jsonArray.length(); i < ix; i++) {
+
+                JSONObject o = jsonArray.getJSONObject(i);
+                String id = o.get("id").toString();
+                String img = o.get("img").toString();
+                String icon = o.get("icon").toString();
+                String name = o.get("name").toString();
+                float price = Float.parseFloat(o.get("price").toString());
+                String type = o.get("type").toString();
+                String typeIcon = o.get("typeIcon").toString();
+
+                if (!items.containsKey(type))
+
+                    items.put(type, new ArrayList<CartItem>());
+
+                items.get(type).add(new CartItem(name, img, price, id, type, icon, typeIcon, 0));
+
+
+            }
+        } catch (JSONException | IOException ex) {
+
+                ex.printStackTrace();
+
+        }
+
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.id_app_toolbar);
         setSupportActionBar(toolbar);
 
-        alanButton = findViewById(R.id.alan_button);
-        AlanConfig config = AlanConfig.builder()
-                .setProjectId("b983d67db70894604d0bf347580da6fd2e956eca572e1d8b807a3e2338fdd0dc/prod")
-                .build();
-        alanButton.initWithConfig(config);
-
-        alanButton.registerCallback(new AlanCallback() {
-            @Override
-            public void onAlanStateChanged(@NonNull AlanState alanState) {
-                super.onAlanStateChanged(alanState);
-            }
-
-            @Override
-            public void onRecognizedEvent(EventRecognised eventRecognised) {
-                super.onRecognizedEvent(eventRecognised);
-            }
-
-            @Override
-            public void onParsedEvent(EventParsed eventParsed) {
-                super.onParsedEvent(eventParsed);
-            }
-
-            @Override
-            public void onOptionsReceived(EventOptions eventOptions) {
-                super.onOptionsReceived(eventOptions);
-            }
-
-            @Override
-            public void onTextEvent(EventText eventText) {
-                super.onTextEvent(eventText);
-            }
-
-            @Override
-            public void onEvent(String event, String payload) {
-                super.onEvent(event, payload);
-            }
-
-            @Override
-            public void onError(String error) {
-                super.onError(error);
-            }
-        });
 
     }
 

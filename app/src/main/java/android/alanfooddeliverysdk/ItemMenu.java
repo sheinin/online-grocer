@@ -31,7 +31,7 @@ public class ItemMenu extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_item_menu, container, false);
         Toolbar toolbar = MA.findViewById(R.id.id_app_toolbar);
-        final List<CartItem> cartItems = MA.cartItems;
+        final List<CartItem> cartItems = MA.items.get(MA.route);
         final OrderItems orderItems =  new OrderItems(view, MA.orderedItemsList);
         LinearLayout mainLayout = view.findViewById(R.id.itemMenuCart);
         LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -44,7 +44,7 @@ public class ItemMenu extends Fragment {
 
         for (int i = 0, ix = cartItems.size(); i < ix;  i++) {
 
-            if (MA.route.equals(cartItems.get(i).getType())) {
+            //if (MA.route.equals(cartItems.get(i).getType())) {
 
                 if (count % 2 == 0) {
 
@@ -75,13 +75,15 @@ public class ItemMenu extends Fragment {
                     itemContainer.setPadding(5,10,10,10);
 
                 int res = getResources().getIdentifier(
-                        cartItems.get(i).getImg(),
-                        "drawable",
-                        this.requireContext().getPackageName());
+                    cartItems.get(i).getImg(),
+                    "drawable",
+                    this.requireContext().getPackageName());
 
                 if (res != 0)
 
                     itemImg.setImageResource(res);
+
+                itemImg.setClipToOutline(true);
 
                 itemTitle.setText(cartItems.get(i).getTitle());
                 String text = "$" + Math.round(cartItems.get(i).getPrice());
@@ -96,7 +98,6 @@ public class ItemMenu extends Fragment {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         1.0f));
-
 
                 itemAdd.setOnClickListener(new View.OnClickListener() {
 
@@ -145,7 +146,7 @@ public class ItemMenu extends Fragment {
 
                 count++;
 
-            }
+            //}
 
         }
 
