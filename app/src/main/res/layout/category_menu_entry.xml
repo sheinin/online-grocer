@@ -20,53 +20,81 @@
 
             <ImageView
                 android:tag="entry_img"
-                android:id="@+id/entry_img"
+                android:id="@+id/item_image"
                 style="@style/MainMenuImage"
                 android:contentDescription="@string/main_menu" />
 
+
             <TextView
+                android:id="@+id/item_quantity"
                 android:tag="itemQuantity"
                 style="@style/itemQuantity"
                 android:background="@drawable/item_quantity"
                 android:visibility="invisible"
-                android:layout_alignEnd="@+id/entry_img"
-                android:layout_alignTop="@+id/entry_img"/>
+                android:layout_alignEnd="@+id/item_image"
+                android:layout_alignTop="@+id/item_image"/>
 
-            <TextView
-                android:id="@+id/itemPrice"
-                android:tag="itemPrice"
-                style="@style/itemPrice"
-                android:layout_below="@+id/entry_img" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/cat_title_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/item_image">
 
-            <TextView
-                android:id="@+id/itemTitle"
-                android:tag="itemTitle"
-                style="@style/itemTitle"
-                android:layout_below="@+id/itemPrice"/>
+                <TextView
+                    android:id="@+id/item_title"
+                    android:gravity="bottom"
+                    android:tag="itemTitle"
+                    android:textColor="#fff"
+                    android:layout_alignParentBottom="true"
+                    style="@style/cat_title" />
 
+                <LinearLayout
+                    android:paddingTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:paddingTop="3dp"
+                    <ImageView
+                        android:tag="itemRemove"
+                        style="@style/itemAdd"
+                        android:visibility="invisible"
+                        android:src="@drawable/ic_remove_circle_black_24dp"/>
+
+                    <ImageView
+                        android:tag="itemAdd"
+                        style="@style/itemAdd"
+                        android:src="@drawable/ic_add_circle_black_24dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/entry_img"
-                android:orientation="horizontal">
+                android:layout_below="@+id/item_image"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                >
 
-                <ImageView
-                    android:tag="itemRemove"
-                    style="@style/itemAdd"
-                    android:visibility="invisible"
-                    android:src="@drawable/ic_remove_circle_black_24dp"/>
+                <TextView
+                    android:id="@+id/itemPrice"
+                    android:tag="itemPrice"
+                    style="@style/cat_price"
+                    app:layout_constraintDimensionRatio="w,1:1"
+                    android:padding="8dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/cat_menu_price_bg"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginBottom="29dp"/>
 
-                <ImageView
-                    android:tag="itemAdd"
-                    style="@style/itemAdd"
-                    android:src="@drawable/ic_add_circle_black_24dp"/>
-
-            </LinearLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
+
+
 
 
     </androidx.cardview.widget.CardView>

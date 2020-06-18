@@ -59,7 +59,6 @@ public class CategoryMenu extends Fragment {
             TextView itemTitle = itemView.findViewWithTag("itemTitle");
             TextView itemPrice = itemView.findViewWithTag("itemPrice");
             ImageView itemAdd = itemView.findViewWithTag("itemAdd");
-            //LinearLayout imgContainer = itemView.findViewWithTag("entry_img_container");
             final ImageView itemRemove = itemView.findViewWithTag("itemRemove");
             final TextView itemQuantity = itemView.findViewWithTag("itemQuantity");
             final int finalI = i;

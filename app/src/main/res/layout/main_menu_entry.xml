@@ -12,7 +12,6 @@
         android:paddingTop="10dp"
         style="@style/menu_entry_card">
 
-
         <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">

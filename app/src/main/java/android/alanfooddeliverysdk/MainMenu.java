@@ -50,10 +50,8 @@ public class MainMenu extends Fragment {
             ImageView itemImg = itemView.findViewWithTag("itemImg");
             TextView itemTxt = itemView.findViewWithTag("itemTxt");
 
-            int res = getResources().getIdentifier(
-                    val.getCategoryImg(),
-                    "drawable",
-                    this.requireContext().getPackageName());
+
+            int res = getResources().getIdentifier(val.getCategoryImg(), "drawable",  MA.getPackageName());
 
             if (res != 0)
 
