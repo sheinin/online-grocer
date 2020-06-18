@@ -1,16 +1,11 @@
 package android.alanfooddeliverysdk;
 
 import android.alanfooddeliverysdk.data.CartItem;
-import android.alanfooddeliverysdk.data.Utils;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -48,7 +43,7 @@ class OrderItems {
 
             CartItem item = entry.getValue();
 
-            int qty = item.getQuantity();
+            int qty = item.getQty();
 
             if (qty > 0) {
 

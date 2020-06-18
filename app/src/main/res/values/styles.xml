@@ -8,43 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="menu_entry_card" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_marginStart">20dp</item>
-        <item name="android:layout_marginEnd">20dp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+    <style name="cat_add_rm" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:contentDescription">@string/delivery</item>
     </style>
 
-    <style name="MainMenuImage" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="cat_img" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:contentDescription">@string/main_menu</item>
-    </style>
-
-    <style name="MainMenuText" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:paddingBottom">5dp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#FFF</item>
-        <item name="android:background">@drawable/main_menu_entry_txt_bg</item>
-    </style>
-
-    <style name="cat_title" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">12dp</item>
-        <item name="android:layout_marginBottom">6dp</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">cursive</item>
-        <item name="android:textColor">#000</item>
+        <item name="android:contentDescription">@string/delivery</item>
     </style>
 
     <style name="cat_price" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -53,6 +27,65 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#000</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/cat_bg_price</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_marginBottom">29dp</item>
+    </style>
+
+    <style name="cat_qty" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">19sp</item>
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textColor">#333</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:background">#FA08d559</item>
+    </style>
+
+    <style name="cat_title" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">11dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:textSize">19sp</item>
+        <item name="fontFamily">serif</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textColor">#fafafa</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="menu_card" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:paddingBottom">50dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="menu_img" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:contentDescription">@string/delivery</item>
+    </style>
+
+    <style name="menu_txt" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">17dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingLeft">11dp</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">#fafafa</item>
+        <item name="fontFamily">serif</item>
+        <item name="android:background">@drawable/main_menu_entry_txt_bg</item>
     </style>
 
     <style name="itemQuantity" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -66,26 +99,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="itemAdd" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_width">29dp</item>
-        <item name="android:layout_height">29dp</item>
-        <item name="android:layout_marginRight">5dp</item>
-        <item name="android:layout_marginTop">2dp</item>
-    </style>
-
-    <style name="orderItemQty" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">7dp</item>
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:paddingLeft">3dp</item>
-        <item name="android:paddingRight">3dp</item>
-        <item name="android:visibility">gone</item>
-    </style>
 
 
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+
+    <style name="Theme.Splash" parent="android:Theme">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>

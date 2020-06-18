@@ -1,95 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:id="@+id/menu_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true"
+        style="@style/menu_card">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
 
-                <TextView
-                    android:id="@+id/item_quantity"
-                    android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/menu_img"
+                android:tag="menu_img"
+                style="@style/menu_img"
+                android:contentDescription="@string/delivery" />
 
-                <ImageView
-                    android:id="@+id/item_image"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:padding="10dp"
-                    android:contentDescription="@string/menu_item" />
+            <TextView
+                style="@style/menu_txt"
+                android:layout_alignBottom="@+id/menu_img"
+                android:tag="menu_txt" />
 
-            </LinearLayout>
+        </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
+    </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/item_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:textSize="18sp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/item_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:ellipsize="marquee"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:singleLine="true" />
-
-                <ImageButton
-                    android:id="@+id/remove_item"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:src="@drawable/ic_remove"
-                    android:contentDescription="@string/remove" />
-
-                <ImageButton
-                    android:id="@+id/add_item"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:src="@drawable/ic_add"
-                    android:contentDescription="@string/add" />
-
-            </LinearLayout>
-
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

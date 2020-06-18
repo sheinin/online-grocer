@@ -25,16 +25,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         try {
 
             InputStream is = getAssets().open("menu.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
+            byte[] buffer = new byte[is.available()];
+            int size = is.read(buffer);
             is.close();
-            String text = new String(buffer);
+            String text = new String(buffer, 0, size);
             JSONArray jsonArray  = new JSONArray(text);
 
             for (int i = 0, ix = jsonArray.length(); i < ix; i++) {
@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
                 String name = o.get("name").toString();
                 float price = Float.parseFloat(o.get("price").toString());
                 String type = o.get("type").toString();
-                String typeIcon = o.get("typeIcon").toString();
+                String typeIcon = o.get("splotch").toString();
+                String cat = o.get("cat").toString();
 
                 if (!items.containsKey(type))
 
                     items.put(type, new ArrayList<CartItem>());
 
-                Objects.requireNonNull(items.get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, 0));
-
+                Objects.requireNonNull(items.get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, cat, 0));
 
             }
         } catch (JSONException | IOException ex) {
@@ -67,13 +67,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-    public List<CartItem> getOrderedItems(){
-        List<CartItem> orderedItems = new ArrayList<CartItem>();
-        if(orderedItemsList.size() > 0) {
-                orderedItems.addAll(orderedItemsList.values());
-        }
-        return orderedItems;
-    }
 }

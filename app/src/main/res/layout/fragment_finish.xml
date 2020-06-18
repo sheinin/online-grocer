@@ -17,8 +17,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="@string/finish_order_msg" />
+        android:textStyle="bold" />
     <Button
         android:id="@+id/id_back_to_menu"
         android:layout_width="wrap_content"
@@ -33,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/finish_order"/>
+        />
 
 </LinearLayout>
 

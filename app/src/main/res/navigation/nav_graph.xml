@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/mainMenu"
         android:name="android.alanfooddeliverysdk.MainMenu"
-        tools:layout="@layout/fragment_menu_main">
+        tools:layout="@layout/menu_fragment">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/ItemMenu"
         android:name="android.alanfooddeliverysdk.CategoryMenu"
-        tools:layout="@layout/fragment_menu_category">
+        tools:layout="@layout/cat_fragment">
 
         <action
             android:id="@+id/action_SecondFragment_to_ThirdFragment"

@@ -1,5 +1,7 @@
 package android.alanfooddeliverysdk.data;
 
+import java.util.Locale;
+
 public class CartItem {
     private String title;
     private String img;
@@ -8,13 +10,14 @@ public class CartItem {
     private String type;
     private String typeIcon;
     private String categoryImg;
+    private String categoryTitle;
     private Integer quantity;
 
     public CartItem(){
 
     }
 
-    public CartItem(String title, String img, Float price, String id, String type, String typeIcon, String categoryImg, Integer  quantity){
+    public CartItem(String title, String img, Float price, String id, String type, String typeIcon, String categoryImg, String categoryTitle, Integer  quantity){
         this.title = title;
         this.img = img;
         this.price = price;
@@ -22,6 +25,7 @@ public class CartItem {
         this.type = type;
         this.typeIcon = typeIcon;
         this.categoryImg = categoryImg;
+        this.categoryTitle = categoryTitle;
         this.quantity = quantity;
     }
 
@@ -33,8 +37,8 @@ public class CartItem {
         return img;
     }
 
-    public Float getPrice() {
-        return price;
+    public String getPrice() {
+        return  "$" + Math.round(price);
     }
 
     public String getId() {
@@ -53,8 +57,16 @@ public class CartItem {
         return categoryImg;
     }
 
-    public Integer getQuantity() {
+    public String getCategory() {
+        return categoryTitle;
+    }
+
+    public Integer getQty() {
         return quantity;
+    }
+
+    public String getQtyAsString() {
+        return String.format(Locale.getDefault(), "%d",quantity);
     }
 
     public void setQuantity(Integer count) {

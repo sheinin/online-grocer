@@ -1,22 +1,9 @@
 <resources>
-    <string name="app_name">Alan Food Delivery SDK</string>
-    <string name="main_menu_header">Alan Food Delivery</string>
-    <string name="main_menu">Delivery Menu</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Item Menu fragment</string>
-
-    <string name="pizza">Pizza</string>
-    <string name="street_food">Street Food</string>
-    <string name="desserts">Desserts</string>
-    <string name="drinks">Drinks</string>
-    <string name="delivery_address">Address</string>
-    <string name="delivery_date">Date</string>
-    <string name="delivery_time">Time</string>
-    <string name="remove">-</string>
-    <string name="add">+</string>
+    <string name="app_name">Food Delivery SDK</string>
+    <string name="delivery">Delivery Menu</string>
+    <string name="cat_menu">Category Menu</string>
     <string name="cart_label">Cart</string>
-    <string name="finish_order_msg">Thank you! We have already started preparing your order.</string>
     <string name="menu_item">Menu Item</string>
-
+    <string name="cat_item">Category Item</string>
+    <string name="info_item">Items in Card</string>
 </resources>

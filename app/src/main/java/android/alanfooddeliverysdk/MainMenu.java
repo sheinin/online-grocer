@@ -1,8 +1,9 @@
 package android.alanfooddeliverysdk;
 
 import android.alanfooddeliverysdk.data.CartItem;
-import android.alanfooddeliverysdk.data.Utils;
+
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,8 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.navigation.fragment.NavHostFragment;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+
 
 public class MainMenu extends Fragment {
 
@@ -29,58 +33,61 @@ public class MainMenu extends Fragment {
                              Bundle savedInstanceState) {
 
         MA = ((MainActivity) requireActivity());
-        MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
-        View view = inflater.inflate(R.layout.fragment_menu_main, container, false);
-        OrderItems orderItems = new OrderItems(view, MA.orderedItemsList);
-        LinearLayout mainLayout = view.findViewById(R.id.menu_entry);
-        LayoutInflater li =  (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View wrapperView = null;
+
+        View view = inflater.inflate(R.layout.menu_fragment, container, false);
+        LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout main = view.findViewById(R.id.menu_entry);
+        OrderItems items  = new OrderItems(view, MA.orderedItemsList);
+
         assert li != null;
 
-        orderItems.updateOrderItems();
+        items.updateOrderItems();
 
-        for (Map.Entry entry : MA.items.entrySet()) {
+        for (final Map.Entry<String, List<CartItem>> item : MA.items.entrySet()) {
 
-            final String key = entry.getKey().toString();
-            CartItem val = ((List<CartItem>) entry.getValue()).get(0);
-            wrapperView = li.inflate(R.layout.menu_entry_wrapper, container, false);
-            mainLayout.addView(wrapperView);
-            LinearLayout wrapperLayout = wrapperView.findViewWithTag("itemMenuWrapper");
-            View itemView = li.inflate(R.layout.main_menu_entry, container, false);
-            ImageView itemImg = itemView.findViewWithTag("itemImg");
-            TextView itemTxt = itemView.findViewWithTag("itemTxt");
+            final CartItem val = item.getValue().get(0);
 
+            View vi         = li.inflate(R.layout.menu_item, container, false);
+            View wrap       = li.inflate(R.layout.item_wrap, container, false);
+            ImageView img   = vi.findViewWithTag("menu_img");
+            LinearLayout wl = wrap.findViewWithTag("item_wrap");
+            TextView txt    = vi.findViewWithTag("menu_txt");
 
-            int res = getResources().getIdentifier(val.getCategoryImg(), "drawable",  MA.getPackageName());
+            try {
 
-            if (res != 0)
+                InputStream is = requireContext().getAssets().open(val.getCategoryImg());
+                img.setImageBitmap(BitmapFactory.decodeStream(is));
+                is.close();
 
-                itemImg.setImageResource(res);
+            } catch (IOException e) {
 
-            itemImg.setClipToOutline(true);
-            itemTxt.setText(val.getTitle());
+                e.printStackTrace();
 
-            itemView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    1.0f));
+            }
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            img.setClipToOutline(true);
+            txt.setText(val.getCategory());
+
+            vi.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1.0f));
+
+            vi.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
 
-                    openItemMenu(key);
+                    openItemMenu(item.getKey());
 
                 }
 
             } );
 
-            wrapperLayout.addView(itemView);
+            wl.addView(vi);
+            main.addView(wrap);
 
         }
-
-
 
         view.findViewById(R.id.orderItemContainer).setOnClickListener(new View.OnClickListener() {
 
@@ -93,9 +100,7 @@ public class MainMenu extends Fragment {
 
         } );
 
-
-
-
+        MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
 
         return view;
 
@@ -115,7 +120,7 @@ public class MainMenu extends Fragment {
     private void openItemMenu(String route){
 
         MA.route = route;
-        MA.cartItems = Utils.getInstance().getMenuItems().get(route);
+        MA.cartItems = MA.items.get(route);//Utils.getInstance().getMenuItems().get(route);
         NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
 
     }

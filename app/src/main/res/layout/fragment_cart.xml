@@ -64,21 +64,21 @@
             <EditText
                 android:id="@+id/delivery_address"
                 android:layout_height="wrap_content"
-                android:hint="@string/delivery_address"
+
                 android:inputType="text"
                 android:layout_width="fill_parent"/>
 
             <EditText
                 android:id="@+id/delivery_date"
                 android:layout_height="wrap_content"
-                android:hint="@string/delivery_date"
+
                 android:inputType="text"
                 android:layout_width="fill_parent"/>
 
             <EditText
                 android:id="@+id/delivery_time"
                 android:layout_height="wrap_content"
-                android:hint="@string/delivery_time"
+
                 android:inputType="text"
                 android:layout_width="fill_parent"/>
 

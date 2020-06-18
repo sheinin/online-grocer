@@ -20,8 +20,7 @@
                 <ImageView
                     android:id="@+id/item_image"
                     android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/drinks_latte"/>
+                    android:layout_height="80dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -77,7 +76,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="?android:attr/selectableItemBackground"
-                        android:src="@drawable/ic_remove"/>
+              />
 
                     <TextView
                         android:id="@+id/item_quantity"
@@ -91,7 +90,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="?android:attr/selectableItemBackground"
-                        android:src="@drawable/ic_add"/>
+               />
                     </LinearLayout>
             </LinearLayout>
         </TableRow>
