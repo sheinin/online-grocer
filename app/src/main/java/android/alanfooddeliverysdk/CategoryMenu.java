@@ -3,15 +3,18 @@ package android.alanfooddeliverysdk;
 import android.alanfooddeliverysdk.data.CartItem;
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +35,7 @@ public class CategoryMenu extends Fragment {
 
         final MainActivity MA = ((MainActivity) requireActivity());
         final List<CartItem> cartItems = MA.items.get(MA.route);
-        final OrderItems orderItems = new OrderItems(view, MA.orderedItemsList);
+        final OrderItems infoBar = new OrderItems(view, MA.orderedItemsList, getActivity());
 
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout mainLayout = view.findViewById(R.id.menu_entry);
@@ -40,7 +43,7 @@ public class CategoryMenu extends Fragment {
         assert li != null;
         assert cartItems != null;
 
-        orderItems.updateOrderItems();
+        infoBar.updateOrderItems();
 
         for (int i = 0, ix = cartItems.size(); i < ix; i++) {
 
@@ -50,14 +53,15 @@ public class CategoryMenu extends Fragment {
             View vi   = li.inflate(R.layout.cat_item, container, false);
             View wrap = li.inflate(R.layout.item_wrap, container, false);
 
-            final TextView qty = vi.findViewWithTag("cat_qty");
-            final ImageView rm = vi.findViewWithTag("cat_rm");
+            final LinearLayout qty = vi.findViewWithTag("cat_qty");
+            final TextView qtx = vi.findViewWithTag("cat_qty_txt");
+            final RelativeLayout rm = vi.findViewWithTag("cat_rm");
 
             ImageView add   = vi.findViewWithTag("cat_add");
             ImageView img   = vi.findViewWithTag("cat_img");
             LinearLayout iw = wrap.findViewWithTag("item_wrap");
-            TextView  price = vi.findViewWithTag("cat_price");
-            TextView  title = vi.findViewWithTag("cat_title");
+            TextView price  = vi.findViewWithTag("cat_price");
+            TextView title  = vi.findViewWithTag("cat_title");
 
             if (item != null)
 
@@ -65,7 +69,7 @@ public class CategoryMenu extends Fragment {
 
             if (val.getQty() > 0) {
 
-                qty.setText(String.valueOf(val.getQty()));
+                qtx.setText(String.valueOf(val.getQty()));
                 rm.setVisibility(View.VISIBLE);
                 qty.setVisibility(View.VISIBLE);
 
@@ -83,7 +87,7 @@ public class CategoryMenu extends Fragment {
 
             }
 
-            price.setText(val.getPrice());
+            price.setText(val.getPriceAsString());
             title.setText(val.getTitle());
 
             vi.setLayoutParams(new LinearLayout.LayoutParams(
@@ -91,17 +95,45 @@ public class CategoryMenu extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     1.0f));
 
+            int[][] colors = {
+
+                { 0xff666600, 0xffbbbb00 },
+                { 0xff777700, 0xffcccc00 },
+                { 0xff888800, 0xffeeee00 },
+                { 0xff999900, 0xffeeee00 },
+                { 0xffaaaa00, 0xffffff00 }
+
+            };
+
+            int idx = val.getPrice() / 2;
+
+            if (idx > 4)
+
+                idx = 4;
+
+            int[] color = colors[idx];
+
+            GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.BL_TR, color);
+            gd.setShape(GradientDrawable.OVAL);
+            gd.setGradientType(GradientDrawable.LINEAR_GRADIENT);
+            gd.setCornerRadii(new float[] { 5, 5, 5, 5, 0, 0, 0, 0 });
+            price.setBackground(gd);
+
             add.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
 
-                    qty.setText(val.getQtyAsString());
+                    val.setQuantity(val.getQty() + 1);
+
+                    if (!MA.orderedItemsList.containsKey(val.getId()))
+
+                        MA.orderedItemsList.put(val.getId(), val);
+
+                    qtx.setText(val.getQtyAsString());
                     qty.setVisibility(View.VISIBLE);
                     rm.setVisibility(View.VISIBLE);
-                    val.setQuantity(val.getQty() + 1);
-                    MA.orderedItemsList.put(val.getId(), val);
-                    orderItems.updateOrderItems();
+                    infoBar.updateOrderItems();
 
                 }
 
@@ -112,23 +144,23 @@ public class CategoryMenu extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                assert item != null;
+                    assert item != null;
 
-                int quantity = val.getQty() - 1;
+                    int quantity = val.getQty() - 1;
 
-                if (quantity == 0) {
+                    if (quantity == 0) {
 
-                    qty.setVisibility(View.INVISIBLE);
-                    rm.setVisibility(View.INVISIBLE);
-                    MA.orderedItemsList.remove(val.getId());
-
-                }
-
-                qty.setText(val.getQtyAsString());
-                val.setQuantity(quantity);
-                orderItems.updateOrderItems();
+                        qty.setVisibility(View.INVISIBLE);
+                        rm.setVisibility(View.INVISIBLE);
+                        MA.orderedItemsList.remove(val.getId());
 
                     }
+
+                    val.setQuantity(quantity);
+                    qtx.setText(val.getQtyAsString());
+                    infoBar.updateOrderItems();
+
+                }
 
             } );
 
@@ -137,7 +169,7 @@ public class CategoryMenu extends Fragment {
 
         }
 
-        view.findViewById(R.id.orderItemContainer).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.info_bar).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

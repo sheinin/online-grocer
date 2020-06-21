@@ -2,44 +2,50 @@ package android.alanfooddeliverysdk;
 
 import android.alanfooddeliverysdk.data.CartItem;
 
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 class OrderItems {
 
     private View view;
-    private Map<String, CartItem> orderedItemList;
+    private LinkedHashMap<String, CartItem> orderedItemList;
+    private Context context;
 
-    OrderItems(View view, Map<String, CartItem> orderedItemList) {
+    OrderItems(View view, LinkedHashMap<String, CartItem> orderedItemList, Context context) {
         this.orderedItemList = orderedItemList;
         this.view = view;
+        this.context = context;
         updateOrderItems();
+
     }
 
     void updateOrderItems() {
 
-        ImageView pizzaImg = view.findViewById(R.id.orderPizzaImg);
-        TextView pizzaTxt = view.findViewById(R.id.orderPizzaTxt);
-        ImageView streetImg = view.findViewById(R.id.orderStreetImg);
-        TextView streetTxt = view.findViewById(R.id.orderStreetTxt);
-        ImageView dessertImg = view.findViewById(R.id.orderDessertImg);
-        TextView dessertTxt = view.findViewById(R.id.orderDessertTxt);
-        ImageView drinkImg = view.findViewById(R.id.orderDrinksImg);
-        TextView drinkTxt = view.findViewById(R.id.orderDrinksTxt);
-        Map<String, Integer> map = new HashMap<>();
-        String str;
-        Integer val;
-        boolean show;
-        map.put("pizza", 0);
-        map.put("street food", 0);
-        map.put("dessert", 0);
-        map.put("drink", 0);
+        LinearLayout container = view.findViewById(R.id.info_bar_container);
+        LinkedHashMap<String, Integer> items = new LinkedHashMap<>();
 
-        for (Map.Entry<String, CartItem> entry : orderedItemList.entrySet()) {
+        container.removeAllViews();
+        for (LinkedHashMap.Entry<String, CartItem> entry : orderedItemList.entrySet()) {
 
             CartItem item = entry.getValue();
 
@@ -47,48 +53,69 @@ class OrderItems {
 
             if (qty > 0) {
 
-                String key = item.getType();
-                val = map.get(key);
+                Integer val = items.get(item.getType());
                 val = val != null ? val : 0;
-                map.put(key, val + qty);
+                items.put(item.getType(), item.getQty() + val);
 
             }
 
         }
 
-        val = map.get("pizza");
-        val = val != null ? val : 0;
-        str = String.format(Locale.getDefault(), "%d", val);
-        pizzaTxt.setText(str);
-        show = val > 0;
-        pizzaImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
-        pizzaTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
+        ((ImageView) view.findViewById(R.id.shop_indicator)).setImageResource(items.entrySet().size() == 0 ? R.drawable.shop_off : R.drawable.shop_on);
 
-        val = map.get("street food");
-        val = val != null ? val : 0;
-        str = String.format(Locale.getDefault(), "%d", val);
-        streetTxt.setText(str);
-        show = show || val > 0;
-        streetImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
-        streetTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
+        int count = 0;
 
-        val = map.get("dessert");
-        val = val != null ? val : 0;
-        str = String.format(Locale.getDefault(), "%d", val);
-        dessertTxt.setText(str);
-        show = show || val > 0;
-        dessertImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
-        dessertTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
+        for (LinkedHashMap.Entry<String, Integer> entry : items.entrySet()) {
 
-        val = map.get("drink");
-        val = val != null ? val : 0;
-        str = String.format(Locale.getDefault(), "%d", val);
-        drinkTxt.setText(str);
-        show = show || val > 0;
-        drinkImg.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
-        drinkTxt.setVisibility(val == 0 ? View.GONE : View.VISIBLE);
+            ImageView img = new ImageView(view.getContext());
+            Integer val = entry.getValue();
+            RelativeLayout rl = new RelativeLayout(view.getContext());
+            String key = entry.getKey();
+            TextView txt = new TextView(view.getContext());
+            ViewGroup.LayoutParams lp;
 
-        //container.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+            try {
+
+                InputStream is = context.getAssets().open(key + ".png");
+                img.setImageBitmap(BitmapFactory.decodeStream(is));
+                is.close();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
+            int pad = count % 2 == 0 ? 25 : 90;
+
+            txt.setText(String.valueOf(val));
+            lp = new ViewGroup.LayoutParams(100, 100);
+            img.setLayoutParams(lp);
+            lp = new ViewGroup.LayoutParams(40, 40);
+            txt.setLayoutParams(lp);
+            lp = new ViewGroup.LayoutParams(110, ViewGroup.LayoutParams.WRAP_CONTENT);
+            rl.setLayoutParams(lp);
+            txt.setTextColor(Color.rgb(255,255,255));
+            txt.setTextSize(12);
+            txt.setTypeface(txt.getTypeface(), Typeface.BOLD);
+            txt.setPadding(7,7,5,0);
+            txt.setBackground(ContextCompat.getDrawable(context, R.drawable.info_bar_qty_bg));
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.CENTER_VERTICAL);
+            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            txt.setLayoutParams(params);
+
+            count++;
+
+            rl.addView(img);
+            rl.addView(txt);
+
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(110, ViewGroup.LayoutParams.WRAP_CONTENT);
+            param.setMargins(25, pad,24,0);
+            rl.setLayoutParams(param);
+            container.addView(rl);
+
+        }
 
     }
 

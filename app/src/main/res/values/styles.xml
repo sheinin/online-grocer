@@ -44,7 +44,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:visibility">invisible</item>
         <item name="android:background">#FA08d559</item>
     </style>
 

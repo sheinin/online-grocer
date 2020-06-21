@@ -34,10 +34,10 @@ public class MainMenu extends Fragment {
 
         MA = ((MainActivity) requireActivity());
 
-        View view = inflater.inflate(R.layout.menu_fragment, container, false);
+        View view         = inflater.inflate(R.layout.menu_fragment, container, false);
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout main = view.findViewById(R.id.menu_entry);
-        OrderItems items  = new OrderItems(view, MA.orderedItemsList);
+        OrderItems items  = new OrderItems(view, MA.orderedItemsList, getActivity());
 
         assert li != null;
 
@@ -89,7 +89,7 @@ public class MainMenu extends Fragment {
 
         }
 
-        view.findViewById(R.id.orderItemContainer).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.info_bar).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -120,7 +120,7 @@ public class MainMenu extends Fragment {
     private void openItemMenu(String route){
 
         MA.route = route;
-        MA.cartItems = MA.items.get(route);//Utils.getInstance().getMenuItems().get(route);
+        MA.cartItems = MA.items.get(route);
         NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
 
     }

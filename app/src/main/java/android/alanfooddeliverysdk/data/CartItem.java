@@ -37,8 +37,12 @@ public class CartItem {
         return img;
     }
 
-    public String getPrice() {
+    public String getPriceAsString() {
         return  "$" + Math.round(price);
+    }
+
+    public Integer getPrice() {
+        return Math.round(price);
     }
 
     public String getId() {

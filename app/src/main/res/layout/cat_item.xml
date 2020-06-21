@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,12 +25,13 @@
                 android:layout_alignTop="@+id/cat_img"
                 android:layout_width="wrap_content"
                 android:layout_margin="10dp"
+                android:tag="cat_qty"
+                android:visibility="invisible"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cat_bg_qty" >
 
                 <TextView
-                    android:id="@+id/cat_qty"
-                    android:tag="cat_qty"
+                    android:tag="cat_qty_txt"
                     style="@style/cat_qty" />
 
             </LinearLayout>
@@ -48,7 +48,6 @@
                     style="@style/cat_title" />
 
                 <LinearLayout
-                    android:paddingTop="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
@@ -58,6 +57,8 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="cat_rm"
+                        android:visibility="invisible"
                         android:layout_marginRight="10dp">
 
                         <TextView
@@ -68,9 +69,7 @@
                             android:layout_centerVertical="true"/>
 
                         <ImageView
-                            android:tag="cat_rm"
                             style="@style/cat_add_rm"
-                            android:visibility="invisible"
                             android:src="@drawable/cat_rm"/>
 
                     </RelativeLayout>
@@ -78,7 +77,7 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginEnd="7dp">
 
                         <TextView
                             android:layout_width="20dp"

@@ -14,13 +14,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
 
     String route;
     List<CartItem> cartItems = new ArrayList<>();
 
-    Map<String, CartItem> orderedItemsList = new HashMap<>();
+    LinkedHashMap<String, CartItem> orderedItemsList = new LinkedHashMap<>();
     LinkedHashMap<String, List<CartItem>> items = new LinkedHashMap<>();
 
     @Override
