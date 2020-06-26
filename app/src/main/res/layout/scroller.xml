@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:src="@drawable/page_title_decor"
-                    android:contentDescription="@string/delivery" />
+                    android:contentDescription="@string/online_shopping" />
 
                 <LinearLayout
                     android:id="@+id/menu_entry"

@@ -1,14 +1,9 @@
 <resources>
-    <string name="app_name">Food Delivery SDK</string>
+    <string name="app_name">Online Shopping SDK</string>
     <string name="online_shopping">Online Shopping</string>
-    <string name="delivery">Delivery Menu</string>
-    <string name="cat_menu">Category Menu</string>
-    <string name="cart_label">Cart</string>
-    <string name="menu_item">Menu Item</string>
-    <string name="cat_item">Category Item</string>
-    <string name="info_item">Items in Card</string>
-    <string name="title_activity_maps">Map</string>
     <string name="your_order">Your Order</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="snack_title">Create online store in minutes!</string>
+    <string name="snack_action">FREE</string>
+
 </resources>

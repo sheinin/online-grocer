@@ -79,7 +79,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="?android:attr/selectableItemBackground"
-                        android:contentDescription="@string/delivery" />
+                        android:contentDescription="@string/online_shopping" />
 
                     <TextView
                         android:id="@+id/item_quantity"
@@ -93,7 +93,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:background="?android:attr/selectableItemBackground"
-                        android:contentDescription="@string/delivery" />
+                        android:contentDescription="@string/online_shopping" />
 
                 </LinearLayout>
 

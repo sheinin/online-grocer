@@ -31,9 +31,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name="android.grocer.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+        <activity android:name="android.grocer.MapsActivity" />
         <activity
             android:name="android.grocer.SplashScreen"
             android:theme="@style/Theme.Splash">

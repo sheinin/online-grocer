@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
@@ -17,10 +18,12 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     String route;
+    String store;
     List<CartItem> cartItems = new ArrayList<>();
 
     LinkedHashMap<String, CartItem> orderedItemsList = new LinkedHashMap<>();
-    LinkedHashMap<String, List<CartItem>> items = new LinkedHashMap<>();
+    HashMap<String ,LinkedHashMap<String, List<CartItem>>> items = new HashMap<>();
+    LinkedHashMap<String, String> stores = new LinkedHashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0, ix = jsonArray.length(); i < ix; i++) {
 
                 JSONObject o = jsonArray.getJSONObject(i);
+                String header = o.get("header").toString();
+                String store = o.get("store").toString();
                 String id = o.get("id").toString();
                 String img = o.get("img").toString();
                 String icon = o.get("icon").toString();
@@ -48,11 +53,19 @@ public class MainActivity extends AppCompatActivity {
                 String typeIcon = o.get("splotch").toString();
                 String cat = o.get("cat").toString();
 
-                if (!items.containsKey(type))
+                if (!stores.containsKey(store))
 
-                    items.put(type, new ArrayList<CartItem>());
+                    stores.put(store, header);
 
-                Objects.requireNonNull(items.get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, cat, 0));
+                if (!items.containsKey(store))
+
+                    items.put(store, new LinkedHashMap<String, List<CartItem>>());
+
+                if (!Objects.requireNonNull(items.get(store)).containsKey(type))
+
+                    items.get(store).put(type, new ArrayList<CartItem>());
+
+                Objects.requireNonNull(items.get(store).get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, cat, 0));
 
             }
         } catch (JSONException | IOException ex) {
@@ -60,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 ex.printStackTrace();
 
         }
-
 
         setContentView(R.layout.activity_main);
 

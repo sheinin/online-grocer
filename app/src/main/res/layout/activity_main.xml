@@ -33,11 +33,12 @@
                     android:src="@drawable/back"/>
 
                 <ImageView
+                    android:id="@+id/header_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center_vertical"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/info" />
 
             </RelativeLayout>
 

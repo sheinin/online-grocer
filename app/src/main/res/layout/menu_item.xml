@@ -18,7 +18,7 @@
                 android:id="@+id/menu_img"
                 android:tag="menu_img"
                 style="@style/menu_img"
-                android:contentDescription="@string/delivery" />
+                android:contentDescription="@string/online_shopping" />
 
             <TextView
                 style="@style/menu_txt"

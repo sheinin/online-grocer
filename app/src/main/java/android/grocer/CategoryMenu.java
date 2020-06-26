@@ -33,7 +33,7 @@ public class CategoryMenu extends Fragment {
         View view = inflater.inflate(R.layout.cat_fragment, container, false);
 
         final MainActivity MA = ((MainActivity) requireActivity());
-        final List<CartItem> cartItems = MA.items.get(MA.route);
+        final List<CartItem> cartItems = MA.items.get(MA.store).get(MA.route);
         final InfoBar infoBar = new InfoBar(view, MA.orderedItemsList, getActivity());
         
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -176,7 +176,7 @@ public class CategoryMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_SecondFragment_to_ThirdFragment);
+                NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_CatFragment_to_CartFragment);
 
             }
 
@@ -186,7 +186,7 @@ public class CategoryMenu extends Fragment {
         MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_SecondFragment_to_FirstFragment);
+                NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_CatFragment_to_MenuFragment);
             }
         });
         ((TextView) view.findViewById(R.id.page_title)).setText(cat);

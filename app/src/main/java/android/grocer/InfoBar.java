@@ -81,19 +81,19 @@ class InfoBar {
 
             }
 
-            int pad = count % 2 == 0 ? 25 : 90;
+            int pad = count % 2 == 0 ? 25 : 80;
 
             txt.setText(String.valueOf(val));
-            lp = new ViewGroup.LayoutParams(100, 100);
+            lp = new ViewGroup.LayoutParams(120, 120);
             img.setLayoutParams(lp);
             lp = new ViewGroup.LayoutParams(40, 40);
             txt.setLayoutParams(lp);
-            lp = new ViewGroup.LayoutParams(110, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp = new ViewGroup.LayoutParams(130, ViewGroup.LayoutParams.WRAP_CONTENT);
             rl.setLayoutParams(lp);
             txt.setTextColor(Color.rgb(255,255,255));
             txt.setTextSize(12);
             txt.setTypeface(txt.getTypeface(), Typeface.BOLD);
-            txt.setPadding(7,7,5,0);
+            txt.setPadding(7,7,7,7);
             txt.setBackground(ContextCompat.getDrawable(context, R.drawable.info_bar_qty_bg));
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RelativeLayout.CENTER_VERTICAL);

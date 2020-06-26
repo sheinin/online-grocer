@@ -1,5 +1,6 @@
 package android.grocer;
 
+import android.content.res.Resources;
 import android.grocer.data.CartItem;
 
 import android.content.Context;
@@ -43,7 +44,7 @@ public class MainMenu extends Fragment {
 
         items.updateOrderItems();
 
-        for (final Map.Entry<String, List<CartItem>> item : MA.items.entrySet()) {
+        for (final Map.Entry<String, List<CartItem>> item : MA.items.get(MA.store).entrySet()) {
 
             final CartItem val = item.getValue().get(0);
 
@@ -94,14 +95,27 @@ public class MainMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_ThirdFragment);
+                NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_CartFragment);
 
             }
 
         } );
 
-        MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
-        ((TextView) view.findViewById(R.id.page_title)).setText("Main Menu");
+        MA.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
+        MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_StoreFragment);
+            }
+        });
+
+        ((TextView) view.findViewById(R.id.page_title)).setText(MA.store);
+
+        Resources resources = MA.getResources();
+        final int resourceId = resources.getIdentifier(MA.stores.get(MA.store), "drawable",
+                MA.getPackageName());
+        //return resources.getDrawable(resourceId);
+        ((ImageView)MA.findViewById(R.id.header_logo)).setImageResource(resourceId);
 
         return view;
 
@@ -114,15 +128,14 @@ public class MainMenu extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-
     }
 
 
     private void openItemMenu(String route){
 
         MA.route = route;
-        MA.cartItems = MA.items.get(route);
-        NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+        MA.cartItems = MA.items.get(MA.store).get(route);
+        NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_CatFragment);
 
     }
 

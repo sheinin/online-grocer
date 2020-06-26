@@ -3,58 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainMenu"
+    app:startDestination="@id/store_fragment"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/mainMenu"
+        android:id="@+id/store_fragment"
+        android:name="android.grocer.Store"
+        tools:layout="@layout/store_fragment">
+
+        <action
+            android:id="@+id/action_StoreFragment_to_MenuFragment"
+            app:destination="@id/menu_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_fragment"
         android:name="android.grocer.MainMenu"
         tools:layout="@layout/menu_fragment">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/ItemMenu" />
+            android:id="@+id/action_MenuFragment_to_StoreFragment"
+            app:destination="@id/store_fragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_ThirdFragment"
-            app:destination="@id/CartList" />
+            android:id="@+id/action_MenuFragment_to_CatFragment"
+            app:destination="@id/cat_fragment" />
+        <action
+            android:id="@+id/action_MenuFragment_to_CartFragment"
+            app:destination="@id/cart_fragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/ItemMenu"
+        android:id="@+id/cat_fragment"
         android:name="android.grocer.CategoryMenu"
         tools:layout="@layout/cat_fragment">
 
         <action
-            android:id="@+id/action_SecondFragment_to_ThirdFragment"
-            app:destination="@id/CartList" />
+            android:id="@+id/action_CatFragment_to_CartFragment"
+            app:destination="@id/cart_fragment" />
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/mainMenu" />
+            android:id="@+id/action_CatFragment_to_MenuFragment"
+            app:destination="@id/menu_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/CartList"
+        android:id="@+id/cart_fragment"
         android:name="android.grocer.Cart"
         tools:layout="@layout/cart_fragment">
         <action
-            android:id="@+id/action_ThirdFragment_to_SecondFragment"
-            app:destination="@id/ItemMenu" />
+            android:id="@+id/action_CartFragment_to_MenuFragment"
+            app:destination="@id/menu_fragment" />
         <action
             android:id="@+id/action_ThirdFragment_to_FourthFragment"
-            app:destination="@id/FinishOrder" />
-        <action
-            android:id="@+id/action_ThirdFragment_to_FirstFragment"
-            app:destination="@id/mainMenu" />
-
-
+            app:destination="@id/finish_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/FinishOrder"
+        android:id="@+id/finish_fragment"
         android:name="android.grocer.FinishFragment"
         tools:layout="@layout/fragment_finish">
         <action
             android:id="@+id/action_FourthFragment_to_FirstFragment"
-            app:destination="@id/mainMenu" />
+            app:destination="@id/store_fragment" />
 
 
     </fragment>
