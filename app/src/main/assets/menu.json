@@ -12,9 +12,11 @@
     {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Apple Pie", "img": "dessert_apple_pie.jpg", "price": 5, "id": "apl", "type": "dsrt", "icon": "ice_cream.jpg","splotch":"dessert_apple_pie.jpg","cat": "Desserts"},
     {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Cheesecake", "img": "dessert_cheesecake.jpg", "price": 3, "id": "chc", "type": "dsrt", "icon": "ice_cream.jpg","splotch":"dessert_apple_pie.jpg","cat": "Desserts"},
 
-    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Coca Cola", "img": "drinks_cola.jpg", "price": 2, "id": "sod", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_latte.jpg","cat": "Beverages"},
-    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Latte", "img": "drinks_latte.jpg", "price": 1, "id": "lat", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_latte.jpg","cat": "Beverages"},
-    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Cappuccino", "img": "drinks_cappuccino.jpg", "price": 3, "id": "cap", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_latte.jpg","cat": "Beverages"},
-    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Orange Juice", "img": "drinks_orange_juice.jpg", "price": 4, "id": "orj", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_latte.jpg","cat": "Beverages"},
-    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Tea", "img": "drinks_tea.jpg", "price": 6, "id": "tea", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_latte.jpg","cat": "Beverages"}
+    {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Coca Cola", "img": "drinks_cola.jpg", "price": 2, "id": "sod", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_orange_juice.jpg","cat": "Beverages"},
+    {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Orange Juice", "img": "drinks_orange_juice.jpg", "price": 4, "id": "orj", "type": "drink", "icon": "cafe.jpg","splotch":"drinks_orange_juice.jpg","cat": "Beverages"},
+
+    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Latte", "img": "drinks_latte.jpg", "price": 1, "id": "lat", "type": "coffee", "icon": "coffee.jpg","splotch":"drinks_latte.jpg","cat": "Coffee"},
+    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Cappuccino", "img": "drinks_cappuccino.jpg", "price": 3, "id": "cap", "type": "coffee", "icon": "coffee.jpg","splotch":"drinks_latte.jpg","cat": "Coffee"},
+    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Cup", "img": "drinks_tea.jpg", "price": 6, "id": "tea", "type": "tea", "icon": "tea.jpg","splotch":"drinks_tea.jpg","cat": "Tea"},
+    {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Pot", "img": "tea_set_break.jpg", "price": 6, "id": "pot", "type": "tea", "icon": "tea.jpg","splotch":"drinks_tea.jpg","cat": "Tea"}
 ]

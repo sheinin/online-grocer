@@ -4,6 +4,7 @@ import android.grocer.data.CartItem;
 import android.content.Context;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,7 @@ public class Cart extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.order_cart);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        adapter = new CartItemAdapter(getActivity(), MA.orderedItemsList);
+        adapter = new CartItemAdapter(getActivity(), MA.orderedItemsList, Cart.this);
         //adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -48,6 +49,13 @@ public class Cart extends Fragment {
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout mainLayout = view.findViewById(R.id.menu_entry);
         String cat = null;
+
+        MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(Cart.this).navigate(R.id.action_CartFragment_to_MenuFragment);
+            }
+        });
 
         return view;
     }

@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.navigation.fragment.NavHostFragment;
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,7 +97,13 @@ public class MainMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_CartFragment);
+                if (MA.orderedItemsList.size() == 0)
+
+                    Toast.makeText(MA.getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
+
+                else
+
+                    NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_CartFragment);
 
             }
 
@@ -114,7 +122,6 @@ public class MainMenu extends Fragment {
         Resources resources = MA.getResources();
         final int resourceId = resources.getIdentifier(MA.stores.get(MA.store), "drawable",
                 MA.getPackageName());
-        //return resources.getDrawable(resourceId);
         ((ImageView)MA.findViewById(R.id.header_logo)).setImageResource(resourceId);
 
         return view;

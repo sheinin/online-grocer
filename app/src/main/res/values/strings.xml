@@ -5,5 +5,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="snack_title">Create online store in minutes!</string>
     <string name="snack_action">FREE</string>
-
+    <string name="online_grocer">Online Grocer</string>
+    <string name="cart_empty">Your cart is empty.</string>
 </resources>

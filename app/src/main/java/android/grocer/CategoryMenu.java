@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -176,7 +178,13 @@ public class CategoryMenu extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_CatFragment_to_CartFragment);
+                if (MA.orderedItemsList.size() == 0)
+
+                    Toast.makeText(MA.getApplicationContext(), getText(R.string.cart_empty), Toast.LENGTH_SHORT).show();
+
+                else
+
+                    NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_CatFragment_to_CartFragment);
 
             }
 

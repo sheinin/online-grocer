@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,8 @@ public class Store extends Fragment {
                              Bundle savedInstanceState) {
 
         MA = ((MainActivity) requireActivity());
+        MA.orderedItemsList = new LinkedHashMap<>();
+
         View view = inflater.inflate(R.layout.store_fragment, container, false);
 
         int count = 0;
@@ -81,6 +84,7 @@ public class Store extends Fragment {
         });
 
         MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
+        ((ImageView)MA.findViewById(R.id.header_logo)).setImageResource(R.drawable.info);
 
         return view;
     }
