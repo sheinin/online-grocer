@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/mainMenu"
-        android:name="android.alanfooddeliverysdk.MainMenu"
+        android:name="android.grocer.MainMenu"
         tools:layout="@layout/menu_fragment">
 
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/ItemMenu"
-        android:name="android.alanfooddeliverysdk.CategoryMenu"
+        android:name="android.grocer.CategoryMenu"
         tools:layout="@layout/cat_fragment">
 
         <action
@@ -33,8 +33,8 @@
 
     <fragment
         android:id="@+id/CartList"
-        android:name="android.alanfooddeliverysdk.Cart"
-        tools:layout="@layout/fragment_cart">
+        android:name="android.grocer.Cart"
+        tools:layout="@layout/cart_fragment">
         <action
             android:id="@+id/action_ThirdFragment_to_SecondFragment"
             app:destination="@id/ItemMenu" />
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/FinishOrder"
-        android:name="android.alanfooddeliverysdk.FinishFragment"
+        android:name="android.grocer.FinishFragment"
         tools:layout="@layout/fragment_finish">
         <action
             android:id="@+id/action_FourthFragment_to_FirstFragment"

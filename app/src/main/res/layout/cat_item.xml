@@ -18,13 +18,14 @@
             <ImageView
                 android:id="@+id/cat_img"
                 android:tag="cat_img"
-                style="@style/cat_img" />
+                style="@style/cat_img"
+                android:contentDescription="@string/online_shopping" />
 
             <LinearLayout
                 android:layout_alignEnd="@+id/cat_img"
                 android:layout_alignTop="@+id/cat_img"
                 android:layout_width="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="7dp"
                 android:tag="cat_qty"
                 android:visibility="invisible"
                 android:layout_height="wrap_content"
@@ -59,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:tag="cat_rm"
                         android:visibility="invisible"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginEnd="10dp">
 
                         <TextView
                             android:layout_width="20dp"
@@ -69,8 +70,10 @@
                             android:layout_centerVertical="true"/>
 
                         <ImageView
-                            style="@style/cat_add_rm"
-                            android:src="@drawable/cat_rm"/>
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:src="@drawable/cat_rm"
+                            android:contentDescription="@string/online_shopping" />
 
                     </RelativeLayout>
 
@@ -88,8 +91,10 @@
 
                         <ImageView
                             android:tag="cat_add"
-                            style="@style/cat_add_rm"
-                            android:src="@drawable/cat_add" />
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:src="@drawable/cat_add"
+                            android:contentDescription="@string/online_shopping" />
 
                     </RelativeLayout>
 
