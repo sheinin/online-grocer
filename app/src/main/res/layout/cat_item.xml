@@ -18,8 +18,11 @@
             <ImageView
                 android:id="@+id/cat_img"
                 android:tag="cat_img"
-                style="@style/cat_img"
-                android:contentDescription="@string/online_shopping" />
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/online_grocer" />
 
             <LinearLayout
                 android:layout_alignEnd="@+id/cat_img"
@@ -73,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:src="@drawable/cat_rm"
-                            android:contentDescription="@string/online_shopping" />
+                            android:contentDescription="@string/online_grocer" />
 
                     </RelativeLayout>
 
@@ -94,7 +97,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:src="@drawable/cat_add"
-                            android:contentDescription="@string/online_shopping" />
+                            android:contentDescription="@string/online_grocer" />
 
                     </RelativeLayout>
 

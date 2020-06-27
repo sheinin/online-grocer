@@ -24,13 +24,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
+
+                <TextView
+                    android:id="@+id/header_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/online_grocer"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:fontFamily="cursive"
+                    android:gravity="center"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/white" />
+
                 <ImageButton
                     android:id="@+id/button_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:visibility="visible"
-                    android:src="@drawable/back"/>
+                    android:src="@drawable/back"
+                    android:contentDescription="@string/online_grocer" />
 
                 <ImageView
                     android:id="@+id/header_logo"
@@ -38,7 +51,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center_vertical"
-                    android:src="@drawable/info" />
+                    android:src="@drawable/info"
+                    android:contentDescription="@string/online_grocer" />
 
             </RelativeLayout>
 

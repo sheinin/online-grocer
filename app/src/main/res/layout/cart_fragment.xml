@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="2"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,36 +19,40 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/your_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:layout_alignParentStart="true"
                 android:fontFamily="cursive"
                 android:text="@string/your_order" />
 
             <LinearLayout
+                android:layout_alignEnd="@+id/your_order"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:background="@drawable/cart_bg_qty">
+                android:background="@drawable/cart_bg_total">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/cart_bg_total"
+                    android:background="@drawable/cart_bg_total_curr"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
-                    android:src="@drawable/total_price" />
+                    android:src="@drawable/total_price"
+                    android:contentDescription="@string/online_grocer" />
 
                 <TextView
+                    android:id="@+id/cart_total_price"
                     android:gravity="center_vertical|end"
                     android:layout_width="60dp"
                     android:textSize="20sp"
                     android:paddingEnd="5dp"
                     android:paddingStart="0dp"
-                    android:layout_height="match_parent"
-                    android:text="123"/>
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
@@ -63,29 +67,56 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#444"
-        android:padding="10dp"
+        android:background="#fff"
         android:weightSum="1"
         android:orientation="vertical">
 
-        <fragment xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <RelativeLayout
+            android:layout_above="@+id/cart_order_btn"
+            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            tools:context="android.grocer.MapsActivity" />
+            android:layout_height="wrap_content">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:id="@+id/cart_loc_reminder"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentTop="true"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textColor="@color/black"
+                android:background="@drawable/cart_bg_loc"
+                android:visibility="invisible"
+                android:text="@string/select_location"/>
+
+        </RelativeLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/cart_order_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
-            android:text="Place Order"/>
+            android:layout_alignParentBottom="true"
+            android:text="@string/place_order"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

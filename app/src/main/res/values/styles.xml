@@ -8,12 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="cat_img" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:adjustViewBounds">true</item>
-    </style>
-
     <style name="cat_price" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -59,12 +53,6 @@
         <item name="android:paddingBottom">50dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="menu_img" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:adjustViewBounds">true</item>
     </style>
 
     <style name="menu_txt" parent="Theme.AppCompat.Light.DarkActionBar">

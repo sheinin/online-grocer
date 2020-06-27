@@ -53,7 +53,7 @@
             android:id="@+id/action_CartFragment_to_MenuFragment"
             app:destination="@id/menu_fragment" />
         <action
-            android:id="@+id/action_ThirdFragment_to_FourthFragment"
+            android:id="@+id/action_CartFragment_to_FinishFragment"
             app:destination="@id/finish_fragment" />
     </fragment>
 

@@ -58,7 +58,7 @@ class InfoBar {
 
         ((ImageView) view.findViewById(R.id.shop_indicator)).setImageResource(items.entrySet().size() == 0 ? R.drawable.shop_off : R.drawable.shop_on);
 
-        ((LinearLayout) view.findViewById(R.id.info_bar_wrap)).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.info_bar_bg : R.drawable.info_bar_bg_on));
+        view.findViewById(R.id.info_bar_wrap).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.info_bar_bg : R.drawable.info_bar_bg_on));
 
         int count = 0;
 
@@ -83,37 +83,47 @@ class InfoBar {
 
             }
 
-            int pad = count % 2 == 0 ? 25 : 80;
+
 
             txt.setText(String.valueOf(val));
-            lp = new ViewGroup.LayoutParams(120, 120);
+
+            lp = new ViewGroup.LayoutParams(dpToPx(36), dpToPx(36));
             img.setLayoutParams(lp);
-            lp = new ViewGroup.LayoutParams(40, 40);
+            lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             txt.setLayoutParams(lp);
-            lp = new ViewGroup.LayoutParams(130, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             rl.setLayoutParams(lp);
             txt.setTextColor(Color.rgb(255,255,255));
             txt.setTextSize(12);
             txt.setTypeface(txt.getTypeface(), Typeface.BOLD);
-            txt.setPadding(7,7,7,7);
+            int pad = dpToPx(3);
+            txt.setPadding(pad, pad, pad, pad);
             txt.setBackground(ContextCompat.getDrawable(context, R.drawable.info_bar_qty_bg));
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.addRule(RelativeLayout.CENTER_VERTICAL);
             params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             txt.setLayoutParams(params);
 
-            count++;
-
             rl.addView(img);
             rl.addView(txt);
 
-            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(110, ViewGroup.LayoutParams.WRAP_CONTENT);
-            param.setMargins(25, pad,24,0);
+            pad = count % 2 == 0 ? dpToPx(10) : dpToPx(25);
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(dpToPx(40), ViewGroup.LayoutParams.WRAP_CONTENT);
+            param.setMargins(dpToPx(5), pad,dpToPx(4),0);
             rl.setLayoutParams(param);
             container.addView(rl);
 
+            count++;
+
         }
 
+    }
+
+    int dpToPx(int dp) {
+        float density = view.getResources()
+                .getDisplayMetrics()
+                .density;
+        return Math.round((float) dp * density);
     }
 
 }

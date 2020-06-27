@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class MainMenu extends Fragment {
@@ -46,14 +47,14 @@ public class MainMenu extends Fragment {
 
         items.updateOrderItems();
 
-        for (final Map.Entry<String, List<CartItem>> item : MA.items.get(MA.store).entrySet()) {
+        for (final Map.Entry<String, List<CartItem>> item : Objects.requireNonNull(MA.items.get(MA.store)).entrySet()) {
 
             final CartItem val = item.getValue().get(0);
 
             View vi         = li.inflate(R.layout.menu_item, container, false);
-            View wrap       = li.inflate(R.layout.item_wrap, container, false);
+            View wrap       = li.inflate(R.layout.menu_item_container, container, false);
             ImageView img   = vi.findViewWithTag("menu_img");
-            LinearLayout wl = wrap.findViewWithTag("item_wrap");
+            LinearLayout wl = wrap.findViewWithTag("menu_item_container");
             TextView txt    = vi.findViewWithTag("menu_txt");
 
             try {
@@ -109,7 +110,9 @@ public class MainMenu extends Fragment {
 
         } );
 
+        MA.findViewById(R.id.header_text).setVisibility(View.INVISIBLE);
         MA.findViewById(R.id.button_back).setVisibility(View.VISIBLE);
+        MA.findViewById(R.id.header_logo).setVisibility(View.VISIBLE);
         MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -141,7 +144,7 @@ public class MainMenu extends Fragment {
     private void openItemMenu(String route){
 
         MA.route = route;
-        MA.cartItems = MA.items.get(MA.store).get(route);
+        MA.cartItems = Objects.requireNonNull(MA.items.get(MA.store)).get(route);
         NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_CatFragment);
 
     }

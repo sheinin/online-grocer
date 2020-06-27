@@ -1,25 +1,17 @@
 package android.grocer;
 
 import android.content.Intent;
-import android.grocer.data.CartItem;
 import android.net.Uri;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Store extends Fragment {
@@ -68,7 +60,7 @@ public class Store extends Fragment {
             }
         });
 
-        ((ImageView)MA.findViewById(R.id.header_logo)).setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, getString(R.string.snack_title), Snackbar.LENGTH_LONG)
@@ -80,11 +72,13 @@ public class Store extends Fragment {
                             }
                         }).show();
 
-            }
-        });
+            }};
+        MA.findViewById(R.id.header_logo).setOnClickListener(listener);
+        MA.findViewById(R.id.header_text).setOnClickListener(listener);
 
         MA.findViewById(R.id.button_back).setVisibility(View.INVISIBLE);
-        ((ImageView)MA.findViewById(R.id.header_logo)).setImageResource(R.drawable.info);
+        MA.findViewById(R.id.header_logo).setVisibility(View.INVISIBLE);
+        MA.findViewById(R.id.header_text).setVisibility(View.VISIBLE);
 
         return view;
     }

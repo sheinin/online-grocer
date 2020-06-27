@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
-                android:contentDescription="@string/online_shopping" />
+                android:contentDescription="@string/online_grocer" />
 
         </androidx.cardview.widget.CardView>
 
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:src="@drawable/icon_cart_rm"
-                android:contentDescription="@string/online_shopping"/>
+                android:contentDescription="@string/online_grocer"/>
 
             <TextView
                 android:id="@+id/item_qty"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:src="@drawable/icon_cart_add"
-                android:contentDescription="@string/online_shopping"/>
+                android:contentDescription="@string/online_grocer"/>
 
 
         </LinearLayout>

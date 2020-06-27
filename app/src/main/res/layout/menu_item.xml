@@ -17,8 +17,11 @@
             <ImageView
                 android:id="@+id/menu_img"
                 android:tag="menu_img"
-                style="@style/menu_img"
-                android:contentDescription="@string/online_shopping" />
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/online_grocer" />
 
             <TextView
                 style="@style/menu_txt"

@@ -30,7 +30,6 @@
                     android:id="@+id/page_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/online_shopping"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:fontFamily="cursive"
@@ -43,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:src="@drawable/page_title_decor"
-                    android:contentDescription="@string/online_shopping" />
+                    android:contentDescription="@string/online_grocer" />
 
                 <LinearLayout
                     android:id="@+id/menu_entry"

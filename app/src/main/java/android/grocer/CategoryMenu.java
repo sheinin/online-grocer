@@ -55,7 +55,7 @@ public class CategoryMenu extends Fragment {
             cat = val.getCategory();
             
             View vi   = li.inflate(R.layout.cat_item, container, false);
-            View wrap = li.inflate(R.layout.item_wrap, container, false);
+            View wrap = li.inflate(R.layout.menu_item_container, container, false);
 
             final LinearLayout qty = vi.findViewWithTag("cat_qty");
             final TextView qtx = vi.findViewWithTag("cat_qty_txt");
@@ -63,7 +63,7 @@ public class CategoryMenu extends Fragment {
 
             ImageView add   = vi.findViewWithTag("cat_add");
             ImageView img   = vi.findViewWithTag("cat_img");
-            LinearLayout iw = wrap.findViewWithTag("item_wrap");
+            LinearLayout iw = wrap.findViewWithTag("menu_item_container");
             TextView price  = vi.findViewWithTag("cat_price");
             TextView title  = vi.findViewWithTag("cat_title");
 
@@ -99,7 +99,7 @@ public class CategoryMenu extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     1.0f));
 
-            int[][] colors = {
+            /*int[][] colors = {
 
                 { 0xff666600, 0xffbbbb00 },
                 { 0xff777700, 0xffcccc00 },
@@ -121,7 +121,7 @@ public class CategoryMenu extends Fragment {
             gd.setShape(GradientDrawable.OVAL);
             gd.setGradientType(GradientDrawable.LINEAR_GRADIENT);
             gd.setCornerRadii(new float[] { 5, 5, 5, 5, 0, 0, 0, 0 });
-            price.setBackground(gd);
+            price.setBackground(gd);*/
 
             add.setOnClickListener(new View.OnClickListener() {
 

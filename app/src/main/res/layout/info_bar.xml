@@ -22,9 +22,8 @@
             android:paddingBottom="3dp"
             android:layout_margin="5dp"
             android:src="@drawable/shop_off"
-            android:contentDescription="@string/online_shopping"
-            android:background="@drawable/shop_bg"
-            android:layout_alignParentStart="true" />
+            android:contentDescription="@string/online_grocer"
+            android:background="@drawable/shop_bg" />
 
         <LinearLayout
             android:id="@+id/info_bar_container"

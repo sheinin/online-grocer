@@ -3,48 +3,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
+    android:padding="10dp"
     tools:context=".Store">
 
-    <TextView
-        android:id="@+id/page_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/online_grocer"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:fontFamily="cursive"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
-        android:background="#FFF"
-        android:textColor="#000" />
-
-    <ImageView
-        android:id="@+id/page_decor"
-        android:layout_below="@+id/page_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/page_title_decor"
-        android:contentDescription="@string/online_shopping" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/copy"
         android:layout_centerVertical="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/page_decor"
+        android:orientation="vertical"
         android:gravity="center_vertical">
 
-    <GridView
-        android:layout_below="@+id/page_decor"
-        android:stretchMode="columnWidth"
-        android:numColumns="2"
+        <GridView
+            android:stretchMode="columnWidth"
+            android:numColumns="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/grid" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/copy"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-android:gravity="center_vertical"
-        android:id="@+id/grid"
-        />
-    </LinearLayout>>
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:src="@drawable/copy"
+            android:contentDescription="@string/online_grocer" />
+
+        <LinearLayout
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="12sp"
+                android:text="@string/author_copy"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="12sp"
+                android:text="@string/images_courtesy"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
