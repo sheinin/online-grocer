@@ -83,8 +83,6 @@ class InfoBar {
 
             }
 
-
-
             txt.setText(String.valueOf(val));
 
             lp = new ViewGroup.LayoutParams(dpToPx(36), dpToPx(36));

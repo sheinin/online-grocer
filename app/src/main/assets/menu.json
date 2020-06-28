@@ -1,10 +1,10 @@
 [
-    {"store":"Hot Drink","code": "dk", "header":"coffee_cup", "name": "Latte", "img": "drinks_latte.jpg", "price": 1, "id": "lat", "type": "coffee", "icon": "coffee.jpg","splotch":"drinks_latte.jpg","cat": "Coffee"},
+    {"store":"Hot Drink","code": "dk", "header":"cup.png", "name": "Latte", "img": "drinks_latte.jpg", "price": 1, "id": "lat", "type": "coffee", "icon": "coffee.jpg","splotch":"drinks_latte.jpg","cat": "Coffee"},
     {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Cappuccino", "img": "drinks_cappuccino.jpg", "price": 3, "id": "cap", "type": "coffee", "icon": "coffee.jpg","splotch":"drinks_latte.jpg","cat": "Coffee"},
     {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Cup", "img": "drinks_tea.jpg", "price": 2, "id": "tea", "type": "tea", "icon": "tea.jpg","splotch":"drinks_tea.jpg","cat": "Tea"},
     {"store":"Hot Drink","code": "dk", "header":"drink_header", "name": "Pot", "img": "tea_set_break.jpg", "price": 6, "id": "pot", "type": "tea", "icon": "tea.jpg","splotch":"drinks_tea.jpg","cat": "Tea"},
 
-    {"store":"Fast Food","code": "fd", "header":"fast_food", "name": "Pepperoni", "img": "pizza_pepperoni.jpg", "price": 6, "id": "prn", "type": "pizza", "icon": "pizza.jpg","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
+    {"store":"Fast Food","code": "fd", "header":"burger.png", "name": "Pepperoni", "img": "pizza_pepperoni.jpg", "price": 6, "id": "prn", "type": "pizza", "icon": "pizza.jpg","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
     {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Margarita", "img": "pizza_margarita.jpg", "price": 7, "id": "mrg", "type": "pizza", "icon": "pizza.jpg","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
     {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Cheese", "img": "pizza_four_cheese.jpg", "price": 10, "id": "4ch", "type": "pizza", "icon": "pizza.jpg","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
     {"store":"Fast Food","code": "fd", "header":"food_header", "name": "Hawaiian", "img": "pizza_hawaii.jpg", "price": 8, "id": "haw", "type": "pizza", "icon": "pizza.jpg","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},

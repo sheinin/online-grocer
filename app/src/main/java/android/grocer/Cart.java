@@ -59,8 +59,9 @@ public class Cart extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireContext());
-        //fetchLocation();
+
     }
 
     @Override
@@ -193,7 +194,17 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
         //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireContext());
         ((SupportMapFragment) Objects.requireNonNull(getChildFragmentManager().findFragmentById(R.id.map))).getMapAsync(Cart.this);
-        fetchLocation();
+
+        view.findViewById(R.id.map_locate).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                fetchLocation();
+
+            }
+
+        } );
 
         return view;
 
@@ -260,6 +271,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 Log.d("STATE",address+city+state+country+postalCode);
 */
     }
+
 
 
 }

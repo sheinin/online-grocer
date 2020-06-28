@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!Objects.requireNonNull(items.get(store)).containsKey(type))
 
-                    items.get(store).put(type, new ArrayList<CartItem>());
+                    Objects.requireNonNull(items.get(store)).put(type, new ArrayList<CartItem>());
 
-                Objects.requireNonNull(items.get(store).get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, cat, 0));
+                Objects.requireNonNull(Objects.requireNonNull(items.get(store)).get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, cat, 0));
 
             }
         } catch (JSONException | IOException ex) {

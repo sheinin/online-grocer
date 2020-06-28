@@ -1,7 +1,7 @@
 package android.grocer;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class StoreGrid extends BaseAdapter{
+import java.io.IOException;
+import java.io.InputStream;
+
+public class
+StoreGrid extends BaseAdapter{
     private Context mContext;
     private final String[] name;
     private final String[] image;
@@ -47,16 +51,25 @@ public class StoreGrid extends BaseAdapter{
 
         if (convertView == null) {
 
-            grid = new View(mContext);
-            grid = inflater.inflate(R.layout.store_grid, null);
+            assert inflater != null;
+
+            grid = inflater.inflate(R.layout.store_grid, parent, false);
             TextView textView = (TextView) grid.findViewById(R.id.grid_text);
             ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
             textView.setText(name[position]);
-            Resources resources = mContext.getResources();
-            final int resourceId = resources.getIdentifier(image[position], "drawable",
-                    mContext.getPackageName());
-            //return resources.getDrawable(resourceId);
-            imageView.setImageResource(resourceId);
+
+            try {
+
+                InputStream is = mContext.getAssets().open(image[position]);
+                imageView.setImageBitmap(BitmapFactory.decodeStream(is));
+                is.close();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+
         } else {
             grid = (View) convertView;
         }

@@ -1,6 +1,5 @@
 package android.grocer;
 
-import android.content.res.Resources;
 import android.grocer.data.CartItem;
 
 import android.content.Context;
@@ -122,10 +121,17 @@ public class MainMenu extends Fragment {
 
         ((TextView) view.findViewById(R.id.page_title)).setText(MA.store);
 
-        Resources resources = MA.getResources();
-        final int resourceId = resources.getIdentifier(MA.stores.get(MA.store), "drawable",
-                MA.getPackageName());
-        ((ImageView)MA.findViewById(R.id.header_logo)).setImageResource(resourceId);
+        try {
+
+            InputStream is = requireContext().getAssets().open(Objects.requireNonNull(MA.stores.get(MA.store)));
+            ((ImageView)MA.findViewById(R.id.header_logo)).setImageBitmap(BitmapFactory.decodeStream(is));
+            is.close();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
 
         return view;
 
