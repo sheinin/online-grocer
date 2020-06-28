@@ -74,6 +74,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             e.printStackTrace();
 
         }
+
         holder.itemQty.setText(item.getQtyAsString());
         holder.itemTitle.setText(item.getTitle());
         holder.itemCategory.setText(item.getCategory());
@@ -97,26 +98,25 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
             @Override
             public void onClick(View view) {
 
-                int quantity = item.getQty() - 1;
-                item.setQuantity(quantity);
-                priceNum -= item.getPrice();
-                setTotalPriceText();
+            int quantity = item.getQty() - 1;
+            item.setQuantity(quantity);
+            priceNum -= item.getPrice();
+            setTotalPriceText();
 
-                if (quantity == 0) {
+            if (quantity == 0) {
 
-                    mData.remove(item.getId());
-                    mIndex.remove(position);
+                mData.remove(item.getId());
+                mIndex.remove(position);
 
-                    notifyDataSetChanged();
+                notifyDataSetChanged();
 
-                    if (mData.size() == 0)
+                if (mData.size() == 0)
 
-                        NavHostFragment.findNavController(fragment).navigate(R.id.action_CartFragment_to_MenuFragment);
+                    NavHostFragment.findNavController(fragment).navigate(R.id.action_CartFragment_to_MenuFragment);
 
-                }
+            }
 
-                holder.itemQty.setText(item.getQtyAsString());
-
+            holder.itemQty.setText(item.getQtyAsString());
 
             }
 

@@ -52,6 +52,7 @@
                     android:textSize="20sp"
                     android:paddingEnd="5dp"
                     android:paddingStart="0dp"
+                    android:textColor="@color/black"
                     android:layout_height="match_parent" />
 
             </LinearLayout>
@@ -71,7 +72,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#fff"
         android:weightSum="1"
         android:orientation="vertical">
 
@@ -89,24 +89,16 @@
                 android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                />
+                android:layout_alignParentTop="true" />
 
-            <TextView
-                android:id="@+id/cart_loc_reminder"
-                android:layout_marginTop="20dp"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:textColor="@color/black"
-                android:background="@drawable/cart_bg_loc"
-                android:visibility="invisible"
-                android:text="@string/select_location"/>
+                android:src="@drawable/location"
+                android:padding="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/online_grocer" />
 
         </RelativeLayout>
 
@@ -115,6 +107,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:background="@drawable/cart_bg_submit"
             android:text="@string/place_order"/>
 
     </RelativeLayout>

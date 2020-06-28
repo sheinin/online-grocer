@@ -30,7 +30,6 @@
         android:background="@drawable/store_bg_title"
         android:textColor="@color/white"
         android:padding="5dp"
-        android:textSize="16sp">
-    </TextView>
+        android:textSize="16sp"/>
 
 </LinearLayout>

@@ -57,8 +57,8 @@ class InfoBar {
         }
 
         ((ImageView) view.findViewById(R.id.shop_indicator)).setImageResource(items.entrySet().size() == 0 ? R.drawable.shop_off : R.drawable.shop_on);
-
-        view.findViewById(R.id.info_bar_wrap).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.info_bar_bg : R.drawable.info_bar_bg_on));
+        ((ImageView) view.findViewById(R.id.shop_indicator)).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.shop_bg : R.drawable.shop_bg_on));
+        //view.findViewById(R.id.info_bar_wrap).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.info_bar_bg : R.drawable.info_bar_bg_on));
 
         int count = 0;
 

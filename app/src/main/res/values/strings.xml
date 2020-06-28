@@ -5,9 +5,9 @@
     <string name="snack_title">Create online store in minutes!</string>
     <string name="snack_action">FREE</string>
     <string name="online_grocer">Online Grocer</string>
-    <string name="cart_empty">Your cart is empty.</string>
-    <string name="place_order">Place Order</string>
+    <string name="cart_empty">cart is empty</string>
+    <string name="place_order">SUBMIT</string>
     <string name="select_location">select location</string>
-    <string name="author_copy">Sergei Sheinin</string>
+    <string name="author_copy">S. Sheinin</string>
     <string name="images_courtesy">Images courtesy of Shopify.com</string>
 </resources>

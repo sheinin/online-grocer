@@ -22,19 +22,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/grid" />
 
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/copy"
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
         android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="bottom"
+            android:paddingTop="3dp"
             android:src="@drawable/copy"
             android:contentDescription="@string/online_grocer" />
 
@@ -49,14 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:text="@string/author_copy"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="top"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:text="@string/images_courtesy"/>
 
         </LinearLayout>
