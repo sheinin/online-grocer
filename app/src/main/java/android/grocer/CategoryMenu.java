@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,9 +68,7 @@ public class CategoryMenu extends Fragment {
             TextView price  = vi.findViewWithTag("cat_price");
             TextView title  = vi.findViewWithTag("cat_title");
 
-            if (item != null)
-
-                val.setQuantity(item.getQty());
+            val.setQuantity(item != null ? item.getQty() : 0);
 
             if (val.getQty() > 0) {
 

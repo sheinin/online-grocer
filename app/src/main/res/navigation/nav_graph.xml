@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/store_fragment"
-        android:name="android.grocer.Store"
+        android:name="android.grocer.StoreActivity"
         tools:layout="@layout/store_fragment">
 
         <action

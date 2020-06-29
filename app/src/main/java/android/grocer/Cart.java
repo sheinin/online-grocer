@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -186,11 +187,18 @@ public class Cart extends Fragment implements OnMapReadyCallback {
         location = true;
 
         mMap.clear();
+
+        Marker marker = mMap.addMarker(new MarkerOptions()
+                .position(latLng));
+
+        marker.showInfoWindow();
+
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng), new GoogleMap.CancelableCallback() {
             @Override
             public void onFinish() {
 
                 List<Address> addresses = null;
+                Marker marker;
 
                 try {
 
@@ -202,46 +210,48 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
                 }
 
-                assert addresses != null;
+                if (addresses != null) {
 
-                String address = addresses.get(0).getAddressLine(0);
-                String city = addresses.get(0).getLocality();
-                String state = addresses.get(0).getAdminArea();
-                String country = addresses.get(0).getCountryName();
-                String postalCode = addresses.get(0).getPostalCode();
+                    String address = addresses.get(0).getAddressLine(0);
+                    String city = addresses.get(0).getLocality();
+                    String state = addresses.get(0).getAdminArea();
+                    String country = addresses.get(0).getCountryName();
+                    String postalCode = addresses.get(0).getPostalCode();
 
-                String[] addressArray = {city, state, country, postalCode};
+                    String[] addressArray = {city, state, country, postalCode};
 
-                List<String> list = new ArrayList<>();
-
-                for(String s : addressArray)
-
-                    if(s != null && s.length() > 0)
-
-                        list.add(s);
-
-                addressArray = list.toArray(new String[0]);
-
-                String result = "";
-
-                if (addressArray.length > 0) {
-
-                    StringBuilder sb = new StringBuilder();
+                    List<String> list = new ArrayList<>();
 
                     for (String s : addressArray)
 
-                        sb.append(s).append(", ");
+                        if (s != null && s.length() > 0)
 
-                    result = sb.deleteCharAt(sb.length() - 2).toString();
+                            list.add(s);
+
+                    addressArray = list.toArray(new String[0]);
+
+                    String result = "";
+
+                    if (addressArray.length > 0) {
+
+                        StringBuilder sb = new StringBuilder();
+
+                        for (String s : addressArray)
+
+                            sb.append(s).append(", ");
+
+                        result = sb.deleteCharAt(sb.length() - 2).toString();
+
+                    }
+
+                    marker = mMap.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .title(address != null ? address : "")
+                            .snippet(result));
+
+                    marker.showInfoWindow();
 
                 }
-
-                Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .title(address != null ? address : "")
-                        .snippet(result));
-
-                marker.showInfoWindow();
 
             }
 

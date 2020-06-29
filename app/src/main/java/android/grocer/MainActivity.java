@@ -42,15 +42,14 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0, ix = jsonArray.length(); i < ix; i++) {
 
                 JSONObject o = jsonArray.getJSONObject(i);
-                String header = o.get("header").toString();
-                String store = o.get("store").toString();
-                //String id = o.get("id").toString();
-                String img = o.get("img").toString();
-                String icon = o.get("icon").toString();
-                String name = o.get("name").toString();
-                float price = Float.parseFloat(o.get("price").toString());
-                String type = o.get("cat").toString();
-                String typeIcon = o.get("splotch").toString();
+                String header = o.get("h").toString();
+                String store = o.get("s").toString();
+                String img = o.get("m").toString();
+                String icon = o.get("i").toString();
+                String name = o.get("n").toString();
+                float price = Float.parseFloat(o.get("p").toString());
+                String type = o.get("c").toString();
+                String typeIcon = o.get("g").toString();
 
                 if (!stores.containsKey(store))
 

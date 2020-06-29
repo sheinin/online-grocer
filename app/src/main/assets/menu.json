@@ -1,23 +1,25 @@
 [
-    {"store":"Hot Drink", "header":"cup.png", "name": "Latte", "img": "drinks_latte.jpg", "price": 1, "id": "lat", "type": "coffee", "icon": "coffee.png","splotch":"drinks_latte.jpg","cat": "Coffee"},
-    {"store":"Hot Drink", "header":"drink_header", "name": "Cappuccino", "img": "drinks_cappuccino.jpg", "price": 3, "id": "cap", "icon": "coffee.jpg","splotch":"drinks_latte.jpg","cat": "Coffee"},
-    {"store":"Hot Drink", "header":"drink_header", "name": "Cup", "img": "drinks_tea.jpg", "price": 2, "id": "tea", "icon": "tea.jpg","splotch":"drinks_tea.jpg","cat": "Tea"},
-    {"store":"Hot Drink", "header":"drink_header", "name": "Pot", "img": "tea_set_break.jpg", "price": 6, "id": "pot", "icon": "tea.jpg","splotch":"drinks_tea.jpg","cat": "Tea"},
 
-    {"store":"Fast Food", "header":"burger.png", "name": "Pepperoni", "img": "pizza_pepperoni.jpg", "price": 6, "id": "prn", "icon": "pizza.png","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
-    {"store":"Fast Food", "header":"food_header", "name": "Margarita", "img": "pizza_margarita.jpg", "price": 7, "id": "mrg", "icon": "pizza.png","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
-    {"store":"Fast Food", "header":"food_header", "name": "Cheese", "img": "pizza_four_cheese.jpg", "price": 10, "id": "4ch", "icon": "pizza.png","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
-    {"store":"Fast Food", "header":"food_header", "name": "Hawaiian", "img": "pizza_hawaii.jpg", "price": 8, "id": "haw", "icon": "pizza.png","splotch":"pizza_pepperoni.jpg","cat": "Pizza"},
+    {"s":"Hot Drink", "h":"cup.png", "n": "Latte", "m": "drinks_latte.jpg", "p": 1, "i": "coffee.png","g":"drinks_latte.jpg","c": "Coffee"},
+    {"s":"Hot Drink", "h":"cup.png", "n": "Cappuccino", "m": "drinks_cappuccino.jpg", "p": 3, "i": "coffee.png","g":"drinks_latte.jpg","c": "Coffee"},
 
-    {"store":"Fast Food", "header":"food_header", "name": "Burrito", "img": "street_food_burrito.jpg", "price": 4, "id": "brt", "icon": "sf.png","splotch":"street_food_burrito.jpg","cat": "Street Food"},
-    {"store":"Fast Food", "header":"food_header", "name": "Burger", "img": "street_food_burger.jpg", "price": 6, "id": "brg", "icon": "sf.png","splotch":"street_food_burrito.jpg","cat": "Street Food"},
-    {"store":"Fast Food", "header":"food_header", "name": "Taco", "img": "street_food_taco.jpg", "price": 3, "id": "tco", "icon": "sf.png","splotch":"street_food_burrito.jpg","cat": "Street Food"},
-    {"store":"Fast Food", "header":"food_header", "name": "Sandwich", "img": "street_food_sandwich.jpg", "price": 8, "id": "snd", "icon": "sf.png","splotch":"street_food_burrito.jpg","cat": "Street Food"},
+    {"s":"Hot Drink", "h":"cup.png", "n": "Cup", "m": "drinks_tea.jpg", "p": 2, "i": "tea.png","g":"drinks_tea.jpg","c": "Tea"},
+    {"s":"Hot Drink", "h":"cup.png", "n": "Pot", "m": "tea_set_break.jpg", "p": 6, "i": "tea.png","g":"drinks_tea.jpg","c": "Tea"},
 
-    {"store":"Fast Food", "header":"food_header", "name": "Apple Pie", "img": "dessert_apple_pie.jpg", "price": 5, "id": "apl", "icon": "dsrt.png","splotch":"dessert_apple_pie.jpg","cat": "Desserts"},
-    {"store":"Fast Food", "header":"food_header", "name": "Cheesecake", "img": "dessert_cheesecake.jpg", "price": 3, "id": "chc", "icon": "dsrt.png","splotch":"dessert_apple_pie.jpg","cat": "Desserts"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Pepperoni", "m": "pizza_pepperoni.jpg", "p": 6, "i": "pizza.png","g":"pizza_pepperoni.jpg","c": "Pizza"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Margarita", "m": "pizza_margarita.jpg", "p": 7, "i": "pizza.png","g":"pizza_pepperoni.jpg","c": "Pizza"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Cheese", "m": "pizza_four_cheese.jpg", "p": 10, "i": "pizza.png","g":"pizza_pepperoni.jpg","c": "Pizza"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Hawaiian", "m": "pizza_hawaii.jpg", "p": 8, "i": "pizza.png","g":"pizza_pepperoni.jpg","c": "Pizza"},
 
-    {"store":"Fast Food", "header":"food_header", "name": "Coca Cola", "img": "drinks_cola.jpg", "price": 2, "id": "sod", "icon": "drink.png","splotch":"drinks_orange_juice.jpg","cat": "Beverages"},
-    {"store":"Fast Food", "header":"food_header", "name": "Orange Juice", "img": "drinks_orange_juice.jpg", "price": 4, "id": "orj", "icon": "drink.png","splotch":"drinks_orange_juice.jpg","cat": "Beverages"}
+    {"s":"Fast Food", "h":"burger.png", "n": "Burrito", "m": "street_food_burrito.jpg", "p": 4, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Burger", "m": "street_food_burger.jpg", "p": 6, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Taco", "m": "street_food_taco.jpg", "p": 3, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Sandwich", "m": "street_food_sandwich.jpg", "p": 8, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
+
+    {"s":"Fast Food", "h":"burger.png", "n": "Apple Pie", "m": "dessert_apple_pie.jpg", "p": 5, "i": "dsrt.png","g":"dessert_apple_pie.jpg","c": "Desserts"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Cheesecake", "m": "dessert_cheesecake.jpg", "p": 3, "i": "dsrt.png","g":"dessert_apple_pie.jpg","c": "Desserts"},
+
+    {"s":"Fast Food", "h":"burger.png", "n": "Coca Cola", "m": "drinks_cola.jpg", "p": 2, "i": "drink.png","g":"drinks_orange_juice.jpg","c": "Beverages"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Orange Juice", "m": "drinks_orange_juice.jpg", "p": 4, "i": "drink.png","g":"drinks_orange_juice.jpg","c": "Beverages"}
 
 ]
