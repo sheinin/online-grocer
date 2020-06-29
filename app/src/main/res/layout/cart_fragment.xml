@@ -94,6 +94,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:weightSum="1"
+        android:background="#8ddd"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -105,9 +106,7 @@
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true" />
@@ -129,15 +128,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:textStyle="bold"
             android:minHeight="0dp"
-            android:paddingTop="8dp"
+            android:paddingTop="10dp"
             android:textColor="#8ec3b9"
-            android:paddingBottom="8dp"
+            android:paddingBottom="10dp"
             android:background="@drawable/cart_bg_submit"
             android:text="@string/place_order"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="5dp"
+        android:background="@drawable/cart_bg_list_top"/>
 
 </LinearLayout>
