@@ -10,4 +10,6 @@
     <string name="select_location">select location</string>
     <string name="author_copy">S. Sheinin</string>
     <string name="images_courtesy">Images courtesy of Shopify.com</string>
+    <string name="cart_location_fail">could not retrieve location</string>
+    <string name="cart_location_none">select location</string>
 </resources>

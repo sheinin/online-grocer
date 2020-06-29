@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 String icon = o.get("icon").toString();
                 String name = o.get("name").toString();
                 float price = Float.parseFloat(o.get("price").toString());
-                String type = o.get("type").toString();
+                String type = o.get("cat").toString();
                 String typeIcon = o.get("splotch").toString();
-                String cat = o.get("cat").toString();
 
                 if (!stores.containsKey(store))
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Objects.requireNonNull(items.get(store)).put(type, new ArrayList<CartItem>());
 
-                Objects.requireNonNull(Objects.requireNonNull(items.get(store)).get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, cat, 0));
+                Objects.requireNonNull(Objects.requireNonNull(items.get(store)).get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, 0));
 
             }
         } catch (JSONException | IOException ex) {

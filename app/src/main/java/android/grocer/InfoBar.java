@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 
 class InfoBar {
@@ -48,17 +50,17 @@ class InfoBar {
 
             if (qty > 0) {
 
-                Integer val = items.get(item.getType());
+                Integer val = items.get(item.getTypeIcon());
                 val = val != null ? val : 0;
-                items.put(item.getType(), item.getQty() + val);
+                items.put(item.getTypeIcon(), item.getQty() + val);
 
             }
 
         }
 
         ((ImageView) view.findViewById(R.id.shop_indicator)).setImageResource(items.entrySet().size() == 0 ? R.drawable.shop_off : R.drawable.shop_on);
-        ((ImageView) view.findViewById(R.id.shop_indicator)).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.shop_bg : R.drawable.shop_bg_on));
-        //view.findViewById(R.id.info_bar_wrap).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.info_bar_bg : R.drawable.info_bar_bg_on));
+        ((ImageView) view.findViewById(R.id.shop_indicator)).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.shop_bg_off : R.drawable.shop_bg_on));
+        view.findViewById(R.id.info_bar_container).setBackground(ContextCompat.getDrawable(context, items.entrySet().size() == 0 ? R.drawable.shop_bg_cart_off : R.drawable.shop_bg_cart_on));
 
         int count = 0;
 
@@ -73,7 +75,8 @@ class InfoBar {
 
             try {
 
-                InputStream is = context.getAssets().open(key + ".png");
+                Log.d("STATE", key);
+                InputStream is = context.getAssets().open(key);
                 img.setImageBitmap(BitmapFactory.decodeStream(is));
                 is.close();
 
@@ -105,9 +108,9 @@ class InfoBar {
             rl.addView(img);
             rl.addView(txt);
 
-            pad = count % 2 == 0 ? dpToPx(10) : dpToPx(25);
+            pad = count % 2 == 0 ? dpToPx(3) : dpToPx(16);
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(dpToPx(40), ViewGroup.LayoutParams.WRAP_CONTENT);
-            param.setMargins(dpToPx(5), pad,dpToPx(4),0);
+            param.setMargins(dpToPx(2), pad, dpToPx(4),0);
             rl.setLayoutParams(param);
             container.addView(rl);
 

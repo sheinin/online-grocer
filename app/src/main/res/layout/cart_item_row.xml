@@ -71,7 +71,7 @@
                 android:id="@+id/item_rm"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/icon_cart_rm"
+                android:src="@drawable/cart_icon_rm"
                 android:contentDescription="@string/online_grocer"/>
 
             <TextView
@@ -88,7 +88,7 @@
                 android:id="@+id/item_add"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/icon_cart_add"
+                android:src="@drawable/cart_icon_add"
                 android:contentDescription="@string/online_grocer"/>
 
 

@@ -6,15 +6,12 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,17 +23,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -48,12 +43,13 @@ public class Cart extends Fragment implements OnMapReadyCallback {
         // Required empty public constructor
     }
 
+    Boolean location = false;
+    CartItemAdapter adapter;
+    FusedLocationProviderClient fusedLocationProviderClient;
     Geocoder geocoder;
     GoogleMap mMap;
-    CartItemAdapter adapter;
-    Boolean location = false;
-    Location currentLocation;
-    FusedLocationProviderClient fusedLocationProviderClient;
+    MainActivity MA;
+
     private static final int REQUEST_CODE = 101;
 
     @Override
@@ -73,111 +69,34 @@ public class Cart extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    private void fetchLocation() {
-
-        if (ActivityCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this.requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-            return;
-
-        }
-        Log.d("STATE", "FETCH");
-
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-
-            @Override
-            public void onSuccess(Location location) {
-                Log.d("STATE", "succ");
-                if (location != null) {
-
-                    currentLocation = location;
-                    //((SupportMapFragment) Objects.requireNonNull(getChildFragmentManager().findFragmentById(R.id.map))).getMapAsync(Cart.this);
-
-
-                    Log.d("STATE", "L:"+ String.valueOf(currentLocation.getLatitude()));
-
-                    LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
-
-                    //Geocoder geocoder;
-                    List<Address> addresses = null;
-                    //geocoder = new Geocoder(this.requireContext(), Locale.getDefault());
-
-                    try {
-                        addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    assert addresses != null;
-                    String address = addresses.get(0).getAddressLine(0);
-                    String city = addresses.get(0).getLocality();
-                    String state = addresses.get(0).getAdminArea();
-                    String country = addresses.get(0).getCountryName();
-                    String postalCode = addresses.get(0).getPostalCode();
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude()))
-                            .title(address)
-                            .snippet(city+state+country+postalCode));
-                    marker.showInfoWindow();
-
-
-                    Log.d("STATE",address+city+state+country+postalCode);
-
-
-                }
-
-            }
-
-        });
-        task.addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-
-                Log.d("STATE", "complete"+task.getResult());
-            }
-
-        });
-
-        task.addOnFailureListener(new OnFailureListener() {
-
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Log.d("STATE", "fail");
-
-            }
-
-        });
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.cart_fragment, container, false);
-
-        geocoder = new Geocoder(requireContext(), Locale.getDefault());
-        final MainActivity MA = ((MainActivity) requireActivity());
-
         RecyclerView recyclerView = view.findViewById(R.id.order_cart);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        MA = ((MainActivity) requireActivity());
+
         adapter = new CartItemAdapter(getActivity(), MA.orderedItemsList, Cart.this, view);
+        geocoder = new Geocoder(requireContext(), Locale.getDefault());
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
 
         MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 NavHostFragment.findNavController(Cart.this).navigate(R.id.action_CartFragment_to_MenuFragment);
+
             }
+
         });
 
         view.findViewById(R.id.cart_order_btn).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
@@ -187,12 +106,13 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
                 else
 
-                    Toast.makeText(MA.getApplicationContext(), "Please select location.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MA.getApplicationContext(),  getText(R.string.cart_location_none), Toast.LENGTH_SHORT).show();
 
             }
+
         });
 
-        //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this.requireContext());
+
         ((SupportMapFragment) Objects.requireNonNull(getChildFragmentManager().findFragmentById(R.id.map))).getMapAsync(Cart.this);
 
         view.findViewById(R.id.map_locate).setOnClickListener(new View.OnClickListener() {
@@ -214,7 +134,6 @@ public class Cart extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
 
-        Log.d("STATE","READY");
         mMap = googleMap;
         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this.requireContext(), R.raw.map_style));
         mMap.getUiSettings().setMapToolbarEnabled(false);
@@ -224,55 +143,116 @@ public class Cart extends Fragment implements OnMapReadyCallback {
             @Override
             public void onMapClick(LatLng latLng) {
 
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title(latLng.latitude + " : " + latLng.longitude);
-
-                location = true;
-
-                googleMap.clear();
-                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                googleMap.addMarker(markerOptions);
+                showLocation(latLng);
 
             }
 
         });
 
-/*        Log.d("STATE", "L:"+ String.valueOf(currentLocation.getLatitude()));
-
-        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
-
-        Geocoder geocoder;
-        List<Address> addresses = null;
-        geocoder = new Geocoder(this.requireContext(), Locale.getDefault());
-
-        try {
-            addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assert addresses != null;
-        String address = addresses.get(0).getAddressLine(0);
-        String city = addresses.get(0).getLocality();
-        String state = addresses.get(0).getAdminArea();
-        String country = addresses.get(0).getCountryName();
-        String postalCode = addresses.get(0).getPostalCode();
-
-        Marker marker = googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude()))
-                .title(address)
-                .snippet(city+state+country+postalCode));
-        marker.showInfoWindow();
-
-
-Log.d("STATE",address+city+state+country+postalCode);
-*/
     }
 
+    private void fetchLocation() {
 
+        if (ActivityCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this.requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this.requireActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+            return;
+
+        }
+
+        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+
+            @Override
+            public void onSuccess(Location location) {
+
+                if (location != null)
+
+                    showLocation(new LatLng(location.getLatitude(), location.getLongitude()));
+
+                else
+
+                    Toast.makeText(MA.getApplicationContext(), getText(R.string.cart_location_fail), Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
+
+    }
+
+    void showLocation(final LatLng latLng) {
+
+        location = true;
+
+        mMap.clear();
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng), new GoogleMap.CancelableCallback() {
+            @Override
+            public void onFinish() {
+
+                List<Address> addresses = null;
+
+                try {
+
+                    addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+
+                }
+
+                assert addresses != null;
+
+                String address = addresses.get(0).getAddressLine(0);
+                String city = addresses.get(0).getLocality();
+                String state = addresses.get(0).getAdminArea();
+                String country = addresses.get(0).getCountryName();
+                String postalCode = addresses.get(0).getPostalCode();
+
+                String[] addressArray = {city, state, country, postalCode};
+
+                List<String> list = new ArrayList<>();
+
+                for(String s : addressArray)
+
+                    if(s != null && s.length() > 0)
+
+                        list.add(s);
+
+                addressArray = list.toArray(new String[0]);
+
+                String result = "";
+
+                if (addressArray.length > 0) {
+
+                    StringBuilder sb = new StringBuilder();
+
+                    for (String s : addressArray)
+
+                        sb.append(s).append(", ");
+
+                    result = sb.deleteCharAt(sb.length() - 2).toString();
+
+                }
+
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title(address != null ? address : "")
+                        .snippet(result));
+
+                marker.showInfoWindow();
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+
+
+    }
 
 }
 

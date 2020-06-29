@@ -69,7 +69,7 @@ public class MainMenu extends Fragment {
             }
 
             img.setClipToOutline(true);
-            txt.setText(val.getCategory());
+            txt.setText(val.getType());
 
             vi.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,

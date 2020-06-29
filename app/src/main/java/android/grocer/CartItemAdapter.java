@@ -77,7 +77,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
         holder.itemQty.setText(item.getQtyAsString());
         holder.itemTitle.setText(item.getTitle());
-        holder.itemCategory.setText(item.getCategory());
+        holder.itemCategory.setText(item.getType());
 
         holder.itemAdd.setOnClickListener(new View.OnClickListener() {
 

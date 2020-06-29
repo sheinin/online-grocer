@@ -10,14 +10,13 @@ public class CartItem {
     private String type;
     private String typeIcon;
     private String categoryImg;
-    private String categoryTitle;
     private Integer quantity;
 
     public CartItem(){
 
     }
 
-    public CartItem(String title, String img, Float price, String id, String type, String typeIcon, String categoryImg, String categoryTitle, Integer  quantity){
+    public CartItem(String title, String img, Float price, String id, String type, String typeIcon, String categoryImg, Integer  quantity){
         this.title = title;
         this.img = img;
         this.price = price;
@@ -25,7 +24,6 @@ public class CartItem {
         this.type = type;
         this.typeIcon = typeIcon;
         this.categoryImg = categoryImg;
-        this.categoryTitle = categoryTitle;
         this.quantity = quantity;
     }
 
@@ -59,10 +57,6 @@ public class CartItem {
 
     public String getCategoryImg() {
         return categoryImg;
-    }
-
-    public String getCategory() {
-        return categoryTitle;
     }
 
     public Integer getQty() {

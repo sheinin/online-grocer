@@ -61,10 +61,31 @@
 
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/order_cart"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@drawable/cart_bg_list_top"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/order_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@drawable/cart_bg_list_bottom"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -110,6 +131,10 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="5dp"
             android:textStyle="bold"
+            android:minHeight="0dp"
+            android:paddingTop="8dp"
+            android:textColor="#8ec3b9"
+            android:paddingBottom="8dp"
             android:background="@drawable/cart_bg_submit"
             android:text="@string/place_order"/>
 

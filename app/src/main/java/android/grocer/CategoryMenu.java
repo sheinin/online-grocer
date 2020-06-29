@@ -52,7 +52,7 @@ public class CategoryMenu extends Fragment {
             final CartItem val  = cartItems.get(i);
             final CartItem item = MA.orderedItemsList.get(val.getId());
 
-            cat = val.getCategory();
+            cat = val.getType();
             
             View vi   = li.inflate(R.layout.cat_item, container, false);
             View wrap = li.inflate(R.layout.menu_item_container, container, false);

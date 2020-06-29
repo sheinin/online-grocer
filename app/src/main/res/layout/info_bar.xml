@@ -23,13 +23,19 @@
             android:layout_margin="5dp"
             android:src="@drawable/shop_off"
             android:contentDescription="@string/online_grocer"
-            android:background="@drawable/shop_bg" />
+            android:background="@drawable/shop_bg_off" />
 
         <LinearLayout
             android:id="@+id/info_bar_container"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:padding="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="0dp"
+            android:background="@drawable/shop_bg_cart_off"
+            android:layout_height="fill_parent">
 
         </LinearLayout>
 
