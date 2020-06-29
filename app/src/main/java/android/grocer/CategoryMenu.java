@@ -3,7 +3,6 @@ package android.grocer;
 import android.grocer.data.CartItem;
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 
 public class CategoryMenu extends Fragment {
@@ -35,7 +35,7 @@ public class CategoryMenu extends Fragment {
         View view = inflater.inflate(R.layout.cat_fragment, container, false);
 
         final MainActivity MA = ((MainActivity) requireActivity());
-        final List<CartItem> cartItems = MA.items.get(MA.store).get(MA.route);
+        final List<CartItem> cartItems = Objects.requireNonNull(MA.items.get(MA.store)).get(MA.route);
         final InfoBar infoBar = new InfoBar(view, MA.orderedItemsList, getActivity());
         
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -50,7 +50,7 @@ public class CategoryMenu extends Fragment {
         for (int i = 0, ix = cartItems.size(); i < ix; i++) {
 
             final CartItem val  = cartItems.get(i);
-            final CartItem item = MA.orderedItemsList.get(val.getId());
+            final CartItem item = MA.orderedItemsList.get(val.getTitle());
 
             cat = val.getType();
             
@@ -130,9 +130,9 @@ public class CategoryMenu extends Fragment {
 
                     val.setQuantity(val.getQty() + 1);
 
-                    if (!MA.orderedItemsList.containsKey(val.getId()))
+                    if (!MA.orderedItemsList.containsKey(val.getTitle()))
 
-                        MA.orderedItemsList.put(val.getId(), val);
+                        MA.orderedItemsList.put(val.getTitle(), val);
 
                     qtx.setText(val.getQtyAsString());
                     qty.setVisibility(View.VISIBLE);
@@ -156,7 +156,7 @@ public class CategoryMenu extends Fragment {
 
                         qty.setVisibility(View.INVISIBLE);
                         rm.setVisibility(View.INVISIBLE);
-                        MA.orderedItemsList.remove(val.getId());
+                        MA.orderedItemsList.remove(val.getTitle());
 
                     }
 

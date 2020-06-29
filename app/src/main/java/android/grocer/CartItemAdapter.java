@@ -105,7 +105,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
             if (quantity == 0) {
 
-                mData.remove(item.getId());
+                mData.remove(item.getTitle());
                 mIndex.remove(position);
 
                 notifyDataSetChanged();

@@ -6,21 +6,16 @@ public class CartItem {
     private String title;
     private String img;
     private Float price;
-    private String id;
     private String type;
     private String typeIcon;
     private String categoryImg;
     private Integer quantity;
 
-    public CartItem(){
 
-    }
-
-    public CartItem(String title, String img, Float price, String id, String type, String typeIcon, String categoryImg, Integer  quantity){
+    public CartItem(String title, String img, Float price, String type, String typeIcon, String categoryImg, Integer  quantity){
         this.title = title;
         this.img = img;
         this.price = price;
-        this.id = id;
         this.type = type;
         this.typeIcon = typeIcon;
         this.categoryImg = categoryImg;
@@ -41,10 +36,6 @@ public class CartItem {
 
     public Integer getPrice() {
         return Math.round(price);
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getType() {

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject o = jsonArray.getJSONObject(i);
                 String header = o.get("header").toString();
                 String store = o.get("store").toString();
-                String id = o.get("id").toString();
+                //String id = o.get("id").toString();
                 String img = o.get("img").toString();
                 String icon = o.get("icon").toString();
                 String name = o.get("name").toString();
@@ -64,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
                     Objects.requireNonNull(items.get(store)).put(type, new ArrayList<CartItem>());
 
-                Objects.requireNonNull(Objects.requireNonNull(items.get(store)).get(type)).add(new CartItem(name, img, price, id, type, icon, typeIcon, 0));
+                Objects.requireNonNull(Objects.requireNonNull(items.get(store)).get(type)).add(new CartItem(name, img, price, type, icon, typeIcon, 0));
 
             }
+
         } catch (JSONException | IOException ex) {
 
                 ex.printStackTrace();
