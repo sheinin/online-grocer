@@ -27,9 +27,9 @@ Add files
 ./app/src/debug/res/values/google_maps_api.xml
 
 ```
-&lt;resources&gt;
-    &lt&string name="google_maps_key" templateMergeStrategy="preserve" translatable="false"&gt;your_google_maps_api_key&lt;/string&gt;
-&lt;/resources&gt;
+<resources>
+    &lt&string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">your_google_maps_api_key</string>
+</resources>
 ```
 
 &copy; S. Sheinin
