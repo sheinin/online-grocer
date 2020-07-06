@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +42,7 @@ public class MainMenu extends Fragment {
         View view         = inflater.inflate(R.layout.menu_fragment, container, false);
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout main = view.findViewById(R.id.menu_entry);
-        InfoBar items  = new InfoBar(view, MA.orderedItemsList, getActivity());
+        InfoBar items  = new InfoBar(view, MA, getActivity(), this);
 
         assert li != null;
 
@@ -80,7 +82,7 @@ public class MainMenu extends Fragment {
 
                 @Override
                 public void onClick(View view) {
-
+                    Log.d("STATE","K"+item.getKey());
                     openItemMenu(item.getKey());
 
                 }
@@ -99,7 +101,7 @@ public class MainMenu extends Fragment {
 
                 if (MA.orderedItemsList.size() == 0)
 
-                    Toast.makeText(MA.getApplicationContext(), "Your cart is empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MA.getApplicationContext(), view.getContext().getText(R.string.cart_empty), Toast.LENGTH_SHORT).show();
 
                 else
 
@@ -150,7 +152,6 @@ public class MainMenu extends Fragment {
     private void openItemMenu(String route){
 
         MA.route = route;
-        MA.cartItems = Objects.requireNonNull(MA.items.get(MA.store)).get(route);
         NavHostFragment.findNavController(MainMenu.this).navigate(R.id.action_MenuFragment_to_CatFragment);
 
     }

@@ -29,10 +29,10 @@ public class StoreActivity extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View view = inflater.inflate(R.layout.store_fragment, container, false);
+
         MA = ((MainActivity) requireActivity());
         MA.orderedItemsList = new LinkedHashMap<>();
-
-        View view = inflater.inflate(R.layout.store_fragment, container, false);
 
         int count = 0;
         int qty = MA.stores.size();
@@ -54,25 +54,32 @@ public class StoreActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                MA.store = name[+ position];
-                NavHostFragment.findNavController(StoreActivity.this).navigate(R.id.action_StoreFragment_to_MenuFragment);
+            MA.store = name[+ position];
+            NavHostFragment.findNavController(StoreActivity.this).navigate(R.id.action_StoreFragment_to_MenuFragment);
 
             }
         });
 
         View.OnClickListener listener = new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getString(R.string.snack_title), Snackbar.LENGTH_INDEFINITE)
-                        .setAction(getString(R.string.snack_action), new View.OnClickListener() {
+
+                if (isAdded())
+
+                    Snackbar.make(view, view.getContext().getString(R.string.snack_title), Snackbar.LENGTH_LONG)
+
+                        .setAction(view.getContext().getString(R.string.snack_action), new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.git_url)));
-                                startActivity(browserIntent);
+
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(view.getContext().getString(R.string.git_url)));
+                            startActivity(browserIntent);
+
                             }
                         }).show();
 
-            }};
+        }};
 
         MA.findViewById(R.id.header_logo).setOnClickListener(listener);
         MA.findViewById(R.id.header_text).setOnClickListener(listener);

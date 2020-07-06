@@ -22,6 +22,9 @@
         tools:layout="@layout/menu_fragment">
 
         <action
+            android:id="@+id/action_Fragment_to_CatFragment"
+            app:destination="@id/cat_fragment" />
+        <action
             android:id="@+id/action_MenuFragment_to_StoreFragment"
             app:destination="@id/store_fragment" />
         <action
@@ -40,6 +43,9 @@
         <action
             android:id="@+id/action_CatFragment_to_CartFragment"
             app:destination="@id/cart_fragment" />
+        <action
+            android:id="@+id/action_Fragment_to_CatFragment"
+            app:destination="@id/cat_fragment" />
         <action
             android:id="@+id/action_CatFragment_to_MenuFragment"
             app:destination="@id/menu_fragment" />

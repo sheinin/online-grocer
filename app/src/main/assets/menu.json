@@ -11,13 +11,18 @@
     {"s":"Fast Food", "h":"burger.png", "n": "Cheese", "m": "pizza_four_cheese.jpg", "p": 10, "i": "pizza.png","g":"pizza_pepperoni.jpg","c": "Pizza"},
     {"s":"Fast Food", "h":"burger.png", "n": "Hawaiian", "m": "pizza_hawaii.jpg", "p": 8, "i": "pizza.png","g":"pizza_pepperoni.jpg","c": "Pizza"},
 
-    {"s":"Fast Food", "h":"burger.png", "n": "Burrito", "m": "street_food_burrito.jpg", "p": 4, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
-    {"s":"Fast Food", "h":"burger.png", "n": "Burger", "m": "street_food_burger.jpg", "p": 6, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
-    {"s":"Fast Food", "h":"burger.png", "n": "Taco", "m": "street_food_taco.jpg", "p": 3, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
-    {"s":"Fast Food", "h":"burger.png", "n": "Sandwich", "m": "street_food_sandwich.jpg", "p": 8, "i": "sf.png","g":"street_food_burrito.jpg","c": "Street Food"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Burrito", "m": "street_food_burrito.jpg", "p": 4, "i": "taco.png","g":"street_food_burrito.jpg","c": "Wraps"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Taco", "m": "street_food_taco.jpg", "p": 3, "i": "taco.png","g":"street_food_burrito.jpg","c": "Wraps"},
+
+    {"s":"Fast Food", "h":"burger.png", "n": "Burger", "m": "street_food_burger.jpg", "p": 6, "i": "sf.png","g":"street_food_burger.jpg","c": "Burgers"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Sandwich", "m": "street_food_sandwich.jpg", "p": 8, "i": "sf.png","g":"street_food_burger.jpg","c": "Burgers"},
 
     {"s":"Fast Food", "h":"burger.png", "n": "Apple Pie", "m": "dessert_apple_pie.jpg", "p": 5, "i": "dsrt.png","g":"dessert_apple_pie.jpg","c": "Desserts"},
     {"s":"Fast Food", "h":"burger.png", "n": "Cheesecake", "m": "dessert_cheesecake.jpg", "p": 3, "i": "dsrt.png","g":"dessert_apple_pie.jpg","c": "Desserts"},
+
+    {"s":"Fast Food", "h":"burger.png", "n": "Berries", "m": "berries_pile.jpg", "p": 5, "i": "watermelon.png","g":"berries_pile.jpg","c": "Fruits"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Oranges", "m": "fresh_oranges.jpg", "p": 5, "i": "watermelon.png","g":"berries_pile.jpg","c": "Fruits"},
+    {"s":"Fast Food", "h":"burger.png", "n": "Apples", "m": "green_apples.jpg", "p": 5, "i": "watermelon.png","g":"berries_pile.jpg","c": "Fruits"},
 
     {"s":"Fast Food", "h":"burger.png", "n": "Coca Cola", "m": "drinks_cola.jpg", "p": 2, "i": "drink.png","g":"drinks_orange_juice.jpg","c": "Beverages"},
     {"s":"Fast Food", "h":"burger.png", "n": "Orange Juice", "m": "drinks_orange_juice.jpg", "p": 4, "i": "drink.png","g":"drinks_orange_juice.jpg","c": "Beverages"}

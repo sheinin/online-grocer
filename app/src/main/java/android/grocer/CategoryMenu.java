@@ -6,8 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +35,7 @@ public class CategoryMenu extends Fragment {
 
         final MainActivity MA = ((MainActivity) requireActivity());
         final List<CartItem> cartItems = Objects.requireNonNull(MA.items.get(MA.store)).get(MA.route);
-        final InfoBar infoBar = new InfoBar(view, MA.orderedItemsList, getActivity());
+        final InfoBar infoBar = new InfoBar(view, MA, getActivity(), this);
         
         LayoutInflater li = (LayoutInflater) MA.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout mainLayout = view.findViewById(R.id.menu_entry);
@@ -179,7 +177,7 @@ public class CategoryMenu extends Fragment {
 
                 if (MA.orderedItemsList.size() == 0)
 
-                    Toast.makeText(MA.getApplicationContext(), getText(R.string.cart_empty), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MA.getApplicationContext(), view.getContext().getText(R.string.cart_empty), Toast.LENGTH_SHORT).show();
 
                 else
 
@@ -193,9 +191,12 @@ public class CategoryMenu extends Fragment {
         MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
                 NavHostFragment.findNavController(CategoryMenu.this).navigate(R.id.action_CatFragment_to_MenuFragment);
+
             }
         });
+
         ((TextView) view.findViewById(R.id.page_title)).setText(cat);
 
         return view;

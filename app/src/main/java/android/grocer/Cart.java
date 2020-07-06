@@ -107,7 +107,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
                 else
 
-                    Toast.makeText(MA.getApplicationContext(),  getText(R.string.cart_location_none), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MA.getApplicationContext(), view.getContext().getText(R.string.cart_location_none), Toast.LENGTH_SHORT).show();
 
             }
 

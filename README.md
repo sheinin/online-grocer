@@ -22,5 +22,15 @@ Format of menu.json:
 ]
 ```
 
+Add files
+./app/src/release/res/values/google_maps_api.xml
+./app/src/debug/res/values/google_maps_api.xml
+
+```
+&lt;resources&gt;
+    &lt&string name="google_maps_key" templateMergeStrategy="preserve" translatable="false"&gt;your_google_maps_api_key&lt;/string&gt;
+&lt;/resources&gt;
+```
+
 &copy; S. Sheinin
 sergei.sheinin@gmail.com

@@ -25,11 +25,15 @@
             android:contentDescription="@string/online_grocer"
             android:background="@drawable/shop_bg_off" />
 
-        <LinearLayout
+        <HorizontalScrollView
             android:id="@+id/info_bar_container"
             android:layout_width="fill_parent"
             android:orientation="horizontal"
-            android:padding="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingEnd="15dp"
+            android:paddingStart="2dp"
+            android:scrollbars="none"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
@@ -37,8 +41,18 @@
             android:background="@drawable/shop_bg_cart_off"
             android:layout_height="fill_parent">
 
-        </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/info_bar_box"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            </RelativeLayout>
+
+        </HorizontalScrollView>
+
 
     </LinearLayout>
+
 
 </LinearLayout>

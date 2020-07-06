@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     String route;
     String store;
-    List<CartItem> cartItems = new ArrayList<>();
 
     LinkedHashMap<String, CartItem> orderedItemsList = new LinkedHashMap<>();
     HashMap<String ,LinkedHashMap<String, List<CartItem>>> items = new HashMap<>();
