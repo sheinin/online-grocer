@@ -28,7 +28,7 @@ Add files
 
 ```
 <resources>
-    &lt&string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">your_google_maps_api_key</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">your_google_maps_api_key</string>
 </resources>
 ```
 
