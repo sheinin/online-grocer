@@ -1,7 +1,7 @@
 # Online Grocer FREE
 ## Create online store in minutes
 
-Add menu.json and media images to /app/src/main/assets directory and build the APK.
+Add menu.json and media images to /app/src/main/assets directory
 
 Format of menu.json:
 
@@ -22,8 +22,8 @@ Format of menu.json:
 ]
 ```
 
-Add files
-./app/src/release/res/values/google_maps_api.xml
+Add files  
+./app/src/release/res/values/google_maps_api.xml  
 ./app/src/debug/res/values/google_maps_api.xml
 
 ```
@@ -31,6 +31,8 @@ Add files
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">your_google_maps_api_key</string>
 </resources>
 ```
+
+Build the customized APK.
 
 &copy; S. Sheinin
 sergei.sheinin@gmail.com
