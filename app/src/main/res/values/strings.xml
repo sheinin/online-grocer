@@ -1,15 +1,16 @@
 <resources>
-    <string name="app_name">Online Grocer FREE</string>
+    <string name="app_name">Online Grocer Demo</string>
     <string name="your_order">Your Order</string>
     <string name="snack_title">Create online store in minutes!</string>
-    <string name="snack_action">FREE</string>
+    <string name="snack_action">DEMO</string>
     <string name="online_grocer">Online Grocer</string>
     <string name="cart_empty">cart is empty</string>
     <string name="place_order">SUBMIT</string>
     <string name="select_location">select location</string>
-    <string name="author_copy">S. Sheinin</string>
+    <string name="author_copy">S. Sheinin 2020</string>
     <string name="images_courtesy">Images courtesy of Shopify.com</string>
     <string name="cart_location_fail">could not retrieve location</string>
     <string name="cart_location_none">select location</string>
     <string name="git_url">https://github.com/sheinin/online-grocer-free</string>
+    <string name="google_maps_key"></string>
 </resources>

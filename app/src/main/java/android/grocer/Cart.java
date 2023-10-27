@@ -40,9 +40,7 @@ import java.util.Objects;
 
 public class Cart extends Fragment implements OnMapReadyCallback {
 
-    public Cart() {
-        // Required empty public constructor
-    }
+    public Cart() {}
 
     Boolean location = false;
     CartItemAdapter adapter;
@@ -76,24 +74,16 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
         View view = inflater.inflate(R.layout.cart_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.order_cart);
-
         MA = ((MainActivity) requireActivity());
-
         adapter = new CartItemAdapter(getActivity(), MA.orderedItemsList, Cart.this, view);
         geocoder = new Geocoder(requireContext(), Locale.getDefault());
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
-
         MA.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
                 NavHostFragment.findNavController(Cart.this).navigate(R.id.action_CartFragment_to_MenuFragment);
-
             }
-
         });
 
         view.findViewById(R.id.cart_order_btn).setOnClickListener(new View.OnClickListener() {
@@ -142,7 +132,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
-            public void onMapClick(LatLng latLng) {
+            public void onMapClick(@NonNull LatLng latLng) {
 
                 showLocation(latLng);
 
@@ -191,6 +181,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
         Marker marker = mMap.addMarker(new MarkerOptions()
                 .position(latLng));
 
+        assert marker != null;
         marker.showInfoWindow();
 
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng), new GoogleMap.CancelableCallback() {
@@ -206,7 +197,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
                 } catch (IOException e) {
 
-                    e.printStackTrace();
+                   // e.printStackTrace();
 
                 }
 
@@ -224,7 +215,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
 
                     for (String s : addressArray)
 
-                        if (s != null && s.length() > 0)
+                        if (s != null && !s.isEmpty())
 
                             list.add(s);
 
@@ -249,6 +240,7 @@ public class Cart extends Fragment implements OnMapReadyCallback {
                             .title(address != null ? address : "")
                             .snippet(result));
 
+                    assert marker != null;
                     marker.showInfoWindow();
 
                 }

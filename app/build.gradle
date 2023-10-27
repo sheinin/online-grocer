@@ -1,19 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
     defaultConfig {
+        compileSdk 34
         applicationId "online.grocer"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 34
         versionCode 9
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled true
@@ -21,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    namespace 'android.grocer'
 }
 
 dependencies {

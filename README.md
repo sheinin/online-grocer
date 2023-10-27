@@ -1,4 +1,4 @@
-# Online Grocer FREE
+# Online Grocer Demo
 ## Create online store in minutes
 
 Add menu.json and media images to /app/src/main/assets directory
