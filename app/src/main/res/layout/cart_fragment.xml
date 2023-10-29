@@ -121,6 +121,12 @@
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/online_grocer" />
 
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Map not available..." />
+
         </RelativeLayout>
 
         <Button

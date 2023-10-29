@@ -6,9 +6,12 @@ android {
         applicationId "online.grocer"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 9
+        versionCode 10
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        Properties properties = new Properties()
+        if (rootProject.file("local.properties").exists()) properties.load(rootProject.file("local.properties").newDataInputStream())
+        resValue "string", "MAPS_API_KEY", properties.getProperty("MAPS_API_KEY", "")
     }
     buildTypes {
         release {
